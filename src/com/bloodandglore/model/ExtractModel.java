@@ -7,6 +7,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import javax.swing.JTable;
+
 public class ExtractModel {
 	public  String getHtmlContent(URL url, String encode) {
 		StringBuffer contentBuffer = new StringBuffer();
@@ -52,8 +54,11 @@ public class ExtractModel {
 	public void updateRowandCol(String buf, int [] rowandcol){//todo
 		;
 	}
-	public void updateTableContent(String buf, String [][] res, int [] rowandcol){todo
+	public void updateTableContent(String buf, String [][] res, int [] rowandcol){//todo
 		;
+	}
+	public void updateUITable(JTable jtData, String [][] tmptable) { //todo
+		
 	}
     public String [][] extractTable(String buf){
     	int [] rowandcol= new int [2]; //row=rowandcol[0]  col=rowandcol[1]

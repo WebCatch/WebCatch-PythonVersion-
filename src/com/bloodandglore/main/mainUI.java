@@ -51,8 +51,12 @@ public class mainUI extends JFrame  implements ActionListener{
 	public void actionPerformed(ActionEvent e){		   
 		if(e.getSource()==jbtExtract){	 
 			ExtractModel extracter = new ExtractModel();			
-			String codeBuf = extracter.getHtmlContent(jtfURL.getText().trim(),"utf-8");	
-			String [][] tmptable = extracter.extractTable(codeBuf);
+			String codeBuf = extracter.getHtmlContent(jtfURL.getText().trim(),"utf-8");	 //得到源代码
+			String [][] tmptable = extracter.extractTable(codeBuf);  //分析并从源代码中提取出表
+			if (tmptable.length > 0){
+				jtData = new JTable(tmptable.length,tmptable[0].length);
+			}
+			updateUITable(jtData, tmptable);
 		}
 	}
 }
