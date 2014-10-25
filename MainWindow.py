@@ -58,7 +58,7 @@ class Dialog(QDialog, Ui_Dialog):
         hashval = {}
         for tmpRes in extResList:
             tmpStr = unicode(tmpRes)
-            tmpColRePtnResList = re.findall(r'([^ ]*)="([^"]*)"', tmpStr)
+            tmpColRePtnResList = re.findall(r'\s([A-Za-z][^ ]*)="([^"]*)"', tmpStr)
             tmpColRePtnResList2 = re.findall(r'\<([^\<\>/]*)\s+(?:[^\<\>]*)class="([^"]*)"(?:[^\<\>]*)\>([^\<\>]*)\</(?:\1)\>', tmpStr)
             #find identical cals Type 1
             for tmpColRePtnRes in tmpColRePtnResList:
@@ -104,10 +104,11 @@ class Dialog(QDialog, Ui_Dialog):
                         print curCol+r'="([^"]*)"'
                     col += 1
             row += 1
-        col /= row
+        if row != 0:
+            col /= row
         self.tableWidget.setRowCount(row)
         self.tableWidget.setColumnCount(col)
-        self.tableWidget.setHorizontalHeaderLabels(resCols)
+        self.tableWidget.setHorizontalHeaderLabels(resCols + resCols2)
         #update Tabel Widget
         for i in range(row):
             for j in range(col):

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'D:\pythonWS\WebCatch\MainWindow.ui'
 #
-# Created: Sat Oct 25 00:05:18 2014
+# Created: Sat Oct 25 14:15:23 2014
 #      by: PyQt4 UI code generator 4.11.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,7 +26,7 @@ except AttributeError:
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName(_fromUtf8("Dialog"))
-        Dialog.resize(796, 565)
+        Dialog.resize(854, 564)
         self.horizontalLayoutWidget = QtGui.QWidget(Dialog)
         self.horizontalLayoutWidget.setGeometry(QtCore.QRect(20, 20, 531, 25))
         self.horizontalLayoutWidget.setObjectName(_fromUtf8("horizontalLayoutWidget"))
@@ -43,7 +43,7 @@ class Ui_Dialog(object):
         self.btnExct.setObjectName(_fromUtf8("btnExct"))
         self.horizontalLayout.addWidget(self.btnExct)
         self.teExctData = QtGui.QTextEdit(Dialog)
-        self.teExctData.setGeometry(QtCore.QRect(20, 70, 531, 461))
+        self.teExctData.setGeometry(QtCore.QRect(20, 70, 531, 221))
         self.teExctData.setObjectName(_fromUtf8("teExctData"))
         self.horizontalLayoutWidget_3 = QtGui.QWidget(Dialog)
         self.horizontalLayoutWidget_3.setGeometry(QtCore.QRect(570, 110, 191, 31))
@@ -142,7 +142,7 @@ class Ui_Dialog(object):
         self.label_11.setGeometry(QtCore.QRect(570, 240, 71, 16))
         self.label_11.setObjectName(_fromUtf8("label_11"))
         self.tableWidget = QtGui.QTableWidget(Dialog)
-        self.tableWidget.setGeometry(QtCore.QRect(530, 310, 256, 192))
+        self.tableWidget.setGeometry(QtCore.QRect(20, 300, 811, 241))
         self.tableWidget.setObjectName(_fromUtf8("tableWidget"))
         self.tableWidget.setColumnCount(0)
         self.tableWidget.setRowCount(0)
@@ -151,7 +151,7 @@ class Ui_Dialog(object):
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):
-        Dialog.setWindowTitle(_translate("Dialog", "Dialog", None))
+        Dialog.setWindowTitle(_translate("Dialog", "WebExtraction v0.3 beta by 血余光辉", None))
         self.label.setText(_translate("Dialog", "URL:", None))
         self.leURL.setText(_translate("Dialog", "http://www.converse.com.cn/men.htm?iid=tpnvm0912001&source=topnav", None))
         self.btnExct.setText(_translate("Dialog", "Extract", None))
