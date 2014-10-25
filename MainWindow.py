@@ -30,37 +30,48 @@ class Dialog(QDialog, Ui_Dialog):
     #Exact Web Page Type 1        
     def ExctType1(self, doc, soup): 
         # find the most frequent class
-        extTstList = soup.findAll('div', {'class' : re.compile(r'([^"]*[Ii][Nn][Ff][Oo][^"]*)|([^"]*[Gg][oO][oO][Dd][Ss][^"]*)|([^"]*[Ii][Tt][Ee][Mm][^"]*)')})
+        reptns = []
+        reptns.append(r'([^"]*[Ii][Nn][Ff][Oo][^"]*)')
+        reptns.append(r'([^"]*[Gg][oO][oO][Dd][Ss][^"]*)')
+        reptns.append(r'([^"]*[Ii][Tt][Ee][Mm][^"]*)')
+        reptns.append(r'([^"]*[Pp][Rr][Oo][Dd][^"]*)')
+        extTstLists =[]
+        for tmpreptn in reptns:
+            extTstLists.append(soup.findAll('div', re.compile(tmpreptn)))
+        #extTstList = soup.findAll('div', {'class' : re.compile(r'([^"]*[Ii][Nn][Ff][Oo][^"]*)|([^"]*[Gg][oO][oO][Dd][Ss][^"]*)|([^"]*[Ii][Tt][Ee][Mm][^"]*)|([^"]*[Pp][Rr][Oo][Dd][^"]*)')})
         hashval = {}
         mfreqcls = ''
         maxv = 0
-        for tmpTst in extTstList:
-            tmpStr = unicode(tmpTst)
-            tmpKey = re.search(r'([^"]*[Ii][Nn][Ff][Oo][^"]*)|([^"]*[Gg][oO][oO][Dd][Ss][^"]*)|([^"]*[Ii][Tt][Ee][Mm][^"]*)', tmpStr).group()
-            if hashval.has_key(tmpKey):
-                hashval[tmpKey] += 1
-                tmpv = hashval[tmpKey]
-                if tmpv > maxv:
-                    maxv = tmpv
-                    mfreqcls = tmpKey
-            else:
-                hashval[tmpKey] = 1
-                if 1 > maxv:
-                    maxv = 1
-                    mfreqcls = tmpKey
+        for i in range(len(reptns)):
+            for tmpTst in extTstLists[i]:
+                tmpStr = unicode(tmpTst)
+                tmpKey = re.search(reptns[i], tmpStr).group()
+                if hashval.has_key(tmpKey):
+                    hashval[tmpKey] += 1
+                    tmpv = hashval[tmpKey]
+                    if tmpv > maxv:
+                        maxv = tmpv
+                        mfreqcls = tmpKey
+                else:
+                    hashval[tmpKey] = 1
+                    if 1 > maxv:
+                        maxv = 1
+                        mfreqcls = tmpKey
         #use the most frequent class to work
         extResList = soup.findAll('div', {'class' : mfreqcls})
         superTab = []
         resCols = []
         resCols2 = []
+        resCols3 = []
         #find possible cols
         col = 0
         hashval = {}
         for tmpRes in extResList:
             tmpStr = unicode(tmpRes)
-            tmpColRePtnResList = re.findall(r'\s([A-Za-z][^ ]*)="([^"]*)"', tmpStr)
+            tmpColRePtnResList = re.findall(r'''\s([A-Za-z][^\s]*)=["']([^'"]*)['"]''', tmpStr)
             tmpColRePtnResList2 = re.findall(r'''\<([^\s]*)\s+[^\>]*class=['"]([^\>"']*)['"][^\>]*\>([^\>\<]*?)\</(?:\1)\>|\<([^\s]*)\s+[^\>]*id=['"]([^\>'"]*)['"][^\>]*\>([^\>\<]*?)\</(?:\4)\>''', tmpStr)
-            #find identical cals Type 1
+            #tmpColRePtnResList3 = re.findall(r'''\<a[^\>]*\>([^\<\>]*?)\</a\>''',  tmpStr)
+            #find identical cols Type 1
             for tmpColRePtnRes in tmpColRePtnResList:
                 if hashval.has_key(tmpColRePtnRes[0]):
                     hashval[tmpColRePtnRes[0]] += 1
@@ -68,8 +79,7 @@ class Dialog(QDialog, Ui_Dialog):
                     hashval[tmpColRePtnRes[0]] = 1
                     if tmpColRePtnRes[0] != 'class':
                         resCols.append(tmpColRePtnRes[0])
-            #find identical cals Type 2
-            
+            #find identical cols Type 2            
             for tmpColRePtnRes in tmpColRePtnResList2:
                 tmplist = [1, 4]
                 for idkey in tmplist:
@@ -80,7 +90,6 @@ class Dialog(QDialog, Ui_Dialog):
                             hashval[tmpColRePtnRes[idkey]] = 1      
                             if tmpColRePtnRes[idkey+1].strip()!="":
                                 resCols2.append(tmpColRePtnRes[idkey])
-                
         row = 0
         #assign the suiperTab[0...row-1][0...col-1]
         for tmpRes in extResList:
@@ -91,8 +100,8 @@ class Dialog(QDialog, Ui_Dialog):
                 if hashval.has_key(curCol) :
                     #print curCol+r'="([^"]*)"'
                     #print re.search(curCol+r'="([^"]*)"', tmpStr)
-                    if re.search(curCol+r'="([^"]*)"', tmpStr) != None:
-                        superTab[row].append(re.search(curCol+r'="([^"]*)"', tmpStr).group(1))
+                    if re.search(curCol+r'''=["']([^'"]*)['"]''', tmpStr) != None:
+                        superTab[row].append(re.search(curCol+r'''=["']([^'"]*)['"]''', tmpStr).group(1))
                     else:
                         superTab[row].append('')
                         #print tmpStr
@@ -123,7 +132,7 @@ class Dialog(QDialog, Ui_Dialog):
         #update Tabel Widget
         for i in range(row):
             for j in range(col):
-                self.newItem = QTableWidgetItem(unicode(superTab[i][j].encode('utf-8'), 'utf-8', 'ignore'))    
+                self.newItem = QTableWidgetItem(unicode(superTab[i][j].strip().encode('utf-8'), 'utf-8', 'ignore'))    
                 self.tableWidget.setItem(i, j, self.newItem)
                 self.QTout(superTab[i][j].encode('utf-8') )
     @pyqtSignature("")
