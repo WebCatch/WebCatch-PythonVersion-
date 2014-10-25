@@ -57,13 +57,19 @@ class Dialog(QDialog, Ui_Dialog):
         resCols = []
         #find possible cols
         col = 0
+        hashval = {}
         for tmpRes in extResList:
             tmpStr = unicode(tmpRes)
             tmpColRePtnResList = re.findall(r'([^ ]*)="([^"]*)"', tmpStr)
+            #find identical cals
             for tmpColRePtnRes in tmpColRePtnResList:
-                if tmpColRePtnRes[0] != 'class':
-                    resCols.append(tmpColRePtnRes[0])
-                    col += 1
+                if hashval.has_key(tmpColRePtnRes[0]):
+                    hashval[tmpColRePtnRes[0]] += 1
+                else:
+                    hashval[tmpColRePtnRes[0]] = 1
+                    if tmpColRePtnRes[0] != 'class':
+                        resCols.append(tmpColRePtnRes[0])
+                        col += 1
             break
         row = 0
         for tmpRes in extResList:
@@ -74,7 +80,8 @@ class Dialog(QDialog, Ui_Dialog):
             #saleprice.append(re.search(r'salesprice="([^"]*)"', tmpStr).group(1))
             superTab.append([])
             for curCol in resCols:
-                superTab[row].append(re.search(curCol+r'="([^"]*)"', tmpStr).group(1))
+                if hashval.has_key(curCol) and hashval[curCol] == 1:
+                    superTab[row].append(re.search(curCol+r'="([^"]*)"', tmpStr).group(1))
             #skuname.append(re.search(r'([^ ]*)="([^"]*)"', tmpStr).group(2))
             #skucode.append(re.search(r'([^ ]*)="([^"]*)"', tmpStr).group(2))
             row += 1
