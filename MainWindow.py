@@ -27,8 +27,8 @@ class Dialog(QDialog, Ui_Dialog):
         self.setupUi(self)
     def QTout(self, tmp):
         self.teExctData.append(unicode(tmp, 'utf-8', 'ignore'))
-    def ExctType1(self, doc, soup):
-        #Exact Web Page Type 1         
+    #Exact Web Page Type 1        
+    def ExctType1(self, doc, soup): 
         # find the most frequent class
         extTstList = soup.findAll('div', {'class' : re.compile(r'[^"]*info[^"]*')})
         hashval = {}
@@ -50,18 +50,17 @@ class Dialog(QDialog, Ui_Dialog):
                     mfreqcls = tmpKey
         #use the most frequent class to work
         extResList = soup.findAll('div', {'class' : mfreqcls})
-        #saleprice = []
-        #skuname = []
-        #skucode = []
         superTab = []
         resCols = []
+        resCols2 = []
         #find possible cols
         col = 0
         hashval = {}
         for tmpRes in extResList:
             tmpStr = unicode(tmpRes)
             tmpColRePtnResList = re.findall(r'([^ ]*)="([^"]*)"', tmpStr)
-            #find identical cals
+            tmpColRePtnResList2 = re.findall(r'\<([^\<\>/]*)\s+(?:[^\<\>]*)class="([^"]*)"(?:[^\<\>]*)\>([^\<\>]*)\</(?:\1)\>', tmpStr)
+            #find identical cals Type 1
             for tmpColRePtnRes in tmpColRePtnResList:
                 if hashval.has_key(tmpColRePtnRes[0]):
                     hashval[tmpColRePtnRes[0]] += 1
@@ -69,56 +68,52 @@ class Dialog(QDialog, Ui_Dialog):
                     hashval[tmpColRePtnRes[0]] = 1
                     if tmpColRePtnRes[0] != 'class':
                         resCols.append(tmpColRePtnRes[0])
-                        #col += 1
-            break
+            #find identical cals Type 2
+            for tmpColRePtnRes in tmpColRePtnResList2:
+                if hashval.has_key(tmpColRePtnRes[1]):
+                    hashval[tmpColRePtnRes[1]] += 1
+                else:
+                    hashval[tmpColRePtnRes[1]] = 1      
+                    if tmpColRePtnRes[2].strip()!="":
+                        resCols2.append(tmpColRePtnRes[1])
         row = 0
+        #assign the suiperTab[0...row-1][0...col-1]
         for tmpRes in extResList:
-            #saleprice="(\d*\.\d*)"
-            #print tmpRes
             tmpStr = unicode(tmpRes)
-            #print tmpStr
-            #saleprice.append(re.search(r'salesprice="([^"]*)"', tmpStr).group(1))
             superTab.append([])
+            #assign with way 1
             for curCol in resCols:
-                if hashval.has_key(curCol) and hashval[curCol] == 1:
-                    print curCol+r'="([^"]*)"'
-                    print re.search(curCol+r'="([^"]*)"', tmpStr)
-                    #print re.search(curCol+r'="([^"]*)"', tmpStr).group()
+                if hashval.has_key(curCol) :
+                    #print curCol+r'="([^"]*)"'
+                    #print re.search(curCol+r'="([^"]*)"', tmpStr)
                     if re.search(curCol+r'="([^"]*)"', tmpStr) != None:
                         superTab[row].append(re.search(curCol+r'="([^"]*)"', tmpStr).group(1))
-                        col += 1
                     else:
-                        print tmpStr
+                        superTab[row].append('')
+                        #print tmpStr
                         print curCol+r'="([^"]*)"'
-                        
-            #skuname.append(re.search(r'([^ ]*)="([^"]*)"', tmpStr).group(2))
-            #skucode.append(re.search(r'([^ ]*)="([^"]*)"', tmpStr).group(2))
+                    col += 1
+            #assign with way 2
+            for curCol in resCols2:
+                if hashval.has_key(curCol) :
+                    if re.search('\<([^\<\>/]*)\s+(?:[^\<\>]*)class="' + curCol + r'"(?:[^\<\>]*)\>([^\<\>]*)\</(?:\1)\>', tmpStr) != None:
+                        superTab[row].append(re.search('\<([^\<\>/]*)\s+(?:[^\<\>]*)class="' + curCol + r'"(?:[^\<\>]*)\>([^\<\>]*)\</(?:\1)\>', tmpStr) .group(2))
+                    else:
+                        #print tmpStr
+                        superTab[row].append('')
+                        print curCol+r'="([^"]*)"'
+                    col += 1
             row += 1
-            #skuname="([^"]*)"
-            #skucode="([^"]*)"
         col /= row
-        #resdata = '\n'.join(tsstr.encode('utf-8') in skuname)
-        #resdata = skuname[0].encode('utf-8')
         self.tableWidget.setRowCount(row)
         self.tableWidget.setColumnCount(col)
         self.tableWidget.setHorizontalHeaderLabels(resCols)
-        #fuc  = "中国\n中国"
+        #update Tabel Widget
         for i in range(row):
-            #print saleprice[i].encode('UTF-8')
-            #print skuname[i].encode('UTF-8')
             for j in range(col):
-                self.newItem = QTableWidgetItem(unicode(superTab[i][j].encode('utf-8'), 'utf-8', 'ignore'))
-                self.QTout(superTab[i][j].encode('utf-8') )
+                self.newItem = QTableWidgetItem(unicode(superTab[i][j].encode('utf-8'), 'utf-8', 'ignore'))    
                 self.tableWidget.setItem(i, j, self.newItem)
-                #resdata = resdata + fuc # + skuname[i].encode('utf-8')
-            #print skucode[i].encode('UTF-8')
-        #print resdata
-        #self.teExctData.setText(resdata.encode('gbk', 'ignore'))
-        #tmp1 = resdata.encode('utf-8', 'ignore')
-        #tmp2 = unicode(resdata.encode('utf-8', 'ignore'), 'utf-8', 'ignore')
-        #tmp3 = '中文'
-        #self.teExctData.setText(unicode(resdata.encode('utf-8', 'ignore'), 'utf-8', 'ignore'))
-        #self.teExctData.setText(unicode(resdata, 'utf-8', 'ignore'))
+                self.QTout(superTab[i][j].encode('utf-8') )
     @pyqtSignature("")
     def on_btnExct_clicked(self):
         """
