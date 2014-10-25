@@ -30,13 +30,13 @@ class Dialog(QDialog, Ui_Dialog):
     #Exact Web Page Type 1        
     def ExctType1(self, doc, soup): 
         # find the most frequent class
-        extTstList = soup.findAll('div', {'class' : re.compile(r'[^"]*info[^"]*')})
+        extTstList = soup.findAll('div', {'class' : re.compile(r'([^"]*[Ii][Nn][Ff][Oo][^"]*)|([^"]*[Gg][oO][oO][Dd][Ss][^"]*)|([^"]*[Ii][Tt][Ee][Mm][^"]*)')})
         hashval = {}
         mfreqcls = ''
         maxv = 0
         for tmpTst in extTstList:
             tmpStr = unicode(tmpTst)
-            tmpKey = re.search(r'[^"]*info[^"]*', tmpStr).group()
+            tmpKey = re.search(r'([^"]*[Ii][Nn][Ff][Oo][^"]*)|([^"]*[Gg][oO][oO][Dd][Ss][^"]*)|([^"]*[Ii][Tt][Ee][Mm][^"]*)', tmpStr).group()
             if hashval.has_key(tmpKey):
                 hashval[tmpKey] += 1
                 tmpv = hashval[tmpKey]
@@ -59,7 +59,7 @@ class Dialog(QDialog, Ui_Dialog):
         for tmpRes in extResList:
             tmpStr = unicode(tmpRes)
             tmpColRePtnResList = re.findall(r'\s([A-Za-z][^ ]*)="([^"]*)"', tmpStr)
-            tmpColRePtnResList2 = re.findall(r'\<([^\<\>/]*)\s+(?:[^\<\>]*)class="([^"]*)"(?:[^\<\>]*)\>([^\<\>]*)\</(?:\1)\>', tmpStr)
+            tmpColRePtnResList2 = re.findall(r'''\<([^\s]*)\s+[^\>]*class=['"]([^\>"']*)['"][^\>]*\>([^\>\<]*?)\</(?:\1)\>|\<([^\s]*)\s+[^\>]*id=['"]([^\>'"]*)['"][^\>]*\>([^\>\<]*?)\</(?:\4)\>''', tmpStr)
             #find identical cals Type 1
             for tmpColRePtnRes in tmpColRePtnResList:
                 if hashval.has_key(tmpColRePtnRes[0]):
@@ -69,13 +69,18 @@ class Dialog(QDialog, Ui_Dialog):
                     if tmpColRePtnRes[0] != 'class':
                         resCols.append(tmpColRePtnRes[0])
             #find identical cals Type 2
+            
             for tmpColRePtnRes in tmpColRePtnResList2:
-                if hashval.has_key(tmpColRePtnRes[1]):
-                    hashval[tmpColRePtnRes[1]] += 1
-                else:
-                    hashval[tmpColRePtnRes[1]] = 1      
-                    if tmpColRePtnRes[2].strip()!="":
-                        resCols2.append(tmpColRePtnRes[1])
+                tmplist = [1, 4]
+                for idkey in tmplist:
+                    if tmpColRePtnRes[idkey].strip() != '':
+                        if hashval.has_key(tmpColRePtnRes[idkey]):
+                            hashval[tmpColRePtnRes[idkey]] += 1
+                        else:
+                            hashval[tmpColRePtnRes[idkey]] = 1      
+                            if tmpColRePtnRes[idkey+1].strip()!="":
+                                resCols2.append(tmpColRePtnRes[idkey])
+                
         row = 0
         #assign the suiperTab[0...row-1][0...col-1]
         for tmpRes in extResList:
@@ -96,8 +101,14 @@ class Dialog(QDialog, Ui_Dialog):
             #assign with way 2
             for curCol in resCols2:
                 if hashval.has_key(curCol) :
-                    if re.search('\<([^\<\>/]*)\s+(?:[^\<\>]*)class="' + curCol + r'"(?:[^\<\>]*)\>([^\<\>]*)\</(?:\1)\>', tmpStr) != None:
-                        superTab[row].append(re.search('\<([^\<\>/]*)\s+(?:[^\<\>]*)class="' + curCol + r'"(?:[^\<\>]*)\>([^\<\>]*)\</(?:\1)\>', tmpStr) .group(2))
+                    if re.search(r'''\<([^\s]*)\s+[^\>]*class=['"]''' + curCol+ r'''['"][^\>]*\>([^\>\<]*?)\</(?:\1)\>''', tmpStr) != None:
+                        superTab[row].append(re.search(r'''\<([^\s]*)\s+[^\>]*class=['"]''' + curCol+ r'''['"][^\>]*\>([^\>\<]*?)\</(?:\1)\>''', tmpStr) .group(2))
+                    else:
+                        #print tmpStr
+                        superTab[row].append('')
+                        print curCol+r'="([^"]*)"'
+                    if re.search(r'''\<([^\s]*)\s+[^\>]*id=['"]''' + curCol + r'''['"][^\>]*\>([^\>\<]*?)\</(?:\1)\>''', tmpStr) != None:
+                        superTab[row].append(re.search(r'''\<([^\s]*)\s+[^\>]*id=['"]''' + curCol + r'''['"][^\>]*\>([^\>\<]*?)\</(?:\1)\>''', tmpStr) .group(2))
                     else:
                         #print tmpStr
                         superTab[row].append('')
