@@ -69,7 +69,7 @@ class Dialog(QDialog, Ui_Dialog):
                     hashval[tmpColRePtnRes[0]] = 1
                     if tmpColRePtnRes[0] != 'class':
                         resCols.append(tmpColRePtnRes[0])
-                        col += 1
+                        #col += 1
             break
         row = 0
         for tmpRes in extResList:
@@ -81,12 +81,22 @@ class Dialog(QDialog, Ui_Dialog):
             superTab.append([])
             for curCol in resCols:
                 if hashval.has_key(curCol) and hashval[curCol] == 1:
-                    superTab[row].append(re.search(curCol+r'="([^"]*)"', tmpStr).group(1))
+                    print curCol+r'="([^"]*)"'
+                    print re.search(curCol+r'="([^"]*)"', tmpStr)
+                    #print re.search(curCol+r'="([^"]*)"', tmpStr).group()
+                    if re.search(curCol+r'="([^"]*)"', tmpStr) != None:
+                        superTab[row].append(re.search(curCol+r'="([^"]*)"', tmpStr).group(1))
+                        col += 1
+                    else:
+                        print tmpStr
+                        print curCol+r'="([^"]*)"'
+                        
             #skuname.append(re.search(r'([^ ]*)="([^"]*)"', tmpStr).group(2))
             #skucode.append(re.search(r'([^ ]*)="([^"]*)"', tmpStr).group(2))
             row += 1
             #skuname="([^"]*)"
             #skucode="([^"]*)"
+        col /= row
         #resdata = '\n'.join(tsstr.encode('utf-8') in skuname)
         #resdata = skuname[0].encode('utf-8')
         self.tableWidget.setRowCount(row)
@@ -114,6 +124,7 @@ class Dialog(QDialog, Ui_Dialog):
         """
         Exact Web Page
         """
+        self.teExctData.setText("")
         qsurl = self.leURL.text()
         url = unicode (qsurl) 
         req = urllib2.Request(url)
