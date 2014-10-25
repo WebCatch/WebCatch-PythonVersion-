@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'D:\pythonWS\WebCatch\MainWindow.ui'
 #
-# Created: Sat Oct 25 14:15:23 2014
+# Created: Sat Oct 25 22:57:39 2014
 #      by: PyQt4 UI code generator 4.11.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -151,7 +151,7 @@ class Ui_Dialog(object):
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):
-        Dialog.setWindowTitle(_translate("Dialog", "WebExtraction v0.3 beta by 血余光辉", None))
+        Dialog.setWindowTitle(_translate("Dialog", "WebExtraction v0.3 beta by 血与光辉@HIT", None))
         self.label.setText(_translate("Dialog", "URL:", None))
         self.leURL.setText(_translate("Dialog", "http://www.converse.com.cn/men.htm?iid=tpnvm0912001&source=topnav", None))
         self.btnExct.setText(_translate("Dialog", "Extract", None))

@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>WebExtraction v0.3 beta by 血余光辉</string>
+   <string>WebExtraction v0.3 beta by 血与光辉@HIT</string>
   </property>
   <widget class="QWidget" name="horizontalLayoutWidget">
    <property name="geometry">
