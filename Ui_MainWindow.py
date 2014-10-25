@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'D:\pythonWS\WebCatch\MainWindow.ui'
 #
-# Created: Sat Oct 25 22:57:39 2014
+# Created: Sat Oct 25 23:29:26 2014
 #      by: PyQt4 UI code generator 4.11.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -141,13 +141,23 @@ class Ui_Dialog(object):
         self.label_11 = QtGui.QLabel(Dialog)
         self.label_11.setGeometry(QtCore.QRect(570, 240, 71, 16))
         self.label_11.setObjectName(_fromUtf8("label_11"))
-        self.tableWidget = QtGui.QTableWidget(Dialog)
-        self.tableWidget.setGeometry(QtCore.QRect(20, 300, 811, 241))
+        self.tabWidget = QtGui.QTabWidget(Dialog)
+        self.tabWidget.setGeometry(QtCore.QRect(20, 300, 821, 241))
+        self.tabWidget.setObjectName(_fromUtf8("tabWidget"))
+        self.tab = QtGui.QWidget()
+        self.tab.setObjectName(_fromUtf8("tab"))
+        self.tableWidget = QtGui.QTableWidget(self.tab)
+        self.tableWidget.setGeometry(QtCore.QRect(10, 10, 791, 191))
         self.tableWidget.setObjectName(_fromUtf8("tableWidget"))
         self.tableWidget.setColumnCount(0)
         self.tableWidget.setRowCount(0)
+        self.tabWidget.addTab(self.tab, _fromUtf8(""))
+        self.tab_2 = QtGui.QWidget()
+        self.tab_2.setObjectName(_fromUtf8("tab_2"))
+        self.tabWidget.addTab(self.tab_2, _fromUtf8(""))
 
         self.retranslateUi(Dialog)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):
@@ -166,6 +176,8 @@ class Ui_Dialog(object):
         self.lbState.setText(_translate("Dialog", "Unconnected", None))
         self.label_10.setText(_translate("Dialog", "Extracted Data:", None))
         self.label_11.setText(_translate("Dialog", "TableName:", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("Dialog", "Tab 1", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("Dialog", "Tab 2", None))
 
 
 if __name__ == "__main__":

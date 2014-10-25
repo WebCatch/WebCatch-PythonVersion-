@@ -12,9 +12,22 @@ from PyQt4.QtCore import pyqtSignature
 import sip
 from PyQt4.QtGui  import *  
 from PyQt4.QtCore import *
+from PyQt4 import QtCore, QtGui
 
 from Ui_MainWindow import Ui_Dialog
+try:
+    _fromUtf8 = QtCore.QString.fromUtf8
+except AttributeError:
+    def _fromUtf8(s):
+        return s
 
+try:
+    _encoding = QtGui.QApplication.UnicodeUTF8
+    def _translate(context, text, disambig):
+        return QtGui.QApplication.translate(context, text, disambig, _encoding)
+except AttributeError:
+    def _translate(context, text, disambig):
+        return QtGui.QApplication.translate(context, text, disambig)
 class Dialog(QDialog, Ui_Dialog):
     """
     Class documentation goes here.
@@ -135,6 +148,17 @@ class Dialog(QDialog, Ui_Dialog):
                 self.newItem = QTableWidgetItem(unicode(superTab[i][j].strip().encode('utf-8'), 'utf-8', 'ignore'))    
                 self.tableWidget.setItem(i, j, self.newItem)
                 self.QTout(superTab[i][j].encode('utf-8') )
+        """
+        self.tab_3 = PyQt4.QtGui.QWidget()
+        self.tab_3.setObjectName(_fromUtf8("tab_3"))
+        self.tableWidget2 = QtGui.QTableWidget(self.tab_3)
+        self.tableWidget2.setGeometry(QtCore.QRect(0, 0, 821, 221))
+        self.tableWidget2.setObjectName(_fromUtf8("tableWidget"))
+        self.tableWidget2.setColumnCount(3)
+        self.tableWidget2.setRowCount(3)
+        self.tabWidget.addTab(self.tab_3, _fromUtf8(""))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("Dialog", "Tab 3", None))
+        """
     @pyqtSignature("")
     def on_btnExct_clicked(self):
         """
