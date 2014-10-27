@@ -254,6 +254,8 @@ class Dialog(QDialog, Ui_Dialog):
         superTable2Name = [] #1d tid
         for extTableObj in extTableObjs:
             ##########
+            TableFg = 0
+            curHead = []
             if  extTableObj.find('tr') !=None:
                 extTableStr = unicode(extTableObj)
                 if re.search(r'''\<table[^\>]+class=["']([^'"]+)["'][^\>]*\>''', extTableStr) != None:
@@ -268,23 +270,38 @@ class Dialog(QDialog, Ui_Dialog):
                     fst = 1
                     for extTRObj in extTRObjs:
                         if fst == 1:
+                            type = 0
                             if extTRObj.find('th') != None:
                                 extCurTHs = extTRObj.findAll('th')
+                                type = 1
                             else:
                                 extCurTHs = extTRObj.findAll('td')
-                            curHead = []
+                                type = 2
+                            i = 0
                             for extCurTH in extCurTHs:
+                                extCurStr = unicode(extCurTH)
+                                if type == 1 and re.search(r'\<th[^\>]*>([\s\S]*?)\</th\>', extCurStr) != None:
+                                        tmp = GetSimpleStrFromLabelStr(re.search(r'\<th[^\>]*>([\s\S]*?)\</th\>', extCurStr).group(1))
+                                        curHead.append(tmp)  #添加单元格
+                                elif type == 2 and re.search(r'\<td[^\>]*>([\s\S]*?)\</td\>', extCurStr) != None:
+                                        tmp = GetSimpleStrFromLabelStr(re.search(r'\<td[^\>]*>([\s\S]*?)\</td\>', extCurStr).group(1))
+                                        curHead.append(tmp)  #添加单元格
+                                else:
+                                    curHead.append(str(i + 1))
+                                i += 1
+                                '''
                                 if extCurTH.contents != []:
                                     curHead.append(unicode(extCurTH.contents[0]))
                                 else:
-                                    curHead.append('')
-                            extTableHeadsLists.append(curHead)
+                                    curHead.append('')    
+                                '''                        
                             fst = 0
                         else:
+                            TableFg = 1
                             curTable.append([])
                             extCurTDs = extTRObj.findAll('td')
                             i = 0
-                            for i in range(len(extTableHeadsLists[len(extTableHeadsLists) - 1])):
+                            for i in range(len(curHead)):
                             #for extCurTD in extCurTDs:
                                 if i < len(extCurTDs):
                                     extCurStr = unicode(extCurTDs[i])
@@ -325,8 +342,9 @@ class Dialog(QDialog, Ui_Dialog):
                 '''
                 
                 #for extCurTableRow in extCurTableRows:
-                    
-                superTable2.append(curTable)
+                if  TableFg != 0:
+                    superTable2.append(curTable)
+                    extTableHeadsLists.append(curHead)
                 i += 1
         #print superTable2
         self.updateTabWidgetType2(superTable2, superTable2Name, extTableHeadsLists)
