@@ -40,19 +40,22 @@ class Dialog(QDialog, Ui_Dialog):
         self.setupUi(self)
     def QTout(self, tmp):
         self.teExctData.append(unicode(tmp, 'utf-8', 'ignore'))
-    #Exact Web Page Type 1        
-    def ExctType1(self, doc, soup): 
-        # find the most frequent class
-        reptns = []
+        
+    #init keyword type 1
+    def InitKeyWordType1(self, reptns):
         reptns.append(r'([^"]*[Ii][Nn][Ff][Oo][^"]*)')
         reptns.append(r'([^"]*[Gg][oO][oO][Dd][Ss][^"]*)')
         reptns.append(r'([^"]*[Ii][Tt][Ee][Mm][^"]*)')
         reptns.append(r'([^"]*[Pp][Rr][Oo][Dd][^"]*)')
-        extTstLists =[]
+        reptns.append(r'([^"]*[Ll][Ii][Ss][Tt][^"]*)')
+        
+    #get Soups with keywords
+    def MakeSoupLists(self,  extTstLists, reptns, soup):
         for tmpreptn in reptns:
             extTstLists.append(soup.findAll('div', re.compile(tmpreptn)))
-        #extTstList = soup.findAll('div', {'class' : re.compile(r'([^"]*[Ii][Nn][Ff][Oo][^"]*)|([^"]*[Gg][oO][oO][Dd][Ss][^"]*)|([^"]*[Ii][Tt][Ee][Mm][^"]*)|([^"]*[Pp][Rr][Oo][Dd][^"]*)')})
-        hashval = {}
+    
+    #find most freqency class
+    def FindMostFreqCls(self, reptns, extTstLists, hashval):
         mfreqcls = ''
         maxv = 0
         for i in range(len(reptns)):
@@ -70,15 +73,10 @@ class Dialog(QDialog, Ui_Dialog):
                     if 1 > maxv:
                         maxv = 1
                         mfreqcls = tmpKey
-        #use the most frequent class to work
-        extResList = soup.findAll('div', {'class' : mfreqcls})
-        superTab = []
-        resCols = []
-        resCols2 = []
-        resCols3 = []
-        #find possible cols
-        col = 0
-        hashval = {}
+        return mfreqcls
+    
+     #find possible cols    
+    def FindPossibleCols(self, extResList, hashval, resCols, resCols2):
         for tmpRes in extResList:
             tmpStr = unicode(tmpRes)
             tmpColRePtnResList = re.findall(r'''\s([A-Za-z][^\s]*)=["']([^'"]*)['"]''', tmpStr)
@@ -101,15 +99,21 @@ class Dialog(QDialog, Ui_Dialog):
                             hashval[tmpColRePtnRes[idkey]] += 1
                         else:
                             hashval[tmpColRePtnRes[idkey]] = 1      
-                            if tmpColRePtnRes[idkey+1].strip()!="":
+                            if tmpColRePtnRes[idkey+1].strip() != "":
                                 resCols2.append(tmpColRePtnRes[idkey])
+    
+    #fill the super table  and return row, col
+    def MakeSuperTab(self, extResList, superTab, resCols, resCols2, hashval):
         row = 0
-        #assign the suiperTab[0...row-1][0...col-1]
+        col = 0
         for tmpRes in extResList:
             tmpStr = unicode(tmpRes)
             superTab.append([])
             #assign with way 1
             for curCol in resCols:
+                if curCol.find('(') != -1 or curCol.find(')') != -1:
+                    continue; #invalid expression
+                
                 if hashval.has_key(curCol) :
                     #print curCol+r'="([^"]*)"'
                     #print re.search(curCol+r'="([^"]*)"', tmpStr)
@@ -139,15 +143,44 @@ class Dialog(QDialog, Ui_Dialog):
             row += 1
         if row != 0:
             col /= row
-        self.tableWidget.setRowCount(row)
-        self.tableWidget.setColumnCount(col)
-        self.tableWidget.setHorizontalHeaderLabels(resCols + resCols2)
+        return row, col
+        
+    def UpdateTableWidget(self, tableWidget, row, col, resCols, resCols2, superTab):
+        tableWidget.setRowCount(row)
+        tableWidget.setColumnCount(col)
+        tableWidget.setHorizontalHeaderLabels(resCols + resCols2)
         #update Tabel Widget
         for i in range(row):
             for j in range(col):
                 self.newItem = QTableWidgetItem(unicode(superTab[i][j].strip().encode('utf-8'), 'utf-8', 'ignore'))    
-                self.tableWidget.setItem(i, j, self.newItem)
+                tableWidget.setItem(i, j, self.newItem)
                 self.QTout(superTab[i][j].encode('utf-8') )
+    #Exact Web Page Type 1        
+    def ExctType1(self, doc, soup): 
+        # find the most frequent class
+        reptns = []
+        self.InitKeyWordType1(reptns)  
+        
+        extTstLists =[]
+        self.MakeSoupLists(extTstLists, reptns, soup) 
+        
+        hashval = {}  
+        mfreqcls = self.FindMostFreqCls(reptns, extTstLists, hashval)  
+        
+        #use the most frequent class to work
+        extResList = soup.findAll('div', {'class' : mfreqcls})
+        
+        
+        resCols = []
+        resCols2 = []           
+        hashval = {}
+        self.FindPossibleCols(extResList, hashval, resCols, resCols2)    
+        #assign the suiperTab[0...row-1][0...col-1]
+        superTab = []
+        row, col = self.MakeSuperTab(extResList, superTab, resCols, resCols2, hashval)              
+        
+        self.UpdateTableWidget(self.tableWidget, row, col, resCols, resCols2, superTab)
+        
         """
         self.tab_3 = PyQt4.QtGui.QWidget()
         self.tab_3.setObjectName(_fromUtf8("tab_3"))
@@ -159,6 +192,80 @@ class Dialog(QDialog, Ui_Dialog):
         self.tabWidget.addTab(self.tab_3, _fromUtf8(""))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("Dialog", "Tab 3", None))
         """
+    
+    def updateTabWidgetType2(self, superTable2, superTable2Name, extTableHeadsLists):
+        i = 0
+        for curTable in superTable2:
+            self.curTab = PyQt4.QtGui.QWidget()
+            self.curTab.setObjectName(_fromUtf8(superTable2Name[i]))
+            self.curTableWidget = QtGui.QTableWidget(self.curTab)
+            self.curTableWidget.setGeometry(QtCore.QRect(10, 10, 751, 181))
+            self.curTableWidget.setObjectName(_fromUtf8("tableWidget"+superTable2Name[i]))
+            self.curTableWidget.setColumnCount(len(superTable2[i][0]))
+            self.curTableWidget.setRowCount(len(superTable2[i]))
+            
+            
+            self.curTableWidget.setHorizontalHeaderLabels(extTableHeadsLists[i])
+            #update Tabel Widget
+            for k in range(len(superTable2[i])):
+                for j in range(len(superTable2[i][0])):
+                    self.newItem = QTableWidgetItem(unicode(superTable2[i][k][j].strip().encode('utf-8'), 'utf-8', 'ignore'))    
+                    self.curTableWidget.setItem(k, j, self.newItem)
+                    self.QTout(superTable2[i][k][j].encode('utf-8') )
+                    
+                    
+            self.tabWidget.addTab(self.curTab, _fromUtf8(""))
+            self.tabWidget.setTabText(self.tabWidget.indexOf(self.curTab), _translate("Dialog", superTable2Name[i], None))
+            
+            i += 1
+    
+    def ExctType2(self, doc, soup):
+        extTableObjs = []
+
+        extTableObjs = soup.findAll('table')
+        extTableHeadsLists = []  #2d tid, col
+        i = 0
+        extTableValidId = []
+        superTable2 = [] #3d      tid,row, col
+        superTable2Name = [] #1d tid
+        for extTableObj in extTableObjs:
+            if extTableObj.find('thead') != None and extTableObj.find('tbody') !=None:
+                extTableStr = unicode(extTableObj)
+                if re.search(r'''\<table[^\>]+class=["']([^'"]+)["'][^\>]*\>''', extTableStr) != None:
+                    tmpStr = re.search(r'''\<table[^\>]+class=["']([^'"]+)["'][^\>]*\>''', extTableStr).group(1)
+                    superTable2Name.append(tmpStr)
+                else:
+                    superTable2Name.append('table')
+                blkTHead = extTableObj.find('thead')
+                extCurTableHead = blkTHead.find('tr')
+                extCurTHs = extCurTableHead.findAll('th')
+                curHead = []
+                for extCurTH in extCurTHs:
+                    if extCurTH.contents != []:
+                        curHead.append(unicode(extCurTH.contents[0]))
+                    else:
+                        curHead.append('')
+                extTableHeadsLists.append(curHead)
+                #extTableHeadsLists.append(self.ExctTableHeads(extTableObs))
+                extTableValidId.append(i)
+                blkTBody = extTableObj.find('tbody')
+                curTable = []
+                extCurTableRows = blkTBody.findAll('tr')
+                j = 0
+                for extCurTableRow in extCurTableRows:
+                    curTable.append([])
+                    extCurTDs = extCurTableRow.findAll('td') 
+                    for extCurTD in extCurTDs:
+                        if extCurTD.contents != None:
+                            curTable[j].append(unicode(extCurTD.contents[0]))  #添加单元格
+                        else:
+                            curTable[j].append('')
+                    j += 1
+                superTable2.append(curTable)
+                i += 1
+        #print superTable2
+        self.updateTabWidgetType2(superTable2, superTable2Name, extTableHeadsLists)
+        
     @pyqtSignature("")
     def on_btnExct_clicked(self):
         """
@@ -174,8 +281,12 @@ class Dialog(QDialog, Ui_Dialog):
         #docuni = unicode(doc,'UTF-8')
         soup = bs4.BeautifulSoup(doc)   #get soup from HTML code
         
+        #fake table
         self.ExctType1(doc, soup)
-       
+        
+        #real table
+        self.ExctType2(doc, soup)       
+        
         file = open('webdata.txt', 'w')
         file = file.write(doc)
         

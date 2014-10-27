@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>WebExtraction v0.3 beta by 血与光辉@HIT</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>_eric4project/ico.jpg</normaloff>_eric4project/ico.jpg</iconset>
+  </property>
   <widget class="QWidget" name="horizontalLayoutWidget">
    <property name="geometry">
     <rect>
