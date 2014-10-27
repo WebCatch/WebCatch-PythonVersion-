@@ -55,6 +55,7 @@ class Dialog(QDialog, Ui_Dialog):
     """
     Class documentation goes here.
     """
+    tabID = 1
     def __init__(self, parent = None):
         """
         Constructor
@@ -257,12 +258,7 @@ class Dialog(QDialog, Ui_Dialog):
             TableFg = 0
             curHead = []
             if  extTableObj.find('tr') !=None:
-                extTableStr = unicode(extTableObj)
-                if re.search(r'''\<table[^\>]+class=["']([^'"]+)["'][^\>]*\>''', extTableStr) != None:
-                    tmpStr = re.search(r'''\<table[^\>]+class=["']([^'"]+)["'][^\>]*\>''', extTableStr).group(1)
-                    superTable2Name.append(tmpStr)
-                else:
-                    superTable2Name.append('table')
+                extTableStr = unicode(extTableObj)               
                 curTable = []
                 j = 0
                 if extTableObj.find('tr') != None:
@@ -367,6 +363,12 @@ class Dialog(QDialog, Ui_Dialog):
                 if  TableFg != 0:
                     superTable2.append(curTable)
                     extTableHeadsLists.append(curHead)
+                    if re.search(r'''\<table[^\>]+class=["']([^'"]+)["'][^\>]*\>''', extTableStr) != None:
+                        tmpStr = re.search(r'''\<table[^\>]+class=["']([^'"]+)["'][^\>]*\>''', extTableStr).group(1)
+                        superTable2Name.append(tmpStr)
+                    else:
+                        superTable2Name.append('table' + str(self.tabID))
+                    self.tabID += 1
                 i += 1
         #print superTable2
         self.updateTabWidgetType2(superTable2, superTable2Name, extTableHeadsLists)
@@ -379,6 +381,8 @@ class Dialog(QDialog, Ui_Dialog):
         self.teExctData.setText("")
         qsurl = self.leURL.text()
         url = unicode (qsurl) 
+        if re.match(r'http://[^\s]*', url) == None:
+            url = r'http://' + url
         req = urllib2.Request(url)
         con = urllib2.urlopen(req)
         doc = con.read()
