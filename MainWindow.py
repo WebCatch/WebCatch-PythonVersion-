@@ -271,6 +271,17 @@ class Dialog(QDialog, Ui_Dialog):
                     for extTRObj in extTRObjs:
                         if fst == 1:
                             type = 0
+                            extTRStr = unicode (extTRObj)
+                            extCurTHTDs = re.findall(r'\<th[^\>]*>([\s\S]*?)\</th\>|\<td[^\>]*>([\s\S]*?)\</td\>', extTRStr)
+                            i = 0
+                            for extCurTHTD in extCurTHTDs:
+                                tmp = extCurTHTD[0] + extCurTHTD[1]
+                                if tmp != '':
+                                    curHead.append(tmp)
+                                else:
+                                    curHead.append(str(i+1))
+                                i += 1
+                            '''
                             if extTRObj.find('th') != None:
                                 extCurTHs = extTRObj.findAll('th')
                                 type = 1
@@ -289,29 +300,40 @@ class Dialog(QDialog, Ui_Dialog):
                                 else:
                                     curHead.append(str(i + 1))
                                 i += 1
-                                '''
-                                if extCurTH.contents != []:
-                                    curHead.append(unicode(extCurTH.contents[0]))
-                                else:
-                                    curHead.append('')    
-                                '''                        
+                                
+                            '''
                             fst = 0
                         else:
                             TableFg = 1
                             curTable.append([])
-                            extCurTDs = extTRObj.findAll('td')
+                            #extCurTDs = extTRObj.findAll('td')
                             i = 0
+                            extTRStr = unicode(extTRObj)
+                            extCurTHTDs = re.findall(r'\<th[^\>]*>([\s\S]*?)\</th\>|\<td[^\>]*>([\s\S]*?)\</td\>', extTRStr)
+                            for extCurTHTD in extCurTHTDs:
+                                tmp = extCurTHTD[0] + extCurTHTD[1]
+                                if tmp != '':
+                                    curTable[j].append(GetSimpleStrFromLabelStr(tmp))
+                                else:
+                                    curTable[j].append('')
+                                i += 1
+                            while (len(curHead) > i):
+                                curTable[j].append('')
+                                i += 1
+                            '''
                             for i in range(len(curHead)):
                             #for extCurTD in extCurTDs:
                                 if i < len(extCurTDs):
                                     extCurStr = unicode(extCurTDs[i])
-                                    if re.search(r'\<td[^\>]*>([\s\S]*?)\</td\>', extCurStr) != None:
-                                        tmp = GetSimpleStrFromLabelStr(re.search(r'\<td[^\>]*>([\s\S]*?)\</td\>', extCurStr).group(1))
+                                    if re.search(r'\<td[^\>]*>([\s\S]*?)\</td\>|\<th[^\>]*>([\s\S]*?)\</th\>', extCurStr) != None:
+                                        tmpre = re.search(r'\<td[^\>]*>([\s\S]*?)\</td\>|\<th[^\>]*>([\s\S]*?)\</th\>', extCurStr)
+                                        tmp = GetSimpleStrFromLabelStr(tmpre[0]+tmpre[1])
                                         curTable[j].append(tmp)  #添加单元格
                                     else:
                                         curTable[j].append('')
                                 else:
                                     curTable[j].append('')
+                            '''
                             j += 1
                 extTableValidId.append(i)
                 
