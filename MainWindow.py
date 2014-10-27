@@ -273,7 +273,11 @@ class Dialog(QDialog, Ui_Dialog):
                             for extCurTHTD in extCurTHTDs:
                                 tmp = extCurTHTD[0] + extCurTHTD[1]
                                 if tmp != '':
+<<<<<<< HEAD
                                     curHead.append(tmp)
+=======
+                                    curHead.append(GetSimpleStrFromLabelStr(tmp))
+>>>>>>> 5230b03032a3d388bd35934bc0915e0dad3fd2c3
                                 else:
                                     curHead.append(str(i+1))
                                 i += 1
@@ -372,7 +376,22 @@ class Dialog(QDialog, Ui_Dialog):
                 i += 1
         #print superTable2
         self.updateTabWidgetType2(superTable2, superTable2Name, extTableHeadsLists)
+<<<<<<< HEAD
         
+=======
+    
+    def DoExct(self, doc):
+        soup = bs4.BeautifulSoup(doc)   #get soup from HTML code
+        
+        #fake table
+        self.ExctType1(doc, soup)
+        
+        #real table
+        self.ExctType2(doc, soup)       
+        
+        file = open('webdata.txt', 'w')
+        file = file.write(doc)
+>>>>>>> 5230b03032a3d388bd35934bc0915e0dad3fd2c3
     @pyqtSignature("")
     def on_btnExct_clicked(self):
         """
@@ -388,6 +407,7 @@ class Dialog(QDialog, Ui_Dialog):
         doc = con.read()
         con.close()
         #docuni = unicode(doc,'UTF-8')
+<<<<<<< HEAD
         soup = bs4.BeautifulSoup(doc)   #get soup from HTML code
         
         #fake table
@@ -398,6 +418,9 @@ class Dialog(QDialog, Ui_Dialog):
         
         file = open('webdata.txt', 'w')
         file = file.write(doc)
+=======
+        self.DoExct(doc)
+>>>>>>> 5230b03032a3d388bd35934bc0915e0dad3fd2c3
         
         
     

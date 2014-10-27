@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 
 
@@ -5415,3 +5416,769 @@ $j(document).ready(function(){
 	
 </body>
 </html>
+=======
+
+<table class="ui-record-table" id="tradeRecordsIndex" width="100%">
+    		<style>
+			.ui-record-table .ui-table-footer td {
+				border-bottom: medium none;
+				padding: 12px 9px;
+				text-align: right;
+			}
+		</style>
+		<colgroup>
+			<col width="">
+			<col width="4%">
+			<col width="">
+			<col width="16%">
+			<col width="4%">
+			<col width="17%">
+			<col width="20%">
+		</colgroup>
+		<tbody>
+                                        
+
+
+
+
+
+
+			<tr id="J-item-1" class="J-item  ">
+                
+<td class="time">
+		
+     		<p class="time-d">			2014.10.26
+	</p>
+	</td>
+
+
+
+
+
+    			
+<td class="memo">
+    </td>    			
+
+
+  
+<td class="name">
+	<p class="consume-title">
+	    
+
+
+                        <a href="https://lab.alipay.com/consume/queryTradeDetail.htm?tradeNo=2014102626470606" title="饿了么订单" target="_blank">饿了么订单</a>
+                </p>
+	
+		</td>    			
+
+
+<td class="amount">
+    			            									<span class="amount-pay-out">-7.00</span>
+				    		    		</td>    			
+<td class="detail">        
+    		<a class="J-amount-more mr-10 record-icon icon-detail J-details-trigger" href="https://consumeprod.alipay.com/record/funditem.json?bizType=TRADE&amp;bizInNo=2014102626470606&amp;gmtBizCreate=			20141026131130
+	" onclick="return false;" seed="trade-details"></a>                     </td>
+    			
+
+
+<td class="status">
+		<p>交易成功</p>
+		<p class="ft-gray">
+		 									
+				
+	</p>		
+</td>
+
+
+
+
+
+
+
+    			
+
+<td class="action">
+    <select id="J-operation-select-1" class="fn-hide J-operation-select">
+         							
+
+
+
+  
+	 
+    
+       		        	        	        		<option seed="trade-detail" data-link="https://lab.alipay.com/consume/queryTradeDetail.htm?tradeNo=2014102626470606" data-target="_blank">详情</option>
+							
+   	
+  
+
+			        		
+        
+
+
+
+						
+		
+
+<option class="split" seed="trade-memo" data-action="edit-memo" data-link="https://consumeprod.alipay.com/record/editMemo.htm?bizInNo=2014102626470606&amp;createDate=			20141026131130
+	&amp;bizType=TRADE" rel-id="" data-tip="请勿备注个人敏感信息">备注</option>
+
+
+<option seed="trade-delete" data-action="delete" data-link="https://consumeprod.alipay.com/record/delete.json?record=			2014-10-26 13:11:30
+	|2014102626470606|TRADE" data-fund-change="true" rel-id="">删除</option>
+
+	
+     </select>
+
+    <div class="operation-menu-trigger J-operation-menu-trigger" id="J-operation-menu-1">
+        <div class="current-item">
+            <span class="item-text">详情</span><span class="icon-pull-down">&nbsp;</span>
+        </div>
+    </div>
+
+</td>
+			</tr>
+                
+
+
+
+
+                               
+
+
+
+
+
+
+			<tr id="J-item-2" class="J-item split  ">
+                
+<td class="time">
+		
+     		<p class="time-d">			2014.10.25
+	</p>
+	</td>
+
+
+
+
+
+    			
+<td class="memo">
+    </td>    			
+
+
+  
+<td class="name">
+	<p class="consume-title">
+	    
+
+
+                        <a href="https://lab.alipay.com/consume/queryTradeDetail.htm?tradeNo=2014102520895806" title="饿了么订单" target="_blank">饿了么订单</a>
+                </p>
+	
+		</td>    			
+
+
+<td class="amount">
+    			            									<span class="amount-pay-out">-21.00</span>
+				    		    		</td>    			
+<td class="detail">        
+    		<a class="J-amount-more mr-10 record-icon icon-detail J-details-trigger" href="https://consumeprod.alipay.com/record/funditem.json?bizType=TRADE&amp;bizInNo=2014102520895806&amp;gmtBizCreate=			20141025111649
+	" onclick="return false;" seed="trade-details"></a>                     </td>
+    			
+
+
+<td class="status">
+		<p>交易成功</p>
+		<p class="ft-gray">
+		 									
+				
+	</p>		
+</td>
+
+
+
+
+
+
+
+    			
+
+<td class="action">
+    <select id="J-operation-select-2" class="fn-hide J-operation-select">
+         							
+
+
+
+  
+	 
+    
+       		        	        	        		<option seed="trade-detail" data-link="https://lab.alipay.com/consume/queryTradeDetail.htm?tradeNo=2014102520895806" data-target="_blank">详情</option>
+							
+   	
+  
+
+			        		
+        
+
+
+
+						
+		
+
+<option class="split" seed="trade-memo" data-action="edit-memo" data-link="https://consumeprod.alipay.com/record/editMemo.htm?bizInNo=2014102520895806&amp;createDate=			20141025111649
+	&amp;bizType=TRADE" rel-id="" data-tip="请勿备注个人敏感信息">备注</option>
+
+
+<option seed="trade-delete" data-action="delete" data-link="https://consumeprod.alipay.com/record/delete.json?record=			2014-10-25 11:16:49
+	|2014102520895806|TRADE" data-fund-change="true" rel-id="">删除</option>
+
+	
+     </select>
+
+    <div class="operation-menu-trigger J-operation-menu-trigger" id="J-operation-menu-2">
+        <div class="current-item">
+            <span class="item-text">详情</span><span class="icon-pull-down">&nbsp;</span>
+        </div>
+    </div>
+
+</td>
+			</tr>
+                
+
+
+
+
+                               
+
+
+
+
+
+
+			<tr id="J-item-3" class="J-item  ">
+                
+<td class="time">
+		
+     		<p class="time-d">			2014.10.24
+	</p>
+	</td>
+
+
+
+
+
+    			
+<td class="memo">
+    </td>    			
+
+
+  
+<td class="name">
+	<p class="consume-title">
+	    
+
+
+                        <a href="https://lab.alipay.com/consume/queryTradeDetail.htm?tradeNo=2014102417865306" title="饿了么订单" target="_blank">饿了么订单</a>
+                </p>
+	
+		</td>    			
+
+
+<td class="amount">
+    			            									<span class="amount-pay-out">-8.00</span>
+				    		    		</td>    			
+<td class="detail">        
+    		<a class="J-amount-more mr-10 record-icon icon-detail J-details-trigger" href="https://consumeprod.alipay.com/record/funditem.json?bizType=TRADE&amp;bizInNo=2014102417865306&amp;gmtBizCreate=			20141024172533
+	" onclick="return false;" seed="trade-details"></a>                     </td>
+    			
+
+
+<td class="status">
+		<p>交易成功</p>
+		<p class="ft-gray">
+		 									
+				
+	</p>		
+</td>
+
+
+
+
+
+
+
+    			
+
+<td class="action">
+    <select id="J-operation-select-3" class="fn-hide J-operation-select">
+         							
+
+
+
+  
+	 
+    
+       		        	        	        		<option seed="trade-detail" data-link="https://lab.alipay.com/consume/queryTradeDetail.htm?tradeNo=2014102417865306" data-target="_blank">详情</option>
+							
+   	
+  
+
+			        		
+        
+
+
+
+						
+		
+
+<option class="split" seed="trade-memo" data-action="edit-memo" data-link="https://consumeprod.alipay.com/record/editMemo.htm?bizInNo=2014102417865306&amp;createDate=			20141024172533
+	&amp;bizType=TRADE" rel-id="" data-tip="请勿备注个人敏感信息">备注</option>
+
+
+<option seed="trade-delete" data-action="delete" data-link="https://consumeprod.alipay.com/record/delete.json?record=			2014-10-24 17:25:33
+	|2014102417865306|TRADE" data-fund-change="true" rel-id="">删除</option>
+
+	
+     </select>
+
+    <div class="operation-menu-trigger J-operation-menu-trigger" id="J-operation-menu-3">
+        <div class="current-item">
+            <span class="item-text">详情</span><span class="icon-pull-down">&nbsp;</span>
+        </div>
+    </div>
+
+</td>
+			</tr>
+                
+
+
+
+
+                               
+
+
+
+
+
+
+			<tr id="J-item-4" class="J-item split  ">
+                
+<td class="time">
+		
+     		<p class="time-d">			2014.10.24
+	</p>
+	</td>
+
+
+
+
+
+    			
+<td class="memo">
+    </td>    			
+
+
+  
+<td class="name">
+	<p class="consume-title">
+	    
+
+
+                        <a href="https://lab.alipay.com/consume/queryTradeDetail.htm?tradeNo=2014102417840806" title="饿了么订单" target="_blank">饿了么订单</a>
+                </p>
+	
+		</td>    			
+
+
+<td class="amount">
+    			            									<span class="amount-pay-out">-8.00</span>
+				    		    		</td>    			
+<td class="detail">        
+    		<a class="J-amount-more mr-10 record-icon icon-detail J-details-trigger" href="https://consumeprod.alipay.com/record/funditem.json?bizType=TRADE&amp;bizInNo=2014102417840806&amp;gmtBizCreate=			20141024172134
+	" onclick="return false;" seed="trade-details"></a>                     </td>
+    			
+
+
+<td class="status">
+		<p>交易成功</p>
+		<p class="ft-gray">
+		 									
+				
+	</p>		
+</td>
+
+
+
+
+
+
+
+    			
+
+<td class="action">
+    <select id="J-operation-select-4" class="fn-hide J-operation-select">
+         							
+
+
+
+  
+	 
+    
+       		        	        	        		<option seed="trade-detail" data-link="https://lab.alipay.com/consume/queryTradeDetail.htm?tradeNo=2014102417840806" data-target="_blank">详情</option>
+							
+   	
+  
+
+			        		
+        
+
+
+
+						
+		
+
+<option class="split" seed="trade-memo" data-action="edit-memo" data-link="https://consumeprod.alipay.com/record/editMemo.htm?bizInNo=2014102417840806&amp;createDate=			20141024172134
+	&amp;bizType=TRADE" rel-id="" data-tip="请勿备注个人敏感信息">备注</option>
+
+
+<option seed="trade-delete" data-action="delete" data-link="https://consumeprod.alipay.com/record/delete.json?record=			2014-10-24 17:21:34
+	|2014102417840806|TRADE" data-fund-change="true" rel-id="">删除</option>
+
+	
+     </select>
+
+    <div class="operation-menu-trigger J-operation-menu-trigger" id="J-operation-menu-4">
+        <div class="current-item">
+            <span class="item-text">详情</span><span class="icon-pull-down">&nbsp;</span>
+        </div>
+    </div>
+
+</td>
+			</tr>
+                
+
+
+
+
+                               
+
+
+
+
+
+
+			<tr id="J-item-5" class="J-item  ">
+                
+<td class="time">
+		
+     		<p class="time-d">			2014.10.24
+	</p>
+	</td>
+
+
+
+
+
+    			
+<td class="memo">
+    </td>    			
+
+
+  
+<td class="name">
+	<p class="consume-title">
+	    
+
+
+                        <a href="https://lab.alipay.com/consume/queryTradeDetail.htm?tradeNo=2014102416413006" title="饿了么订单" target="_blank">饿了么订单</a>
+                </p>
+	
+		</td>    			
+
+
+<td class="amount">
+    			            									<span class="amount-pay-out">-7.00</span>
+				    		    		</td>    			
+<td class="detail">        
+    		<a class="J-amount-more mr-10 record-icon icon-detail J-details-trigger" href="https://consumeprod.alipay.com/record/funditem.json?bizType=TRADE&amp;bizInNo=2014102416413006&amp;gmtBizCreate=			20141024121140
+	" onclick="return false;" seed="trade-details"></a>                     </td>
+    			
+
+
+<td class="status">
+		<p>交易成功</p>
+		<p class="ft-gray">
+		 									
+				
+	</p>		
+</td>
+
+
+
+
+
+
+
+    			
+
+<td class="action">
+    <select id="J-operation-select-5" class="fn-hide J-operation-select">
+         							
+
+
+
+  
+	 
+    
+       		        	        	        		<option seed="trade-detail" data-link="https://lab.alipay.com/consume/queryTradeDetail.htm?tradeNo=2014102416413006" data-target="_blank">详情</option>
+							
+   	
+  
+
+			        		
+        
+
+
+
+						
+		
+
+<option class="split" seed="trade-memo" data-action="edit-memo" data-link="https://consumeprod.alipay.com/record/editMemo.htm?bizInNo=2014102416413006&amp;createDate=			20141024121140
+	&amp;bizType=TRADE" rel-id="" data-tip="请勿备注个人敏感信息">备注</option>
+
+
+<option seed="trade-delete" data-action="delete" data-link="https://consumeprod.alipay.com/record/delete.json?record=			2014-10-24 12:11:40
+	|2014102416413006|TRADE" data-fund-change="true" rel-id="">删除</option>
+
+	
+     </select>
+
+    <div class="operation-menu-trigger J-operation-menu-trigger" id="J-operation-menu-5">
+        <div class="current-item">
+            <span class="item-text">详情</span><span class="icon-pull-down">&nbsp;</span>
+        </div>
+    </div>
+
+</td>
+			</tr>
+                
+
+
+
+
+                               
+
+
+
+
+
+
+			<tr id="J-item-6" class="J-item split  ">
+                
+<td class="time">
+		
+     		<p class="time-d">			2014.10.23
+	</p>
+	</td>
+
+
+
+
+
+    			
+<td class="memo">
+    </td>    			
+
+
+  
+<td class="name">
+	<p class="consume-title">
+	    
+
+
+                        <a href="https://lab.alipay.com/consume/queryTradeDetail.htm?tradeNo=2014102300001000060035173007" title="美团外卖 - 订单号14102300282940015" target="_blank">美团外卖 - 订单号14102300282940015</a>
+                </p>
+	
+		</td>    			
+
+
+<td class="amount">
+    			            									<span class="amount-pay-out">-22.00</span>
+				    		    		</td>    			
+<td class="detail">        
+    		<a class="J-amount-more mr-10 record-icon icon-detail J-details-trigger" href="https://consumeprod.alipay.com/record/funditem.json?bizType=TRADE&amp;bizInNo=2014102300001000060035173007&amp;gmtBizCreate=			20141023171340
+	" onclick="return false;" seed="trade-details"></a>                     </td>
+    			
+
+
+<td class="status">
+		<p>交易成功</p>
+		<p class="ft-gray">
+		 									
+				
+	</p>		
+</td>
+
+
+
+
+
+
+
+    			
+
+<td class="action">
+    <select id="J-operation-select-6" class="fn-hide J-operation-select">
+         							
+
+
+
+  
+	 
+    
+       		        	        	        		<option seed="trade-detail" data-link="https://lab.alipay.com/consume/queryTradeDetail.htm?tradeNo=2014102300001000060035173007" data-target="_blank">详情</option>
+							
+   	
+  
+
+			        		
+        
+
+
+
+						
+		
+
+<option class="split" seed="trade-memo" data-action="edit-memo" data-link="https://consumeprod.alipay.com/record/editMemo.htm?bizInNo=2014102300001000060035173007&amp;createDate=			20141023171340
+	&amp;bizType=TRADE" rel-id="" data-tip="请勿备注个人敏感信息">备注</option>
+
+
+<option seed="trade-delete" data-action="delete" data-link="https://consumeprod.alipay.com/record/delete.json?record=			2014-10-23 17:13:40
+	|2014102300001000060035173007|TRADE" data-fund-change="true" rel-id="">删除</option>
+
+	
+     </select>
+
+    <div class="operation-menu-trigger J-operation-menu-trigger" id="J-operation-menu-6">
+        <div class="current-item">
+            <span class="item-text">详情</span><span class="icon-pull-down">&nbsp;</span>
+        </div>
+    </div>
+
+</td>
+			</tr>
+                
+
+
+
+
+                               
+
+
+
+
+
+
+			<tr id="J-item-7" class="J-item  ">
+                
+<td class="time">
+		
+     		<p class="time-d">			2014.10.22
+	</p>
+	</td>
+
+
+
+
+
+    			
+<td class="memo">
+    </td>    			
+
+
+  
+<td class="name">
+	<p class="consume-title">
+	    
+
+
+                        <a href="https://lab.alipay.com/consume/queryTradeDetail.htm?tradeNo=2014102200001000060035125921" title="美团外卖 - 订单号14102200283120025" target="_blank">美团外卖 - 订单号14102200283120025</a>
+                </p>
+	
+		</td>    			
+
+
+<td class="amount">
+    			            									<span class="amount-pay-out">-16.00</span>
+				    		    		</td>    			
+<td class="detail">        
+    		<a class="J-amount-more mr-10 record-icon icon-detail J-details-trigger" href="https://consumeprod.alipay.com/record/funditem.json?bizType=TRADE&amp;bizInNo=2014102200001000060035125921&amp;gmtBizCreate=			20141022175045
+	" onclick="return false;" seed="trade-details"></a>                     </td>
+    			
+
+
+<td class="status">
+		<p>交易成功</p>
+		<p class="ft-gray">
+		 									
+				
+	</p>		
+</td>
+
+
+
+
+
+
+
+    			
+
+<td class="action">
+    <select id="J-operation-select-7" class="fn-hide J-operation-select">
+         							
+
+
+
+  
+	 
+    
+       		        	        	        		<option seed="trade-detail" data-link="https://lab.alipay.com/consume/queryTradeDetail.htm?tradeNo=2014102200001000060035125921" data-target="_blank">详情</option>
+							
+   	
+  
+
+			        		
+        
+
+
+
+						
+		
+
+<option class="split" seed="trade-memo" data-action="edit-memo" data-link="https://consumeprod.alipay.com/record/editMemo.htm?bizInNo=2014102200001000060035125921&amp;createDate=			20141022175045
+	&amp;bizType=TRADE" rel-id="" data-tip="请勿备注个人敏感信息">备注</option>
+
+
+<option seed="trade-delete" data-action="delete" data-link="https://consumeprod.alipay.com/record/delete.json?record=			2014-10-22 17:50:45
+	|2014102200001000060035125921|TRADE" data-fund-change="true" rel-id="">删除</option>
+
+	
+     </select>
+
+    <div class="operation-menu-trigger J-operation-menu-trigger" id="J-operation-menu-7">
+        <div class="current-item">
+            <span class="item-text">详情</span><span class="icon-pull-down">&nbsp;</span>
+        </div>
+    </div>
+
+</td>
+			</tr>
+                
+
+
+
+
+               		</tbody>
+
+	    </table>
+>>>>>>> 5230b03032a3d388bd35934bc0915e0dad3fd2c3

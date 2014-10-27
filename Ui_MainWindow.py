@@ -2,7 +2,11 @@
 
 # Form implementation generated from reading ui file 'D:\pythonWS\WebCatch\MainWindow.ui'
 #
+<<<<<<< HEAD
 # Created: Sun Oct 26 15:17:36 2014
+=======
+# Created: Mon Oct 27 15:32:50 2014
+>>>>>>> 5230b03032a3d388bd35934bc0915e0dad3fd2c3
 #      by: PyQt4 UI code generator 4.11.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -155,6 +159,12 @@ class Ui_Dialog(object):
         self.tableWidget.setColumnCount(0)
         self.tableWidget.setRowCount(0)
         self.tabWidget.addTab(self.tab, _fromUtf8(""))
+<<<<<<< HEAD
+=======
+        self.tab_2 = QtGui.QWidget()
+        self.tab_2.setObjectName(_fromUtf8("tab_2"))
+        self.tabWidget.addTab(self.tab_2, _fromUtf8(""))
+>>>>>>> 5230b03032a3d388bd35934bc0915e0dad3fd2c3
         self.horizontalLayoutWidget_8 = QtGui.QWidget(Dialog)
         self.horizontalLayoutWidget_8.setGeometry(QtCore.QRect(790, 20, 221, 31))
         self.horizontalLayoutWidget_8.setObjectName(_fromUtf8("horizontalLayoutWidget_8"))
@@ -206,6 +216,18 @@ class Ui_Dialog(object):
         self.leTablename_3 = QtGui.QLineEdit(Dialog)
         self.leTablename_3.setGeometry(QtCore.QRect(930, 230, 81, 20))
         self.leTablename_3.setObjectName(_fromUtf8("leTablename_3"))
+<<<<<<< HEAD
+=======
+        self.teHTMLCode = QtGui.QTextEdit(Dialog)
+        self.teHTMLCode.setGeometry(QtCore.QRect(820, 320, 201, 181))
+        self.teHTMLCode.setObjectName(_fromUtf8("teHTMLCode"))
+        self.label_15 = QtGui.QLabel(Dialog)
+        self.label_15.setGeometry(QtCore.QRect(830, 300, 54, 12))
+        self.label_15.setObjectName(_fromUtf8("label_15"))
+        self.btnExtfromCode = QtGui.QPushButton(Dialog)
+        self.btnExtfromCode.setGeometry(QtCore.QRect(820, 510, 201, 21))
+        self.btnExtfromCode.setObjectName(_fromUtf8("btnExtfromCode"))
+>>>>>>> 5230b03032a3d388bd35934bc0915e0dad3fd2c3
 
         self.retranslateUi(Dialog)
         self.tabWidget.setCurrentIndex(0)
@@ -228,7 +250,11 @@ class Ui_Dialog(object):
         self.label_10.setText(_translate("Dialog", "Extracted Data:", None))
         self.label_11.setText(_translate("Dialog", "TableName:", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("Dialog", "Tab 1", None))
+<<<<<<< HEAD
         #self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("Dialog", "Tab 2", None))
+=======
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("Dialog", "Tab 2", None))
+>>>>>>> 5230b03032a3d388bd35934bc0915e0dad3fd2c3
         self.label_9.setText(_translate("Dialog", "Row Id:", None))
         self.pushButton.setText(_translate("Dialog", "Delete", None))
         self.label_12.setText(_translate("Dialog", "Col Name:", None))
@@ -238,6 +264,11 @@ class Ui_Dialog(object):
         self.btnSave_2.setText(_translate("Dialog", "Load the Data from Mysql", None))
         self.label_13.setText(_translate("Dialog", "ColNames:", None))
         self.label_14.setText(_translate("Dialog", "Condition:", None))
+<<<<<<< HEAD
+=======
+        self.label_15.setText(_translate("Dialog", "HTML Code:", None))
+        self.btnExtfromCode.setText(_translate("Dialog", "Extract from HTMLCode", None))
+>>>>>>> 5230b03032a3d388bd35934bc0915e0dad3fd2c3
 
 
 if __name__ == "__main__":
