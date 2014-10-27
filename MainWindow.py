@@ -256,7 +256,7 @@ class Dialog(QDialog, Ui_Dialog):
                     curTable.append([])
                     extCurTDs = extCurTableRow.findAll('td') 
                     for extCurTD in extCurTDs:
-                        if extCurTD.contents != None:
+                        if extCurTD.contents != []:
                             curTable[j].append(unicode(extCurTD.contents[0]))  #添加单元格
                         else:
                             curTable[j].append('')
