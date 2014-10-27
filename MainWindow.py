@@ -131,6 +131,7 @@ class Dialog(QDialog, Ui_Dialog):
     def MakeSuperTab(self, extResList, superTab, resCols, resCols2, hashval):
         row = 0
         col = 0
+        print len(extResList)
         for tmpRes in extResList:
             tmpStr = unicode(tmpRes)
             superTab.append([])
@@ -193,8 +194,10 @@ class Dialog(QDialog, Ui_Dialog):
         mfreqcls = self.FindMostFreqCls(reptns, extTstLists, hashval)  
         
         #use the most frequent class to work
-        extResList = soup.findAll('div', {'class' : mfreqcls})
-        
+        if mfreqcls != '':
+            extResList = soup.findAll('div', {'class' : mfreqcls})
+        else :
+            extResList = []
         
         resCols = []
         resCols2 = []           
@@ -247,9 +250,10 @@ class Dialog(QDialog, Ui_Dialog):
     def ExctType2(self, doc, soup):
         extTableObjs = []
 
-        #extTableObjs = soup.findAll('table')
+        extTableObjs2 = soup.findAll('table')
+        print len(extTableObjs2)
         #soupStr = unicode(soup)
-        extTableObjs = re.findall(r'\<table[^\>]*\>([\s\S]*?)\</table\>', unicode(doc, 'utf-8', 'ignore'))
+        extTableObjs = re.findall(r'(\<table[^\>]*\>[\s\S]*?\</table\>)', unicode(doc, 'utf-8', 'ignore'))
         extTableHeadsLists = []  #2d tid, col
         i = 0
         extTableValidId = []
