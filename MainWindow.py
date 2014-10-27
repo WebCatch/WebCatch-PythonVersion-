@@ -28,6 +28,29 @@ try:
 except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
+def GetSimpleStrFromLabelStr( LabelStr):     
+    retStr = ''
+    if re.search(r'\<([A-Za-z0-9]+)[^\>]*>([\s\S]*?)\</(\1)\>', LabelStr) == None:
+        retStr = LabelStr
+        return retStr.strip()
+    else:
+        SubLabelStrs = re.findall(r'\<([A-Za-z0-9]+)[^\>]*>([\s\S]*?)\</(\1)\>', LabelStr)
+        i = 0
+        for ch in LabelStr.strip():
+            if ch == '<':
+                retStr += LabelStr[0:i]
+                break;
+            i += 1
+        for i in range(len(SubLabelStrs)):
+            #print retStr
+            #print GetSimpleStrFromLabelStr(SubLabelStrs[i][1].strip())           
+            retStr += GetSimpleStrFromLabelStr(SubLabelStrs[i][1].strip())
+            print retStr
+        i = len(LabelStr.strip()) - 1
+        while (LabelStr[i] != '>'):
+            i -= 1
+        retStr += LabelStr[i + 1: len(LabelStr.strip()) ]
+    return retStr
 class Dialog(QDialog, Ui_Dialog):
     """
     Class documentation goes here.
@@ -49,6 +72,7 @@ class Dialog(QDialog, Ui_Dialog):
         reptns.append(r'([^"]*[Pp][Rr][Oo][Dd][^"]*)')
         reptns.append(r'([^"]*[Ll][Ii][Ss][Tt][^"]*)')
         
+  
     #get Soups with keywords
     def MakeSoupLists(self,  extTstLists, reptns, soup):
         for tmpreptn in reptns:
@@ -258,10 +282,17 @@ class Dialog(QDialog, Ui_Dialog):
                             fst = 0
                         else:
                             curTable.append([])
-                            extCurTDs = extTRObj.findAll('td') 
-                            for extCurTD in extCurTDs:
-                                if extCurTD.contents != []:
-                                    curTable[j].append(unicode(extCurTD.contents[0]))  #添加单元格
+                            extCurTDs = extTRObj.findAll('td')
+                            i = 0
+                            for i in range(len(extTableHeadsLists[len(extTableHeadsLists) - 1])):
+                            #for extCurTD in extCurTDs:
+                                if i < len(extCurTDs):
+                                    extCurStr = unicode(extCurTDs[i])
+                                    if re.search(r'\<td[^\>]*>([\s\S]*?)\</td\>', extCurStr) != None:
+                                        tmp = GetSimpleStrFromLabelStr(re.search(r'\<td[^\>]*>([\s\S]*?)\</td\>', extCurStr).group(1))
+                                        curTable[j].append(tmp)  #添加单元格
+                                    else:
+                                        curTable[j].append('')
                                 else:
                                     curTable[j].append('')
                             j += 1
