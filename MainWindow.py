@@ -229,16 +229,57 @@ class Dialog(QDialog, Ui_Dialog):
         superTable2 = [] #3d      tid,row, col
         superTable2Name = [] #1d tid
         for extTableObj in extTableObjs:
-            if extTableObj.find('thead') != None and extTableObj.find('tbody') !=None:
+            ##########
+            if  extTableObj.find('tr') !=None:
                 extTableStr = unicode(extTableObj)
                 if re.search(r'''\<table[^\>]+class=["']([^'"]+)["'][^\>]*\>''', extTableStr) != None:
                     tmpStr = re.search(r'''\<table[^\>]+class=["']([^'"]+)["'][^\>]*\>''', extTableStr).group(1)
                     superTable2Name.append(tmpStr)
                 else:
                     superTable2Name.append('table')
-                blkTHead = extTableObj.find('thead')
-                extCurTableHead = blkTHead.find('tr')
-                extCurTHs = extCurTableHead.findAll('th')
+                curTable = []
+                j = 0
+                if extTableObj.find('tr') != None:
+                    extTRObjs = extTableObj.findAll('tr')
+                    fst = 1
+                    for extTRObj in extTRObjs:
+                        if fst == 1:
+                            if extTRObj.find('th') != None:
+                                extCurTHs = extTRObj.findAll('th')
+                            else:
+                                extCurTHs = extTRObj.findAll('td')
+                            curHead = []
+                            for extCurTH in extCurTHs:
+                                if extCurTH.contents != []:
+                                    curHead.append(unicode(extCurTH.contents[0]))
+                                else:
+                                    curHead.append('')
+                            extTableHeadsLists.append(curHead)
+                            fst = 0
+                        else:
+                            curTable.append([])
+                            extCurTDs = extTRObj.findAll('td') 
+                            for extCurTD in extCurTDs:
+                                if extCurTD.contents != []:
+                                    curTable[j].append(unicode(extCurTD.contents[0]))  #添加单元格
+                                else:
+                                    curTable[j].append('')
+                            j += 1
+                extTableValidId.append(i)
+                
+                '''
+                #######
+                if extTableObj.find('thead') != None:
+                    blkTHead = extTableObj.find('thead')
+                    extCurTableHead = blkTHead.find('tr')
+                    extCurTHs = extCurTableHead.findAll('th')
+                else:
+                    blkTHead = extTableObj.find('tbody')
+                    extCurTableHead = blkTHead.find('tr')
+                    if extCurTableHead.findAll('th') != None:
+                        extCurTHs = extCurTableHead.findAll('th')
+                    else:
+                        extCurTHs = extCurTableHead.findAll('td')
                 curHead = []
                 for extCurTH in extCurTHs:
                     if extCurTH.contents != []:
@@ -248,19 +289,12 @@ class Dialog(QDialog, Ui_Dialog):
                 extTableHeadsLists.append(curHead)
                 #extTableHeadsLists.append(self.ExctTableHeads(extTableObs))
                 extTableValidId.append(i)
-                blkTBody = extTableObj.find('tbody')
-                curTable = []
+                blkTBody = extTableObj.find('tbody')                
                 extCurTableRows = blkTBody.findAll('tr')
-                j = 0
-                for extCurTableRow in extCurTableRows:
-                    curTable.append([])
-                    extCurTDs = extCurTableRow.findAll('td') 
-                    for extCurTD in extCurTDs:
-                        if extCurTD.contents != []:
-                            curTable[j].append(unicode(extCurTD.contents[0]))  #添加单元格
-                        else:
-                            curTable[j].append('')
-                    j += 1
+                '''
+                
+                #for extCurTableRow in extCurTableRows:
+                    
                 superTable2.append(curTable)
                 i += 1
         #print superTable2
