@@ -250,10 +250,10 @@ class Dialog(QDialog, Ui_Dialog):
     def ExctType2(self, doc, soup):
         extTableObjs = []
 
-        extTableObjs2 = soup.findAll('table')
-        print len(extTableObjs2)
+        #extTableObjs2 = soup.findAll('table')
         #soupStr = unicode(soup)
         extTableObjs = re.findall(r'(\<table[^\>]*\>[\s\S]*?\</table\>)', unicode(doc, 'utf-8', 'ignore'))
+        #extTableObjs.extend(extNeedtoEx)
         extTableHeadsLists = []  #2d tid, col
         i = 0
         extTableValidId = []
@@ -283,27 +283,6 @@ class Dialog(QDialog, Ui_Dialog):
                             else:
                                 curHead.append(str(i+1))
                             i += 1
-                        '''
-                        if extTRObj.find('th') != None:
-                            extCurTHs = extTRObj.findAll('th')
-                            type = 1
-                        else:
-                            extCurTHs = extTRObj.findAll('td')
-                            type = 2
-                        i = 0
-                        for extCurTH in extCurTHs:
-                            extCurStr = unicode(extCurTH)
-                            if type == 1 and re.search(r'\<th[^\>]*>([\s\S]*?)\</th\>', extCurStr) != None:
-                                    tmp = GetSimpleStrFromLabelStr(re.search(r'\<th[^\>]*>([\s\S]*?)\</th\>', extCurStr).group(1))
-                                    curHead.append(tmp)  #添加单元格
-                            elif type == 2 and re.search(r'\<td[^\>]*>([\s\S]*?)\</td\>', extCurStr) != None:
-                                    tmp = GetSimpleStrFromLabelStr(re.search(r'\<td[^\>]*>([\s\S]*?)\</td\>', extCurStr).group(1))
-                                    curHead.append(tmp)  #添加单元格
-                            else:
-                                curHead.append(str(i + 1))
-                            i += 1
-                            
-                        '''
                         fst = 0
                     else:
                         TableFg = 1
@@ -323,51 +302,11 @@ class Dialog(QDialog, Ui_Dialog):
                         while (len(curHead) > i):
                             curTable[j].append('')
                             i += 1
-                        '''
-                        for i in range(len(curHead)):
-                        #for extCurTD in extCurTDs:
-                            if i < len(extCurTDs):
-                                extCurStr = unicode(extCurTDs[i])
-                                if re.search(r'\<td[^\>]*>([\s\S]*?)\</td\>|\<th[^\>]*>([\s\S]*?)\</th\>', extCurStr) != None:
-                                    tmpre = re.search(r'\<td[^\>]*>([\s\S]*?)\</td\>|\<th[^\>]*>([\s\S]*?)\</th\>', extCurStr)
-                                    tmp = GetSimpleStrFromLabelStr(tmpre[0]+tmpre[1])
-                                    curTable[j].append(tmp)  #添加单元格
-                                else:
-                                    curTable[j].append('')
-                            else:
-                                curTable[j].append('')
-                        '''
                         j += 1
                 extTableValidId.append(i)
                 
-                '''
-                #######
-                if extTableObj.find('thead') != None:
-                    blkTHead = extTableObj.find('thead')
-                    extCurTableHead = blkTHead.find('tr')
-                    extCurTHs = extCurTableHead.findAll('th')
-                else:
-                    blkTHead = extTableObj.find('tbody')
-                    extCurTableHead = blkTHead.find('tr')
-                    if extCurTableHead.findAll('th') != None:
-                        extCurTHs = extCurTableHead.findAll('th')
-                    else:
-                        extCurTHs = extCurTableHead.findAll('td')
-                curHead = []
-                for extCurTH in extCurTHs:
-                    if extCurTH.contents != []:
-                        curHead.append(unicode(extCurTH.contents[0]))
-                    else:
-                        curHead.append('')
-                extTableHeadsLists.append(curHead)
-                #extTableHeadsLists.append(self.ExctTableHeads(extTableObs))
-                extTableValidId.append(i)
-                blkTBody = extTableObj.find('tbody')                
-                extCurTableRows = blkTBody.findAll('tr')
-                '''
-                
                 #for extCurTableRow in extCurTableRows:
-                if  TableFg != 0:
+                if  TableFg != 0 and len(curTable) * len(curTable[0]) >= int(unicode(self.leThreshold.text())):
                     superTable2.append(curTable)
                     extTableHeadsLists.append(curHead)
                     if re.search(r'''\<table[^\>]+class=["']([^'"]+)["'][^\>]*\>''', extTableStr) != None:

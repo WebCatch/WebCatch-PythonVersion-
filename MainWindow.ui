@@ -497,6 +497,32 @@
     <string>Extract from HTMLCode</string>
    </property>
   </widget>
+  <widget class="QLineEdit" name="leThreshold">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>50</y>
+     <width>113</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>0</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_16">
+   <property name="geometry">
+    <rect>
+     <x>183</x>
+     <y>50</y>
+     <width>141</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>threshold(minval is 0):</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

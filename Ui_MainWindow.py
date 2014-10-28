@@ -1,7 +1,8 @@
-# -*- coding:utf-8 -*-
+# -*- coding: utf-8 -*-
+
 # Form implementation generated from reading ui file 'D:\pythonWS\WebCatch\MainWindow.ui'
 #
-# Created: Mon Oct 27 15:32:50 2014
+# Created: Tue Oct 28 19:23:13 2014
 #      by: PyQt4 UI code generator 4.11.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -154,9 +155,6 @@ class Ui_Dialog(object):
         self.tableWidget.setColumnCount(0)
         self.tableWidget.setRowCount(0)
         self.tabWidget.addTab(self.tab, _fromUtf8(""))
-        self.tab_2 = QtGui.QWidget()
-        self.tab_2.setObjectName(_fromUtf8("tab_2"))
-        self.tabWidget.addTab(self.tab_2, _fromUtf8(""))
         self.horizontalLayoutWidget_8 = QtGui.QWidget(Dialog)
         self.horizontalLayoutWidget_8.setGeometry(QtCore.QRect(790, 20, 221, 31))
         self.horizontalLayoutWidget_8.setObjectName(_fromUtf8("horizontalLayoutWidget_8"))
@@ -217,6 +215,12 @@ class Ui_Dialog(object):
         self.btnExtfromCode = QtGui.QPushButton(Dialog)
         self.btnExtfromCode.setGeometry(QtCore.QRect(820, 510, 201, 21))
         self.btnExtfromCode.setObjectName(_fromUtf8("btnExtfromCode"))
+        self.leThreshold = QtGui.QLineEdit(Dialog)
+        self.leThreshold.setGeometry(QtCore.QRect(330, 50, 113, 20))
+        self.leThreshold.setObjectName(_fromUtf8("leThreshold"))
+        self.label_16 = QtGui.QLabel(Dialog)
+        self.label_16.setGeometry(QtCore.QRect(183, 50, 141, 20))
+        self.label_16.setObjectName(_fromUtf8("label_16"))
 
         self.retranslateUi(Dialog)
         self.tabWidget.setCurrentIndex(0)
@@ -239,7 +243,7 @@ class Ui_Dialog(object):
         self.label_10.setText(_translate("Dialog", "Extracted Data:", None))
         self.label_11.setText(_translate("Dialog", "TableName:", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("Dialog", "Tab 1", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("Dialog", "Tab 2", None))
+        #self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("Dialog", "Tab 2", None))
         self.label_9.setText(_translate("Dialog", "Row Id:", None))
         self.pushButton.setText(_translate("Dialog", "Delete", None))
         self.label_12.setText(_translate("Dialog", "Col Name:", None))
@@ -251,6 +255,8 @@ class Ui_Dialog(object):
         self.label_14.setText(_translate("Dialog", "Condition:", None))
         self.label_15.setText(_translate("Dialog", "HTML Code:", None))
         self.btnExtfromCode.setText(_translate("Dialog", "Extract from HTMLCode", None))
+        self.leThreshold.setText(_translate("Dialog", "20", None))
+        self.label_16.setText(_translate("Dialog", "threshold(minval is 0):", None))
 
 
 if __name__ == "__main__":
