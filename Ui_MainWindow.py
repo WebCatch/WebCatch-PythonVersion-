@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-
+# -*- coding:utf-8 -*-
 # Form implementation generated from reading ui file 'D:\pythonWS\WebCatch\MainWindow.ui'
 #
 # Created: Mon Oct 27 15:32:50 2014
