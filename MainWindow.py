@@ -173,15 +173,26 @@ class Dialog(QDialog, Ui_Dialog):
         return row, col
         
     def UpdateTableWidget(self, tableWidget, row, col, resCols, resCols2, superTab):
+        if len(resCols + resCols2) == 0 :
+            return
         tableWidget.setRowCount(row)
-        tableWidget.setColumnCount(col)            
-        tableWidget.setHorizontalHeaderLabels(resCols + resCols2)
+        tableWidget.setColumnCount(col)      
+        tableWidget.setHorizontalHeaderLabels([unicode(str(i + 1)) for i in range(len(resCols + resCols2))])
         #update Tabel Widget
+        for i in range(col):
+            if i < len(resCols):
+                self.newItem = QTableWidgetItem(unicode(resCols[i].strip().encode('utf-8'), 'utf-8', 'ignore'))
+                self.QTout(resCols[i].encode('utf-8') )
+            else:
+                self.newItem = QTableWidgetItem(unicode(resCols2[i-len(resCols)].strip().encode('utf-8'), 'utf-8', 'ignore'))
+                self.QTout(resCols2[i-len(resCols)].encode('utf-8') )
+            tableWidget.setItem(0, i, self.newItem)
+            
         for i in range(row):
             for j in range(col):
                 self.newItem = QTableWidgetItem(unicode(superTab[i][j].strip().encode('utf-8'), 'utf-8', 'ignore'))    
                 tableWidget.setItem(i + 1, j, self.newItem)
-                self.QTout(superTab[i + 1][j].encode('utf-8') )
+                self.QTout(superTab[i][j].encode('utf-8') )
     #Exact Web Page Type 1        
     def ExctType1(self, doc, soup): 
         # find the most frequent class
@@ -216,6 +227,8 @@ class Dialog(QDialog, Ui_Dialog):
     def updateTabWidgetType2(self, superTable2, superTable2Name, extTableHeadsLists):
         i = 0
         for curTable in superTable2:
+            if len(extTableHeadsLists[i]) == 0:
+                continue
             self.curTab = PyQt4.QtGui.QWidget()
             self.curTab.setObjectName(_fromUtf8(superTable2Name[i]))
             self.curTableWidget = QtGui.QTableWidget(self.curTab)
@@ -225,12 +238,17 @@ class Dialog(QDialog, Ui_Dialog):
             self.curTableWidget.setRowCount(len(superTable2[i]))
             
             #DBmodel.RemoveSpace(extTableHeadsLists)
-            self.curTableWidget.setHorizontalHeaderLabels(extTableHeadsLists[i])
+            #self.curTableWidget.setHorizontalHeaderLabels(extTableHeadsLists[i])
+            self.curTableWidget.setHorizontalHeaderLabels([unicode(str(j + 1)) for j in range(len(extTableHeadsLists[i])) ])
             #update Tabel Widget
+            for j in range(len(superTable2[i][0])):
+                self.newItem = QTableWidgetItem(unicode(extTableHeadsLists[i][j].strip().encode('utf-8'), 'utf-8', 'ignore'))    
+                self.curTableWidget.setItem(0, j, self.newItem)
+                self.QTout(extTableHeadsLists[i][j].encode('utf-8') )
             for k in range(len(superTable2[i])):
                 for j in range(len(superTable2[i][0])):
                     self.newItem = QTableWidgetItem(unicode(superTable2[i][k][j].strip().encode('utf-8'), 'utf-8', 'ignore'))    
-                    self.curTableWidget.setItem(k, j, self.newItem)
+                    self.curTableWidget.setItem(k + 1, j, self.newItem)
                     self.QTout(superTable2[i][k][j].encode('utf-8') )
                     
                     
