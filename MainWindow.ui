@@ -312,11 +312,6 @@
      </property>
     </widget>
    </widget>
-   <widget class="QWidget" name="tab_2">
-    <attribute name="title">
-     <string>Tab 2</string>
-    </attribute>
-   </widget>
   </widget>
   <widget class="QWidget" name="horizontalLayoutWidget_8">
    <property name="geometry">
@@ -507,7 +502,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>0</string>
+    <string>20</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_16">

@@ -7,6 +7,7 @@ import PyQt4, PyQt4.QtGui,  sys
 import urllib2
 import re
 import bs4
+import DBmodel
 from PyQt4.QtGui import QDialog
 from PyQt4.QtCore import pyqtSignature
 import sip
@@ -173,14 +174,14 @@ class Dialog(QDialog, Ui_Dialog):
         
     def UpdateTableWidget(self, tableWidget, row, col, resCols, resCols2, superTab):
         tableWidget.setRowCount(row)
-        tableWidget.setColumnCount(col)
+        tableWidget.setColumnCount(col)            
         tableWidget.setHorizontalHeaderLabels(resCols + resCols2)
         #update Tabel Widget
         for i in range(row):
             for j in range(col):
                 self.newItem = QTableWidgetItem(unicode(superTab[i][j].strip().encode('utf-8'), 'utf-8', 'ignore'))    
-                tableWidget.setItem(i, j, self.newItem)
-                self.QTout(superTab[i][j].encode('utf-8') )
+                tableWidget.setItem(i + 1, j, self.newItem)
+                self.QTout(superTab[i + 1][j].encode('utf-8') )
     #Exact Web Page Type 1        
     def ExctType1(self, doc, soup): 
         # find the most frequent class
@@ -202,6 +203,8 @@ class Dialog(QDialog, Ui_Dialog):
         resCols = []
         resCols2 = []           
         hashval = {}
+        DBmodel.RemoveSpace(resCols)
+        DBmodel.RemoveSpace(resCols2)
         self.FindPossibleCols(extResList, hashval, resCols, resCols2)    
         #assign the suiperTab[0...row-1][0...col-1]
         superTab = []
@@ -209,17 +212,6 @@ class Dialog(QDialog, Ui_Dialog):
         
         self.UpdateTableWidget(self.tableWidget, row, col, resCols, resCols2, superTab)
         
-        """
-        self.tab_3 = PyQt4.QtGui.QWidget()
-        self.tab_3.setObjectName(_fromUtf8("tab_3"))
-        self.tableWidget2 = QtGui.QTableWidget(self.tab_3)
-        self.tableWidget2.setGeometry(QtCore.QRect(0, 0, 821, 221))
-        self.tableWidget2.setObjectName(_fromUtf8("tableWidget"))
-        self.tableWidget2.setColumnCount(3)
-        self.tableWidget2.setRowCount(3)
-        self.tabWidget.addTab(self.tab_3, _fromUtf8(""))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("Dialog", "Tab 3", None))
-        """
     
     def updateTabWidgetType2(self, superTable2, superTable2Name, extTableHeadsLists):
         i = 0
@@ -232,7 +224,7 @@ class Dialog(QDialog, Ui_Dialog):
             self.curTableWidget.setColumnCount(len(superTable2[i][0]))
             self.curTableWidget.setRowCount(len(superTable2[i]))
             
-            
+            #DBmodel.RemoveSpace(extTableHeadsLists)
             self.curTableWidget.setHorizontalHeaderLabels(extTableHeadsLists[i])
             #update Tabel Widget
             for k in range(len(superTable2[i])):
@@ -316,8 +308,12 @@ class Dialog(QDialog, Ui_Dialog):
                         superTable2Name.append('table' + str(self.tabID))
                     self.tabID += 1
                 i += 1
+        for i in range(len(extTableHeadsLists)):
+            DBmodel.RemoveSpace(extTableHeadsLists[i])
         #print superTable2
         self.updateTabWidgetType2(superTable2, superTable2Name, extTableHeadsLists)
+    
+    
     
     def DoExct(self, doc):
         soup = bs4.BeautifulSoup(doc)   #get soup from HTML code
@@ -347,7 +343,15 @@ class Dialog(QDialog, Ui_Dialog):
         #docuni = unicode(doc,'UTF-8')
         self.DoExct(doc)
         
-        
+    @pyqtSignature("")
+    def on_btnExtfromCode_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+        doc = unicode(self.teHTMLCode.toPlainText())
+        doc = doc.encode('utf-8')
+        print doc
+        self.DoExct(doc)
     
     @pyqtSignature("")
     def on_btnConnect_clicked(self):

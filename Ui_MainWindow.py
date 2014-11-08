@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'D:\pythonWS\WebCatch\MainWindow.ui'
 #
-# Created: Tue Oct 28 19:23:13 2014
+# Created: Tue Oct 28 20:41:28 2014
 #      by: PyQt4 UI code generator 4.11.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -243,7 +243,6 @@ class Ui_Dialog(object):
         self.label_10.setText(_translate("Dialog", "Extracted Data:", None))
         self.label_11.setText(_translate("Dialog", "TableName:", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("Dialog", "Tab 1", None))
-        #self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("Dialog", "Tab 2", None))
         self.label_9.setText(_translate("Dialog", "Row Id:", None))
         self.pushButton.setText(_translate("Dialog", "Delete", None))
         self.label_12.setText(_translate("Dialog", "Col Name:", None))
