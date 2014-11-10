@@ -11,8 +11,22 @@ import sip
 import MySQLdb
 
 def RemoveSpace(supertable):
-    for i in range(len(supertable)):
-        supertable[i] = supertable[i].replace(' ', '')
+    typelist = [u'a', u'b', u'c']
+    typestr = u'simple'
+    if type(supertable) == type(typelist):
+        for i in range(len(supertable)):
+            supertable[i] = supertable[i].replace(' ', '')
+    elif type(supertable) == type(typestr):
+        supertable = supertable.replace(' ', '')
         
+def ReplaceSpace(supertable):
+    typelist = [u'a', u'b', u'c']
+    typestr = u'simple'
+    if type(supertable) == type(typelist):
+        for i in range(len(supertable)):
+            supertable[i] = supertable[i].replace(' ', '_')
+    elif type(supertable) == type(typestr):
+        supertable = supertable.replace(' ', '_')
+        return supertable
 
 

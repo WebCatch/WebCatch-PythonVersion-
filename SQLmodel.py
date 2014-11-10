@@ -1,8 +1,9 @@
+# -*- coding:utf-8 -*-
 import MySQLdb
 
 def ConnectMySQL(hostaddr, username, password, portstr, dbname):
     try:
-        conn = MySQLdb.connect(host=hostaddr,user=username,passwd=password,port=int(portstr))
+        conn = MySQLdb.connect(host=hostaddr,user=username,passwd=password,port=int(portstr), charset='utf8')
         conn.select_db(dbname)
         return conn
     except MySQLdb.Error,e:

@@ -15,6 +15,7 @@ from PyQt4.QtGui  import *
 from PyQt4.QtCore import *
 from PyQt4 import QtCore, QtGui
 import SQLmodel
+import DBmodel
 
 from Ui_MainWindow import Ui_Dialog
 try:
@@ -59,6 +60,9 @@ class Dialog(QDialog, Ui_Dialog):
     """
     tabID = 1
     conn = None
+    tabBuf = []
+    tableBuf = []
+    extracted = 0
     def __init__(self, parent = None):
         """
         Constructor
@@ -177,6 +181,8 @@ class Dialog(QDialog, Ui_Dialog):
     def UpdateTableWidget(self, tableWidget, row, col, resCols, resCols2, superTab):
         if len(resCols + resCols2) == 0 :
             return
+        self.tabBuf.append(self.tab)
+        self.tableBuf.append(self.tableWidget)
         tableWidget.setRowCount(row)
         tableWidget.setColumnCount(col)      
         tableWidget.setHorizontalHeaderLabels([unicode(str(i + 1)) for i in range(len(resCols + resCols2))])
@@ -216,14 +222,15 @@ class Dialog(QDialog, Ui_Dialog):
         resCols = []
         resCols2 = []           
         hashval = {}
-        DBmodel.RemoveSpace(resCols)
-        DBmodel.RemoveSpace(resCols2)
+        DBmodel.ReplaceSpace(resCols)
+        DBmodel.ReplaceSpace(resCols2)
         self.FindPossibleCols(extResList, hashval, resCols, resCols2)    
         #assign the suiperTab[0...row-1][0...col-1]
         superTab = []
         row, col = self.MakeSuperTab(extResList, superTab, resCols, resCols2, hashval)              
         
         self.UpdateTableWidget(self.tableWidget, row, col, resCols, resCols2, superTab)
+        extracted = 1
         
     
     def updateTabWidgetType2(self, superTable2, superTable2Name, extTableHeadsLists):
@@ -232,8 +239,10 @@ class Dialog(QDialog, Ui_Dialog):
             if len(extTableHeadsLists[i]) == 0:
                 continue
             self.curTab = PyQt4.QtGui.QWidget()
+            self.tabBuf.append(self.curTab)
             self.curTab.setObjectName(_fromUtf8(superTable2Name[i]))
             self.curTableWidget = QtGui.QTableWidget(self.curTab)
+            self.tableBuf.append(self.curTableWidget)
             self.curTableWidget.setGeometry(QtCore.QRect(10, 10, 751, 181))
             self.curTableWidget.setObjectName(_fromUtf8("tableWidget"+superTable2Name[i]))
             self.curTableWidget.setColumnCount(len(superTable2[i][0]))
@@ -254,9 +263,8 @@ class Dialog(QDialog, Ui_Dialog):
                     self.QTout(superTable2[i][k][j].encode('utf-8') )
                     
                     
-            self.tabWidget.addTab(self.curTab, _fromUtf8(""))
+            self.tabWidget.addTab(self.curTab, _fromUtf8(""))           
             self.tabWidget.setTabText(self.tabWidget.indexOf(self.curTab), _translate("Dialog", superTable2Name[i], None))
-            
             i += 1
     
     def ExctType2(self, doc, soup):
@@ -323,17 +331,31 @@ class Dialog(QDialog, Ui_Dialog):
                     extTableHeadsLists.append(curHead)
                     if re.search(r'''\<table[^\>]+class=["']([^'"]+)["'][^\>]*\>''', extTableStr) != None:
                         tmpStr = re.search(r'''\<table[^\>]+class=["']([^'"]+)["'][^\>]*\>''', extTableStr).group(1)
-                        superTable2Name.append(tmpStr)
+                        superTable2Name.append(DBmodel.ReplaceSpace(tmpStr))
                     else:
                         superTable2Name.append('table' + str(self.tabID))
                     self.tabID += 1
                 i += 1
         for i in range(len(extTableHeadsLists)):
-            DBmodel.RemoveSpace(extTableHeadsLists[i])
+            DBmodel.ReplaceSpace(extTableHeadsLists[i])
         #print superTable2
         self.updateTabWidgetType2(superTable2, superTable2Name, extTableHeadsLists)
     
-    
+    @pyqtSignature("")
+    def on_btnDisConnect_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+        # TODO: not implemented yet
+        #ConnectMySQL(hostaddr, username, password, portstr, dbname):
+        try:
+            self.conn.close()     
+            self.lbState.setText(unicode('Unconnected'))
+        except:
+            QtGui.QMessageBox.warning( self, "WebExt", "Please connect first!:)", QtGui.QMessageBox.Ok )
+            self.conn = None
+        
+       # conn = SQLmodel.ConnectMySQL()
     
     def DoExct(self, doc):
         soup = bs4.BeautifulSoup(doc)   #get soup from HTML code
@@ -356,12 +378,15 @@ class Dialog(QDialog, Ui_Dialog):
         url = unicode (qsurl) 
         if re.match(r'http://[^\s]*', url) == None:
             url = r'http://' + url
-        req = urllib2.Request(url)
-        con = urllib2.urlopen(req)
-        doc = con.read()
-        con.close()
-        #docuni = unicode(doc,'UTF-8')
-        self.DoExct(doc)
+        try:
+            req = urllib2.Request(url)
+            con = urllib2.urlopen(req)
+            doc = con.read()
+            con.close()
+            #docuni = unicode(doc,'UTF-8')
+            self.DoExct(doc)
+        except:
+            QtGui.QMessageBox.warning( self, "WebExt", "Page not found! o.O", QtGui.QMessageBox.Ok )
         
     @pyqtSignature("")
     def on_btnExtfromCode_clicked(self):
@@ -383,13 +408,18 @@ class Dialog(QDialog, Ui_Dialog):
         hostaddr = unicode(self.leHost.text())
         username = unicode(self.leUsername.text())
         password = unicode(self.lePassword.text())
-        portstr = int(unicode(self.lePort.text()))
+        try:
+            portstr = int(unicode(self.lePort.text()))
+        except:
+            pass
         dbname = unicode(self.leDBName.text())
-        conn = SQLmodel.ConnectMySQL(hostaddr, username, password, portstr, dbname)
-        if conn != None:
-            self.lbState.setText(unicode('connected'))
-        else:
-            self.lbState.setText(unicode('unconnected'))
+        try:
+            self.conn = SQLmodel.ConnectMySQL(hostaddr, username, password, portstr, dbname)
+            self.lbState.setText(unicode('Connected'))
+        except:
+            QtGui.QMessageBox.warning( self, "WebExt", "Failed. :(", QtGui.QMessageBox.Ok )
+            self.lbState.setText(unicode('Unconnected'))
+        
        # conn = SQLmodel.ConnectMySQL()
     
     @pyqtSignature("")
@@ -398,8 +428,29 @@ class Dialog(QDialog, Ui_Dialog):
         Slot documentation goes here.
         """
         # TODO: not implemented yet
+        #CreateTableinMySQL(tablename, tableheads, tabledata, conn):
+        if unicode(self.lbState.text() ) == unicode('Unconnected'):
+            r = QtGui.QMessageBox.warning( self, "WebExt", "Please connect first. :)", QtGui.QMessageBox.Ok )
+            return
+        if self.extracted == 0:
+            QtGui.QMessageBox.warning( self, "WebExt", "Please extract first. :)", QtGui.QMessageBox.Ok )
+            return
+        tablename = unicode(self.tabWidget.tabText(self.tabWidget.indexOf(self.tabBuf[self.tabWidget.currentIndex()])))
+        tableheads = []
+        tabledata = []
+        tmpQTableObj = self.tableBuf[self.tabWidget.currentIndex()]
+        for i in range(tmpQTableObj.rowCount()):
+            if i !=0:
+                tabledata.append([])
+            for j in range(tmpQTableObj.columnCount()):
+                if i == 0:
+                    tableheads.append(unicode(tmpQTableObj.item(i, j).text()))
+                else:
+                    tabledata[i - 1].append(unicode(tmpQTableObj.item(i, j).text()))
         
-        raise NotImplementedError
+        SQLmodel.CreateTableinMySQL(tablename, tableheads, tabledata, self.conn)
+        #print unicode(self.tabBuf[self.tabWidget.currentIndex()].objectName())
+        #raise NotImplementedError
     
     @pyqtSignature("")
     def on_btnLoad_clicked(self):

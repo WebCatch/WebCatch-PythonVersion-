@@ -80,7 +80,7 @@
 	<a class="nava a3" href="http://www.converse.com.cn/search/kids.htm" title="儿童"><span class="text"><em>儿童</em></span></a>
 </div>
 
-<input type="hidden" id="kvType" value="A"/>
+<input type="hidden" id="kvType" value="B"/>
 <div class="header_edge" id="header_edge">
     <div class="header">
     	<div class="header_cont">
