@@ -14,6 +14,7 @@ import sip
 from PyQt4.QtGui  import *  
 from PyQt4.QtCore import *
 from PyQt4 import QtCore, QtGui
+import SQLmodel
 
 from Ui_MainWindow import Ui_Dialog
 try:
@@ -57,6 +58,7 @@ class Dialog(QDialog, Ui_Dialog):
     Class documentation goes here.
     """
     tabID = 1
+    conn = None
     def __init__(self, parent = None):
         """
         Constructor
@@ -377,10 +379,19 @@ class Dialog(QDialog, Ui_Dialog):
         Slot documentation goes here.
         """
         # TODO: not implemented yet
-        raise NotImplementedError
+        #ConnectMySQL(hostaddr, username, password, portstr, dbname):
+        #SQLmodel.ConnectMySQL()
     
     @pyqtSignature("")
     def on_btnSave_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+        # TODO: not implemented yet
+        raise NotImplementedError
+    
+    @pyqtSignature("")
+    def on_btnLoad_clicked(self):
         """
         Slot documentation goes here.
         """

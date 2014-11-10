@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>Dialog</class>
  <widget class="QDialog" name="Dialog">
@@ -397,7 +397,7 @@
     <string>AddCol</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="btnSave_2">
+  <widget class="QPushButton" name="btnLoad">
    <property name="geometry">
     <rect>
      <x>790</x>

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'D:\pythonWS\WebCatch\MainWindow.ui'
+# Form implementation generated from reading ui file 'F:\PYWS\WebCatch\WebCatch-PythonVersion-\MainWindow.ui'
 #
-# Created: Tue Oct 28 20:41:28 2014
+# Created: Mon Nov 10 15:35:31 2014
 #      by: PyQt4 UI code generator 4.11.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -191,9 +191,9 @@ class Ui_Dialog(object):
         self.pushButton_3 = QtGui.QPushButton(Dialog)
         self.pushButton_3.setGeometry(QtCore.QRect(880, 90, 75, 23))
         self.pushButton_3.setObjectName(_fromUtf8("pushButton_3"))
-        self.btnSave_2 = QtGui.QPushButton(Dialog)
-        self.btnSave_2.setGeometry(QtCore.QRect(790, 260, 211, 21))
-        self.btnSave_2.setObjectName(_fromUtf8("btnSave_2"))
+        self.btnLoad = QtGui.QPushButton(Dialog)
+        self.btnLoad.setGeometry(QtCore.QRect(790, 260, 211, 21))
+        self.btnLoad.setObjectName(_fromUtf8("btnLoad"))
         self.label_13 = QtGui.QLabel(Dialog)
         self.label_13.setGeometry(QtCore.QRect(730, 230, 61, 16))
         self.label_13.setObjectName(_fromUtf8("label_13"))
@@ -249,7 +249,7 @@ class Ui_Dialog(object):
         self.pushButton_4.setText(_translate("Dialog", "Delete", None))
         self.pushButton_2.setText(_translate("Dialog", "AddRow", None))
         self.pushButton_3.setText(_translate("Dialog", "AddCol", None))
-        self.btnSave_2.setText(_translate("Dialog", "Load the Data from Mysql", None))
+        self.btnLoad.setText(_translate("Dialog", "Load the Data from Mysql", None))
         self.label_13.setText(_translate("Dialog", "ColNames:", None))
         self.label_14.setText(_translate("Dialog", "Condition:", None))
         self.label_15.setText(_translate("Dialog", "HTML Code:", None))
