@@ -380,7 +380,17 @@ class Dialog(QDialog, Ui_Dialog):
         """
         # TODO: not implemented yet
         #ConnectMySQL(hostaddr, username, password, portstr, dbname):
-        #SQLmodel.ConnectMySQL()
+        hostaddr = unicode(self.leHost.text())
+        username = unicode(self.leUsername.text())
+        password = unicode(self.lePassword.text())
+        portstr = int(unicode(self.lePort.text()))
+        dbname = unicode(self.leDBName.text())
+        conn = SQLmodel.ConnectMySQL(hostaddr, username, password, portstr, dbname)
+        if conn != None:
+            self.lbState.setText(unicode('connected'))
+        else:
+            self.lbState.setText(unicode('unconnected'))
+       # conn = SQLmodel.ConnectMySQL()
     
     @pyqtSignature("")
     def on_btnSave_clicked(self):
@@ -388,6 +398,7 @@ class Dialog(QDialog, Ui_Dialog):
         Slot documentation goes here.
         """
         # TODO: not implemented yet
+        
         raise NotImplementedError
     
     @pyqtSignature("")
