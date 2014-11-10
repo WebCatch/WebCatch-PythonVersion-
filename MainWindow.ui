@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>Dialog</class>
  <widget class="QDialog" name="Dialog">
@@ -15,10 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>C:/Users/Gate/.designer/backup/_eric4project/ico.jpg</normaloff>C:/Users/Gate/.designer/backup/_eric4project/ico.jpg</iconset>
-  </property>
-  <property name="styleSheet">
-   <string notr="true">background-color: rgb(200,200, 200);</string>
+    <normaloff>_eric4project/ico.jpg</normaloff>_eric4project/ico.jpg</iconset>
   </property>
   <widget class="QWidget" name="horizontalLayoutWidget">
    <property name="geometry">
@@ -26,15 +23,12 @@
      <x>20</x>
      <y>20</y>
      <width>531</width>
-     <height>37</height>
+     <height>25</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
      <widget class="QLabel" name="label">
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
       <property name="text">
        <string>URL:</string>
       </property>
@@ -42,9 +36,6 @@
     </item>
     <item>
      <widget class="QLineEdit" name="leURL">
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
-      </property>
       <property name="text">
        <string>http://www.converse.com.cn/men.htm?iid=tpnvm0912001&amp;source=topnav</string>
       </property>
@@ -52,10 +43,6 @@
     </item>
     <item>
      <widget class="QPushButton" name="btnExct">
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(125, 160, 255);
-</string>
-      </property>
       <property name="text">
        <string>Extract</string>
       </property>
@@ -71,9 +58,6 @@
      <width>531</width>
      <height>221</height>
     </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(255, 255, 255);</string>
    </property>
   </widget>
   <widget class="QWidget" name="horizontalLayoutWidget_3">
@@ -95,9 +79,6 @@
     </item>
     <item>
      <widget class="QLineEdit" name="lePort">
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
-      </property>
       <property name="text">
        <string/>
       </property>
@@ -124,9 +105,6 @@
     </item>
     <item>
      <widget class="QLineEdit" name="leUsername">
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
-      </property>
       <property name="text">
        <string/>
       </property>
@@ -153,9 +131,6 @@
     </item>
     <item>
      <widget class="QLineEdit" name="lePassword">
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
-      </property>
       <property name="text">
        <string/>
       </property>
@@ -182,9 +157,6 @@
     </item>
     <item>
      <widget class="QLineEdit" name="leDBName">
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
-      </property>
       <property name="text">
        <string/>
       </property>
@@ -218,9 +190,6 @@
     </item>
     <item>
      <widget class="QLineEdit" name="leHost">
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
-      </property>
       <property name="text">
        <string/>
       </property>
@@ -237,9 +206,6 @@
      <height>23</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(125, 160, 255)</string>
-   </property>
    <property name="text">
     <string>Connect</string>
    </property>
@@ -252,9 +218,6 @@
      <width>211</width>
      <height>21</height>
     </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(125, 160, 255);</string>
    </property>
    <property name="text">
     <string>Save the Data into Mysql</string>
@@ -272,9 +235,6 @@
    <layout class="QHBoxLayout" name="horizontalLayout_7">
     <item>
      <widget class="QLabel" name="label_8">
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
       <property name="text">
        <string>MYSQL Connection State:</string>
       </property>
@@ -311,9 +271,6 @@
      <height>20</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(255, 255, 255);</string>
-   </property>
   </widget>
   <widget class="QLabel" name="label_11">
    <property name="geometry">
@@ -337,10 +294,6 @@
      <height>231</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">
-background-color: rgb(255, 255, 255);</string>
-   </property>
    <property name="currentIndex">
     <number>0</number>
    </property>
@@ -357,15 +310,7 @@ background-color: rgb(255, 255, 255);</string>
        <height>181</height>
       </rect>
      </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(255, 255, 255);</string>
-     </property>
     </widget>
-   </widget>
-   <widget class="QWidget" name="tab_2">
-    <attribute name="title">
-     <string>Tab 2</string>
-    </attribute>
    </widget>
   </widget>
   <widget class="QWidget" name="horizontalLayoutWidget_8">
@@ -386,17 +331,10 @@ background-color: rgb(255, 255, 255);</string>
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit">
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
-      </property>
-     </widget>
+     <widget class="QLineEdit" name="lineEdit"/>
     </item>
     <item>
      <widget class="QPushButton" name="pushButton">
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(125, 160, 255);</string>
-      </property>
       <property name="text">
        <string>Delete</string>
       </property>
@@ -422,17 +360,10 @@ background-color: rgb(255, 255, 255);</string>
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit_2">
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
-      </property>
-     </widget>
+     <widget class="QLineEdit" name="lineEdit_2"/>
     </item>
     <item>
      <widget class="QPushButton" name="pushButton_4">
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(125, 160, 255);</string>
-      </property>
       <property name="text">
        <string>Delete</string>
       </property>
@@ -449,9 +380,6 @@ background-color: rgb(255, 255, 255);</string>
      <height>23</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(125, 160, 255);</string>
-   </property>
    <property name="text">
     <string>AddRow</string>
    </property>
@@ -465,9 +393,6 @@ background-color: rgb(255, 255, 255);</string>
      <height>23</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(125, 160, 255);</string>
-   </property>
    <property name="text">
     <string>AddCol</string>
    </property>
@@ -480,9 +405,6 @@ background-color: rgb(255, 255, 255);</string>
      <width>211</width>
      <height>21</height>
     </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color:rgb(125, 160, 255)</string>
    </property>
    <property name="text">
     <string>Load the Data from Mysql</string>
@@ -510,9 +432,6 @@ background-color: rgb(255, 255, 255);</string>
      <height>20</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(255, 255, 255);</string>
-   </property>
   </widget>
   <widget class="QLabel" name="label_14">
    <property name="geometry">
@@ -536,9 +455,6 @@ background-color: rgb(255, 255, 255);</string>
      <height>20</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(255, 255, 255);</string>
-   </property>
   </widget>
   <widget class="QTextEdit" name="teHTMLCode">
    <property name="geometry">
@@ -548,9 +464,6 @@ background-color: rgb(255, 255, 255);</string>
      <width>201</width>
      <height>181</height>
     </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(255, 255, 255);</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_15">
@@ -575,16 +488,37 @@ background-color: rgb(255, 255, 255);</string>
      <height>21</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(125, 160, 255);</string>
-   </property>
    <property name="text">
     <string>Extract from HTMLCode</string>
    </property>
   </widget>
+  <widget class="QLineEdit" name="leThreshold">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>50</y>
+     <width>113</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>20</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_16">
+   <property name="geometry">
+    <rect>
+     <x>183</x>
+     <y>50</y>
+     <width>141</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>threshold(minval is 0):</string>
+   </property>
+  </widget>
  </widget>
- <resources>
-  <include location="1.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
