@@ -34,7 +34,7 @@ def LoadTablefromMySQL(tablename, conn):
             tabledata[i].append(item)
             
         i += 1    
-    cur.commit()
+    conn.commit()
     cur.close()
     return (tableheads, tabledata)
 def CreateTableinMySQL(tablename, tableheads, tabledata, conn):

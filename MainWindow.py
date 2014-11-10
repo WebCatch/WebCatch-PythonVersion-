@@ -162,11 +162,11 @@ class Dialog(QDialog, Ui_Dialog):
                 if hashval.has_key(curCol) :
                     if re.search(r'''\<([^\s]*)\s+[^\>]*class=['"]''' + curCol+ r'''['"][^\>]*\>([^\>\<]*?)\</(?:\1)\>''', tmpStr) != None:
                         superTab[row].append(re.search(r'''\<([^\s]*)\s+[^\>]*class=['"]''' + curCol+ r'''['"][^\>]*\>([^\>\<]*?)\</(?:\1)\>''', tmpStr) .group(2))
-                    else:
+                    #else:
                         #print tmpStr
-                        superTab[row].append('')
-                        print curCol+r'="([^"]*)"'
-                    if re.search(r'''\<([^\s]*)\s+[^\>]*id=['"]''' + curCol + r'''['"][^\>]*\>([^\>\<]*?)\</(?:\1)\>''', tmpStr) != None:
+                       # superTab[row].append('')
+                        #print curCol+r'="([^"]*)"'
+                    elif re.search(r'''\<([^\s]*)\s+[^\>]*id=['"]''' + curCol + r'''['"][^\>]*\>([^\>\<]*?)\</(?:\1)\>''', tmpStr) != None:
                         superTab[row].append(re.search(r'''\<([^\s]*)\s+[^\>]*id=['"]''' + curCol + r'''['"][^\>]*\>([^\>\<]*?)\</(?:\1)\>''', tmpStr) .group(2))
                     else:
                         #print tmpStr
@@ -178,9 +178,20 @@ class Dialog(QDialog, Ui_Dialog):
             col /= row
         return row, col
         
-    def UpdateTableWidget(self, tableWidget, row, col, resCols, resCols2, superTab):
+    def UpdateTableWidget(self, resCols, resCols2, superTab):
         if len(resCols + resCols2) == 0 :
             return
+        
+        #updateTabWidgetType2(self, superTable2, superTable2Name, extTableHeadsLists):
+        superTable2 = []
+        superTable2Name = []
+        extTableHeadsLists = []
+        extTableHeadsLists.append(resCols + resCols2)
+        superTable2Name.append('table0')
+        superTable2.append(superTab)
+        self.updateTabWidgetType2( superTable2, superTable2Name, extTableHeadsLists)
+        
+        """
         self.tabBuf.append(self.tab)
         self.tableBuf.append(self.tableWidget)
         tableWidget.setRowCount(row)
@@ -201,6 +212,7 @@ class Dialog(QDialog, Ui_Dialog):
                 self.newItem = QTableWidgetItem(unicode(superTab[i][j].strip().encode('utf-8'), 'utf-8', 'ignore'))    
                 tableWidget.setItem(i + 1, j, self.newItem)
                 self.QTout(superTab[i][j].encode('utf-8') )
+        """
     #Exact Web Page Type 1        
     def ExctType1(self, doc, soup): 
         # find the most frequent class
@@ -229,8 +241,8 @@ class Dialog(QDialog, Ui_Dialog):
         superTab = []
         row, col = self.MakeSuperTab(extResList, superTab, resCols, resCols2, hashval)              
         
-        self.UpdateTableWidget(self.tableWidget, row, col, resCols, resCols2, superTab)
-        extracted = 1
+        self.UpdateTableWidget( resCols, resCols2, superTab)
+        
         
     
     def updateTabWidgetType2(self, superTable2, superTable2Name, extTableHeadsLists):
@@ -385,6 +397,7 @@ class Dialog(QDialog, Ui_Dialog):
             con.close()
             #docuni = unicode(doc,'UTF-8')
             self.DoExct(doc)
+            self.extracted = 1
         except:
             QtGui.QMessageBox.warning( self, "WebExt", "Page not found! o.O", QtGui.QMessageBox.Ok )
         
@@ -395,8 +408,9 @@ class Dialog(QDialog, Ui_Dialog):
         """
         doc = unicode(self.teHTMLCode.toPlainText())
         doc = doc.encode('utf-8')
-        print doc
+        print doc        
         self.DoExct(doc)
+        self.extracted = 1
     
     @pyqtSignature("")
     def on_btnConnect_clicked(self):
@@ -435,6 +449,11 @@ class Dialog(QDialog, Ui_Dialog):
         if self.extracted == 0:
             QtGui.QMessageBox.warning( self, "WebExt", "Please extract first. :)", QtGui.QMessageBox.Ok )
             return
+        dba = self.tabWidget.currentIndex()
+        print self.tabBuf
+        dbb = self.tabBuf[self.tabWidget.currentIndex()]
+        dbc = self.tabWidget.indexOf(self.tabBuf[self.tabWidget.currentIndex()])
+        dbd = self.tabWidget.tabText(self.tabWidget.indexOf(self.tabBuf[self.tabWidget.currentIndex()]))
         tablename = unicode(self.tabWidget.tabText(self.tabWidget.indexOf(self.tabBuf[self.tabWidget.currentIndex()])))
         tableheads = []
         tabledata = []
@@ -451,14 +470,40 @@ class Dialog(QDialog, Ui_Dialog):
         SQLmodel.CreateTableinMySQL(tablename, tableheads, tabledata, self.conn)
         #print unicode(self.tabBuf[self.tabWidget.currentIndex()].objectName())
         #raise NotImplementedError
-    
+    @pyqtSignature("")
+    def on_btnCloseCurTab_clicked(self):
+        curid = self.tabWidget.currentIndex() 
+        try:
+            if curid != 0:                
+                self.tabWidget.removeTab(curid)
+                del tabBuf[curid]
+                del tableBuf[curid]
+            else:
+                 QtGui.QMessageBox.warning( self, "WebExt", "Can't close the 1st tab. :(", QtGui.QMessageBox.Ok )
+        except:
+            QtGui.QMessageBox.warning( self, "WebExt", "Failed. :(", QtGui.QMessageBox.Ok )
+        pass
     @pyqtSignature("")
     def on_btnLoad_clicked(self):
         """
         Slot documentation goes here.
         """
+        #LoadTablefromMySQL(tablename, conn):
+        #updateTabWidgetType2(self, superTable2, superTable2Name, extTableHeadsLists):
+        tablename = unicode(self.leTablename.text())
+        superTable2 =[]
+        superTable2Name = []
+        extTableHeadsLists = []
+        superTable2Name.append(tablename)
+        try :
+            tmpheads, tmptabledata = SQLmodel.LoadTablefromMySQL(tablename, self.conn)
+            superTable2.append(tmptabledata)
+            extTableHeadsLists.append(tmpheads)
+            self.updateTabWidgetType2(superTable2, superTable2Name, extTableHeadsLists)
+        except:
+            QtGui.QMessageBox.warning( self, "WebExt", "Failed. :(", QtGui.QMessageBox.Ok )
         # TODO: not implemented yet
-        raise NotImplementedError
+        #raise NotImplementedError
 if __name__ == "__main__":
     app = PyQt4.QtGui.QApplication(sys.argv)
 

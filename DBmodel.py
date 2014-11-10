@@ -25,6 +25,8 @@ def ReplaceSpace(supertable):
     if type(supertable) == type(typelist):
         for i in range(len(supertable)):
             supertable[i] = supertable[i].replace(' ', '_')
+            supertable[i] = supertable[i].replace('\\', '\\\\')
+            supertable[i] = supertable[i].replace('"', '\\"')
     elif type(supertable) == type(typestr):
         supertable = supertable.replace(' ', '_')
         return supertable

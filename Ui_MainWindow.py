@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'F:\PYWS\WebCatch\WebCatch-PythonVersion-\MainWindow.ui'
 #
-# Created: Mon Nov 10 19:27:44 2014
+# Created: Mon Nov 10 21:40:24 2014
 #      by: PyQt4 UI code generator 4.11.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,7 +26,7 @@ except AttributeError:
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName(_fromUtf8("Dialog"))
-        Dialog.resize(1032, 545)
+        Dialog.resize(1032, 564)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(_fromUtf8("_eric4project/ico.jpg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         Dialog.setWindowIcon(icon)
@@ -46,7 +46,7 @@ class Ui_Dialog(object):
         self.btnExct.setObjectName(_fromUtf8("btnExct"))
         self.horizontalLayout.addWidget(self.btnExct)
         self.teExctData = QtGui.QTextEdit(Dialog)
-        self.teExctData.setGeometry(QtCore.QRect(20, 70, 531, 221))
+        self.teExctData.setGeometry(QtCore.QRect(20, 70, 531, 241))
         self.teExctData.setObjectName(_fromUtf8("teExctData"))
         self.horizontalLayoutWidget_3 = QtGui.QWidget(Dialog)
         self.horizontalLayoutWidget_3.setGeometry(QtCore.QRect(570, 110, 191, 31))
@@ -58,7 +58,6 @@ class Ui_Dialog(object):
         self.label_7.setObjectName(_fromUtf8("label_7"))
         self.horizontalLayout_3.addWidget(self.label_7)
         self.lePort = QtGui.QLineEdit(self.horizontalLayoutWidget_3)
-        self.lePort.setText(_fromUtf8(""))
         self.lePort.setObjectName(_fromUtf8("lePort"))
         self.horizontalLayout_3.addWidget(self.lePort)
         self.horizontalLayoutWidget_2 = QtGui.QWidget(Dialog)
@@ -71,7 +70,6 @@ class Ui_Dialog(object):
         self.label_4.setObjectName(_fromUtf8("label_4"))
         self.horizontalLayout_2.addWidget(self.label_4)
         self.leUsername = QtGui.QLineEdit(self.horizontalLayoutWidget_2)
-        self.leUsername.setText(_fromUtf8(""))
         self.leUsername.setObjectName(_fromUtf8("leUsername"))
         self.horizontalLayout_2.addWidget(self.leUsername)
         self.horizontalLayoutWidget_4 = QtGui.QWidget(Dialog)
@@ -84,7 +82,6 @@ class Ui_Dialog(object):
         self.label_5.setObjectName(_fromUtf8("label_5"))
         self.horizontalLayout_4.addWidget(self.label_5)
         self.lePassword = QtGui.QLineEdit(self.horizontalLayoutWidget_4)
-        self.lePassword.setText(_fromUtf8(""))
         self.lePassword.setObjectName(_fromUtf8("lePassword"))
         self.horizontalLayout_4.addWidget(self.lePassword)
         self.horizontalLayoutWidget_5 = QtGui.QWidget(Dialog)
@@ -97,7 +94,6 @@ class Ui_Dialog(object):
         self.label_6.setObjectName(_fromUtf8("label_6"))
         self.horizontalLayout_5.addWidget(self.label_6)
         self.leDBName = QtGui.QLineEdit(self.horizontalLayoutWidget_5)
-        self.leDBName.setText(_fromUtf8(""))
         self.leDBName.setObjectName(_fromUtf8("leDBName"))
         self.horizontalLayout_5.addWidget(self.leDBName)
         self.horizontalLayoutWidget_6 = QtGui.QWidget(Dialog)
@@ -114,7 +110,6 @@ class Ui_Dialog(object):
         self.label_2.setObjectName(_fromUtf8("label_2"))
         self.horizontalLayout_6.addWidget(self.label_2)
         self.leHost = QtGui.QLineEdit(self.horizontalLayoutWidget_6)
-        self.leHost.setText(_fromUtf8(""))
         self.leHost.setObjectName(_fromUtf8("leHost"))
         self.horizontalLayout_6.addWidget(self.leHost)
         self.btnConnect = QtGui.QPushButton(Dialog)
@@ -145,8 +140,9 @@ class Ui_Dialog(object):
         self.label_11.setGeometry(QtCore.QRect(820, 90, 71, 16))
         self.label_11.setObjectName(_fromUtf8("label_11"))
         self.tabWidget = QtGui.QTabWidget(Dialog)
-        self.tabWidget.setGeometry(QtCore.QRect(20, 300, 781, 231))
+        self.tabWidget.setGeometry(QtCore.QRect(20, 330, 781, 231))
         self.tabWidget.setObjectName(_fromUtf8("tabWidget"))
+        """
         self.tab = QtGui.QWidget()
         self.tab.setObjectName(_fromUtf8("tab"))
         self.tableWidget = QtGui.QTableWidget(self.tab)
@@ -155,6 +151,7 @@ class Ui_Dialog(object):
         self.tableWidget.setColumnCount(0)
         self.tableWidget.setRowCount(0)
         self.tabWidget.addTab(self.tab, _fromUtf8(""))
+        """
         self.horizontalLayoutWidget_8 = QtGui.QWidget(Dialog)
         self.horizontalLayoutWidget_8.setGeometry(QtCore.QRect(560, 220, 221, 31))
         self.horizontalLayoutWidget_8.setObjectName(_fromUtf8("horizontalLayoutWidget_8"))
@@ -195,13 +192,13 @@ class Ui_Dialog(object):
         self.btnLoad.setGeometry(QtCore.QRect(800, 120, 211, 21))
         self.btnLoad.setObjectName(_fromUtf8("btnLoad"))
         self.teHTMLCode = QtGui.QTextEdit(Dialog)
-        self.teHTMLCode.setGeometry(QtCore.QRect(820, 180, 201, 321))
+        self.teHTMLCode.setGeometry(QtCore.QRect(820, 180, 201, 351))
         self.teHTMLCode.setObjectName(_fromUtf8("teHTMLCode"))
         self.label_15 = QtGui.QLabel(Dialog)
         self.label_15.setGeometry(QtCore.QRect(820, 160, 61, 16))
         self.label_15.setObjectName(_fromUtf8("label_15"))
         self.btnExtfromCode = QtGui.QPushButton(Dialog)
-        self.btnExtfromCode.setGeometry(QtCore.QRect(820, 510, 201, 21))
+        self.btnExtfromCode.setGeometry(QtCore.QRect(820, 540, 201, 21))
         self.btnExtfromCode.setObjectName(_fromUtf8("btnExtfromCode"))
         self.leThreshold = QtGui.QLineEdit(Dialog)
         self.leThreshold.setGeometry(QtCore.QRect(330, 50, 113, 20))
@@ -227,6 +224,9 @@ class Ui_Dialog(object):
         self.pushButton_5 = QtGui.QPushButton(self.horizontalLayoutWidget_10)
         self.pushButton_5.setObjectName(_fromUtf8("pushButton_5"))
         self.horizontalLayout_10.addWidget(self.pushButton_5)
+        self.btnCloseCurTab = QtGui.QPushButton(Dialog)
+        self.btnCloseCurTab.setGeometry(QtCore.QRect(700, 320, 75, 23))
+        self.btnCloseCurTab.setObjectName(_fromUtf8("btnCloseCurTab"))
 
         self.retranslateUi(Dialog)
         self.tabWidget.setCurrentIndex(0)
@@ -238,17 +238,23 @@ class Ui_Dialog(object):
         self.leURL.setText(_translate("Dialog", "http://www.converse.com.cn/men.htm?iid=tpnvm0912001&source=topnav", None))
         self.btnExct.setText(_translate("Dialog", "Extract", None))
         self.label_7.setText(_translate("Dialog", "PORT:", None))
+        self.lePort.setText(_translate("Dialog", "3306", None))
         self.label_4.setText(_translate("Dialog", "UserName:", None))
+        self.leUsername.setText(_translate("Dialog", "root", None))
         self.label_5.setText(_translate("Dialog", "PassWord:", None))
+        self.lePassword.setText(_translate("Dialog", "6191162", None))
         self.label_6.setText(_translate("Dialog", "DBName:", None))
+        self.leDBName.setText(_translate("Dialog", "test", None))
         self.label_3.setText(_translate("Dialog", "Host:", None))
+        self.leHost.setText(_translate("Dialog", "localhost", None))
         self.btnConnect.setText(_translate("Dialog", "Connect", None))
         self.btnSave.setText(_translate("Dialog", "Save the Data into Mysql", None))
         self.label_8.setText(_translate("Dialog", "MYSQL Connection State:", None))
         self.lbState.setText(_translate("Dialog", "Unconnected", None))
         self.label_10.setText(_translate("Dialog", "Console:", None))
+        self.leTablename.setText(_translate("Dialog", "table0", None))
         self.label_11.setText(_translate("Dialog", "TableName:", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("Dialog", "table0", None))
+        #self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("Dialog", "table0", None))
         self.label_9.setText(_translate("Dialog", "Row Id:", None))
         self.pushButton.setText(_translate("Dialog", "Delete", None))
         self.label_12.setText(_translate("Dialog", "Col Id:", None))
@@ -263,6 +269,7 @@ class Ui_Dialog(object):
         self.btnDisConnect.setText(_translate("Dialog", "DisConnect", None))
         self.label_17.setText(_translate("Dialog", "CurTableName:", None))
         self.pushButton_5.setText(_translate("Dialog", "Change", None))
+        self.btnCloseCurTab.setText(_translate("Dialog", "CloseCurTab", None))
 
 
 if __name__ == "__main__":
