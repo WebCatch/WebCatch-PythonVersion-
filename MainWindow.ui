@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1032</width>
-    <height>564</height>
+    <width>1000</width>
+    <height>571</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -53,10 +53,10 @@
   <widget class="QTextEdit" name="teExctData">
    <property name="geometry">
     <rect>
-     <x>820</x>
-     <y>330</y>
-     <width>191</width>
-     <height>221</height>
+     <x>800</x>
+     <y>410</y>
+     <width>171</width>
+     <height>141</height>
     </rect>
    </property>
   </widget>
@@ -65,7 +65,7 @@
     <rect>
      <x>570</x>
      <y>110</y>
-     <width>191</width>
+     <width>211</width>
      <height>31</height>
     </rect>
    </property>
@@ -91,7 +91,7 @@
     <rect>
      <x>570</x>
      <y>50</y>
-     <width>191</width>
+     <width>211</width>
      <height>31</height>
     </rect>
    </property>
@@ -117,7 +117,7 @@
     <rect>
      <x>570</x>
      <y>80</y>
-     <width>191</width>
+     <width>211</width>
      <height>31</height>
     </rect>
    </property>
@@ -146,7 +146,7 @@
     <rect>
      <x>570</x>
      <y>140</y>
-     <width>191</width>
+     <width>211</width>
      <height>31</height>
     </rect>
    </property>
@@ -172,7 +172,7 @@
     <rect>
      <x>570</x>
      <y>20</y>
-     <width>191</width>
+     <width>211</width>
      <height>31</height>
     </rect>
    </property>
@@ -205,7 +205,7 @@
     <rect>
      <x>570</x>
      <y>200</y>
-     <width>91</width>
+     <width>101</width>
      <height>23</height>
     </rect>
    </property>
@@ -218,7 +218,7 @@
     <rect>
      <x>800</x>
      <y>20</y>
-     <width>211</width>
+     <width>181</width>
      <height>21</height>
     </rect>
    </property>
@@ -229,9 +229,9 @@
   <widget class="QWidget" name="horizontalLayoutWidget_7">
    <property name="geometry">
     <rect>
-     <x>560</x>
+     <x>570</x>
      <y>170</y>
-     <width>231</width>
+     <width>212</width>
      <height>31</height>
     </rect>
    </property>
@@ -255,8 +255,8 @@
   <widget class="QLabel" name="label_10">
    <property name="geometry">
     <rect>
-     <x>820</x>
-     <y>310</y>
+     <x>800</x>
+     <y>390</y>
      <width>111</width>
      <height>16</height>
     </rect>
@@ -268,7 +268,7 @@
   <widget class="QLineEdit" name="leTablename">
    <property name="geometry">
     <rect>
-     <x>900</x>
+     <x>880</x>
      <y>50</y>
      <width>71</width>
      <height>20</height>
@@ -281,7 +281,7 @@
   <widget class="QLabel" name="label_11">
    <property name="geometry">
     <rect>
-     <x>830</x>
+     <x>810</x>
      <y>50</y>
      <width>71</width>
      <height>16</height>
@@ -296,7 +296,7 @@
     <rect>
      <x>20</x>
      <y>330</y>
-     <width>781</width>
+     <width>771</width>
      <height>231</height>
     </rect>
    </property>
@@ -307,9 +307,9 @@
   <widget class="QWidget" name="horizontalLayoutWidget_8">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>240</y>
-     <width>221</width>
+     <x>570</x>
+     <y>290</y>
+     <width>211</width>
      <height>31</height>
     </rect>
    </property>
@@ -317,7 +317,7 @@
     <item>
      <widget class="QLabel" name="label_9">
       <property name="text">
-       <string>Row Id:</string>
+       <string>RowId:</string>
       </property>
      </widget>
     </item>
@@ -331,14 +331,21 @@
       </property>
      </widget>
     </item>
+    <item>
+     <widget class="QPushButton" name="pushButton_2">
+      <property name="text">
+       <string>AddRow</string>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QWidget" name="horizontalLayoutWidget_9">
    <property name="geometry">
     <rect>
-     <x>320</x>
+     <x>570</x>
      <y>240</y>
-     <width>221</width>
+     <width>211</width>
      <height>31</height>
     </rect>
    </property>
@@ -346,7 +353,7 @@
     <item>
      <widget class="QLabel" name="label_12">
       <property name="text">
-       <string>Col Id:</string>
+       <string>ColId:</string>
       </property>
      </widget>
     </item>
@@ -360,40 +367,21 @@
       </property>
      </widget>
     </item>
+    <item>
+     <widget class="QPushButton" name="pushButton_3">
+      <property name="text">
+       <string>AddCol</string>
+      </property>
+     </widget>
+    </item>
    </layout>
-  </widget>
-  <widget class="QPushButton" name="pushButton_2">
-   <property name="geometry">
-    <rect>
-     <x>590</x>
-     <y>240</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>AddRow</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_3">
-   <property name="geometry">
-    <rect>
-     <x>680</x>
-     <y>240</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>AddCol</string>
-   </property>
   </widget>
   <widget class="QPushButton" name="btnLoad">
    <property name="geometry">
     <rect>
      <x>800</x>
      <y>70</y>
-     <width>211</width>
+     <width>181</width>
      <height>21</height>
     </rect>
    </property>
@@ -407,7 +395,7 @@
      <x>20</x>
      <y>70</y>
      <width>531</width>
-     <height>141</height>
+     <height>191</height>
     </rect>
    </property>
   </widget>
@@ -428,7 +416,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>210</y>
+     <y>260</y>
      <width>531</width>
      <height>21</height>
     </rect>
@@ -466,9 +454,9 @@
   <widget class="QPushButton" name="btnDisConnect">
    <property name="geometry">
     <rect>
-     <x>670</x>
+     <x>680</x>
      <y>200</y>
-     <width>91</width>
+     <width>101</width>
      <height>23</height>
     </rect>
    </property>
@@ -479,7 +467,7 @@
   <widget class="QWidget" name="horizontalLayoutWidget_10">
    <property name="geometry">
     <rect>
-     <x>120</x>
+     <x>210</x>
      <y>290</y>
      <width>337</width>
      <height>31</height>
@@ -521,7 +509,7 @@
   <widget class="QPushButton" name="btnShowTables">
    <property name="geometry">
     <rect>
-     <x>820</x>
+     <x>800</x>
      <y>110</y>
      <width>181</width>
      <height>23</height>
@@ -534,17 +522,17 @@
   <widget class="QTextEdit" name="teTables">
    <property name="geometry">
     <rect>
-     <x>820</x>
+     <x>800</x>
      <y>160</y>
      <width>181</width>
-     <height>131</height>
+     <height>181</height>
     </rect>
    </property>
   </widget>
   <widget class="QLabel" name="label_18">
    <property name="geometry">
     <rect>
-     <x>820</x>
+     <x>800</x>
      <y>140</y>
      <width>61</width>
      <height>16</height>
@@ -557,8 +545,8 @@
   <widget class="QLineEdit" name="leDTableName">
    <property name="geometry">
     <rect>
-     <x>670</x>
-     <y>270</y>
+     <x>870</x>
+     <y>350</y>
      <width>101</width>
      <height>20</height>
     </rect>
@@ -567,8 +555,8 @@
   <widget class="QLabel" name="label_13">
    <property name="geometry">
     <rect>
-     <x>600</x>
-     <y>270</y>
+     <x>800</x>
+     <y>350</y>
      <width>61</width>
      <height>20</height>
     </rect>
@@ -580,8 +568,8 @@
   <widget class="QPushButton" name="btnDeleteTable">
    <property name="geometry">
     <rect>
-     <x>600</x>
-     <y>300</y>
+     <x>800</x>
+     <y>370</y>
      <width>171</width>
      <height>23</height>
     </rect>
@@ -606,8 +594,6 @@
   <zorder>tabWidget</zorder>
   <zorder>horizontalLayoutWidget_8</zorder>
   <zorder>horizontalLayoutWidget_9</zorder>
-  <zorder>pushButton_2</zorder>
-  <zorder>pushButton_3</zorder>
   <zorder>btnLoad</zorder>
   <zorder>teHTMLCode</zorder>
   <zorder>label_15</zorder>
