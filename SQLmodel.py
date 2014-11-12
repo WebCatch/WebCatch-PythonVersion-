@@ -1,13 +1,28 @@
 # -*- coding:utf-8 -*-
 import MySQLdb
-
+import DBmodel
 def ConnectMySQL(hostaddr, username, password, portstr, dbname):
-    try:
-        conn = MySQLdb.connect(host=hostaddr,user=username,passwd=password,port=int(portstr), charset='utf8')
-        conn.select_db(dbname)
-        return conn
-    except MySQLdb.Error,e:
-        return None
+    
+    conn = MySQLdb.connect(host=hostaddr,user=username,passwd=password,port=int(portstr), charset='utf8', db=dbname)
+        #conn.select_db(dbname)
+    return conn
+def DelTablefromMySQL(tablename, conn):
+    cur = conn.cursor()
+    tablename = DBmodel.ReplaceSpace(tablename)
+    cur.execute('drop table if exists ' + tablename)
+    conn.commit()
+    cur.close()
+
+def ShowTablesfromMySQL(conn):
+    cur = conn.cursor()
+    cur.execute('show tables ;')
+    tmpres = cur.fetchall()
+    res = []
+    for tmpitem in tmpres:
+        res.append(tmpitem[0])
+    conn.commit()
+    cur.close()
+    return res
     
 def LoadTablefromMySQL(tablename, conn):
     tableheads = []
@@ -39,6 +54,10 @@ def LoadTablefromMySQL(tablename, conn):
     return (tableheads, tabledata)
 def CreateTableinMySQL(tablename, tableheads, tabledata, conn):
     cur = conn.cursor()
+    tablename = DBmodel.ReplaceSpace(tablename)
+    DBmodel.ReplaceSpace(tableheads)
+    for fuc in tabledata:
+        DBmodel.MakeEscapeCharacter(fuc)
     cur.execute('drop table if exists ' + tablename)
 
     tmpStr = 'create table if not exists ' + tablename + '(primid int unsigned not null auto_increment primary key'

@@ -33,11 +33,11 @@ except AttributeError:
         return QtGui.QApplication.translate(context, text, disambig)
 def GetSimpleStrFromLabelStr( LabelStr):     
     retStr = ''
-    if re.search(r'\<([A-Za-z0-9]+)[^\>]*>([\s\S]*?)\</(\1)\>', LabelStr) == None:
+    if re.search(r'\<([A-Za-z0-9]+)[^\>]*>([\s\S]*)\</(\1)\>', LabelStr) == None:
         retStr = LabelStr
         return retStr.strip()
     else:
-        SubLabelStrs = re.findall(r'\<([A-Za-z0-9]+)[^\>]*>([\s\S]*?)\</(\1)\>', LabelStr)
+        SubLabelStrs = re.findall(r'\<([A-Za-z0-9]+)[^\>]*>([\s\S]*)\</(\1)\>', LabelStr)
         i = 0
         for ch in LabelStr.strip():
             if ch == '<':
@@ -46,7 +46,10 @@ def GetSimpleStrFromLabelStr( LabelStr):
             i += 1
         for i in range(len(SubLabelStrs)):
             #print retStr
-            #print GetSimpleStrFromLabelStr(SubLabelStrs[i][1].strip())           
+            #print GetSimpleStrFromLabelStr(SubLabelStrs[i][1].strip())   
+            print retStr
+            if len(retStr) == 0 or (len(retStr) != 0 and retStr[len(retStr) - 1] != ' '):
+                retStr += ' '
             retStr += GetSimpleStrFromLabelStr(SubLabelStrs[i][1].strip())
             print retStr
         i = len(LabelStr.strip()) - 1
@@ -234,8 +237,8 @@ class Dialog(QDialog, Ui_Dialog):
         resCols = []
         resCols2 = []           
         hashval = {}
-        DBmodel.ReplaceSpace(resCols)
-        DBmodel.ReplaceSpace(resCols2)
+        #DBmodel.ReplaceSpace(resCols)
+        #DBmodel.ReplaceSpace(resCols2)
         self.FindPossibleCols(extResList, hashval, resCols, resCols2)    
         #assign the suiperTab[0...row-1][0...col-1]
         superTab = []
@@ -258,7 +261,7 @@ class Dialog(QDialog, Ui_Dialog):
             self.curTableWidget.setGeometry(QtCore.QRect(10, 10, 751, 181))
             self.curTableWidget.setObjectName(_fromUtf8("tableWidget"+superTable2Name[i]))
             self.curTableWidget.setColumnCount(len(superTable2[i][0]))
-            self.curTableWidget.setRowCount(len(superTable2[i]))
+            self.curTableWidget.setRowCount(len(superTable2[i])+1)
             
             #DBmodel.RemoveSpace(extTableHeadsLists)
             #self.curTableWidget.setHorizontalHeaderLabels(extTableHeadsLists[i])
@@ -343,13 +346,14 @@ class Dialog(QDialog, Ui_Dialog):
                     extTableHeadsLists.append(curHead)
                     if re.search(r'''\<table[^\>]+class=["']([^'"]+)["'][^\>]*\>''', extTableStr) != None:
                         tmpStr = re.search(r'''\<table[^\>]+class=["']([^'"]+)["'][^\>]*\>''', extTableStr).group(1)
-                        superTable2Name.append(DBmodel.ReplaceSpace(tmpStr))
+                        #superTable2Name.append(DBmodel.ReplaceSpace(tmpStr))
+                        superTable2Name.append(tmpStr)
                     else:
                         superTable2Name.append('table' + str(self.tabID))
                     self.tabID += 1
                 i += 1
-        for i in range(len(extTableHeadsLists)):
-            DBmodel.ReplaceSpace(extTableHeadsLists[i])
+        #for i in range(len(extTableHeadsLists)):
+            #DBmodel.ReplaceSpace(extTableHeadsLists[i])
         #print superTable2
         self.updateTabWidgetType2(superTable2, superTable2Name, extTableHeadsLists)
     
@@ -400,7 +404,17 @@ class Dialog(QDialog, Ui_Dialog):
             self.extracted = 1
         except:
             QtGui.QMessageBox.warning( self, "WebExt", "Page not found! o.O", QtGui.QMessageBox.Ok )
-        
+       
+    @pyqtSignature("")
+    def on_btnDeleteTable_clicked(self):
+        tablename = unicode(self.leDTableName.text())
+        #DelTablefromMySQL(tablename, conn):
+        try:
+            SQLmodel.DelTablefromMySQL(tablename, self.conn)
+            self.on_btnShowTables_clicked()
+            QtGui.QMessageBox.warning( self, "WebExt", "Successfully! :)", QtGui.QMessageBox.Ok )
+        except:
+            QtGui.QMessageBox.warning( self, "WebExt", "Failed! o.O", QtGui.QMessageBox.Ok )
     @pyqtSignature("")
     def on_btnExtfromCode_clicked(self):
         """
@@ -423,10 +437,14 @@ class Dialog(QDialog, Ui_Dialog):
         username = unicode(self.leUsername.text())
         password = unicode(self.lePassword.text())
         try:
-            portstr = int(unicode(self.lePort.text()))
+            portstr = int(unicode(self.lePort.text()))            
         except:
             pass
         dbname = unicode(self.leDBName.text())
+        if dbname == '':
+            QtGui.QMessageBox.warning( self, "WebExt", "Failed. :(", QtGui.QMessageBox.Ok )
+            self.lbState.setText(unicode('Unconnected'))
+            return
         try:
             self.conn = SQLmodel.ConnectMySQL(hostaddr, username, password, portstr, dbname)
             self.lbState.setText(unicode('Connected'))
@@ -443,43 +461,71 @@ class Dialog(QDialog, Ui_Dialog):
         """
         # TODO: not implemented yet
         #CreateTableinMySQL(tablename, tableheads, tabledata, conn):
-        if unicode(self.lbState.text() ) == unicode('Unconnected'):
-            r = QtGui.QMessageBox.warning( self, "WebExt", "Please connect first. :)", QtGui.QMessageBox.Ok )
-            return
-        if self.extracted == 0:
-            QtGui.QMessageBox.warning( self, "WebExt", "Please extract first. :)", QtGui.QMessageBox.Ok )
-            return
-        dba = self.tabWidget.currentIndex()
-        print self.tabBuf
-        dbb = self.tabBuf[self.tabWidget.currentIndex()]
-        dbc = self.tabWidget.indexOf(self.tabBuf[self.tabWidget.currentIndex()])
-        dbd = self.tabWidget.tabText(self.tabWidget.indexOf(self.tabBuf[self.tabWidget.currentIndex()]))
-        tablename = unicode(self.tabWidget.tabText(self.tabWidget.indexOf(self.tabBuf[self.tabWidget.currentIndex()])))
-        tableheads = []
-        tabledata = []
-        tmpQTableObj = self.tableBuf[self.tabWidget.currentIndex()]
-        for i in range(tmpQTableObj.rowCount()):
-            if i !=0:
-                tabledata.append([])
-            for j in range(tmpQTableObj.columnCount()):
-                if i == 0:
-                    tableheads.append(unicode(tmpQTableObj.item(i, j).text()))
-                else:
-                    tabledata[i - 1].append(unicode(tmpQTableObj.item(i, j).text()))
+        try:
+            if unicode(self.lbState.text() ) == unicode('Unconnected'):
+                r = QtGui.QMessageBox.warning( self, "WebExt", "Please connect first. :)", QtGui.QMessageBox.Ok )
+                return
+            curid = self.tabWidget.currentIndex() 
+            if curid == -1:
+                QtGui.QMessageBox.warning( self, "WebExt", "Please extract first. :)", QtGui.QMessageBox.Ok )
+                return
+            dba = self.tabWidget.currentIndex()
+            print self.tabBuf
+            dbb = self.tabBuf[self.tabWidget.currentIndex()]
+            dbc = self.tabWidget.indexOf(self.tabBuf[self.tabWidget.currentIndex()])
+            dbd = self.tabWidget.tabText(self.tabWidget.indexOf(self.tabBuf[self.tabWidget.currentIndex()]))
+            tablename = unicode(self.tabWidget.tabText(self.tabWidget.indexOf(self.tabBuf[self.tabWidget.currentIndex()])))
+            tableheads = []
+            tabledata = []
+            tmpQTableObj = self.tableBuf[self.tabWidget.currentIndex()]
+            for i in range(tmpQTableObj.rowCount()):
+                if i !=0:
+                    tabledata.append([])
+                for j in range(tmpQTableObj.columnCount()):
+                    if i == 0:
+                        tableheads.append(unicode(tmpQTableObj.item(i, j).text()))
+                    else:
+                        tabledata[i - 1].append(unicode(tmpQTableObj.item(i, j).text()))
+            
+            SQLmodel.CreateTableinMySQL(tablename, tableheads, tabledata, self.conn)
+            #print unicode(self.tabBuf[self.tabWidget.currentIndex()].objectName())
+            #raise NotImplementedError
+        except:
+            QtGui.QMessageBox.warning( self, "WebExt", "Failed. :(", QtGui.QMessageBox.Ok )
         
-        SQLmodel.CreateTableinMySQL(tablename, tableheads, tabledata, self.conn)
-        #print unicode(self.tabBuf[self.tabWidget.currentIndex()].objectName())
-        #raise NotImplementedError
+    @pyqtSignature("")
+    def on_btnChangeTName_clicked(self):
+        tmpstr = unicode(self.leCurTableName.text())
+        #curid = self.tabWidget.currentIndex() 
+        curid = self.tabWidget.currentIndex() 
+        if curid != -1:
+            self.tabWidget.setTabText(self.tabWidget.currentIndex() , _translate("Dialog", tmpstr, None))
+        else:
+            QtGui.QMessageBox.warning( self, "WebExt", "No any tab yet. :(", QtGui.QMessageBox.Ok )
+    @pyqtSignature("")
+    def on_btnShowTables_clicked(self):
+        #howTablesfromMySQL(conn):
+        try:
+            self.teTables.setText(u'')
+            restables = SQLmodel.ShowTablesfromMySQL(self.conn)
+            for tmpcur in restables:
+                self.teTables.append(tmpcur)
+        except:
+            QtGui.QMessageBox.warning( self, "WebExt", "Failed. :(", QtGui.QMessageBox.Ok )
+    #btnChangeTName
+        
+    
     @pyqtSignature("")
     def on_btnCloseCurTab_clicked(self):
+        #print self.tabWidget.currentIndex() 
         curid = self.tabWidget.currentIndex() 
         try:
-            if curid != 0:                
+            if curid != -1:                
                 self.tabWidget.removeTab(curid)
-                del tabBuf[curid]
-                del tableBuf[curid]
+                del self.tabBuf[curid]
+                del self.tableBuf[curid]
             else:
-                 QtGui.QMessageBox.warning( self, "WebExt", "Can't close the 1st tab. :(", QtGui.QMessageBox.Ok )
+                 QtGui.QMessageBox.warning( self, "WebExt", "No any tab yet. :(", QtGui.QMessageBox.Ok )
         except:
             QtGui.QMessageBox.warning( self, "WebExt", "Failed. :(", QtGui.QMessageBox.Ok )
         pass

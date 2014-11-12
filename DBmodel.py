@@ -27,6 +27,22 @@ def ReplaceSpace(supertable):
             supertable[i] = supertable[i].replace(' ', '_')
             supertable[i] = supertable[i].replace('\\', '\\\\')
             supertable[i] = supertable[i].replace('"', '\\"')
+            supertable[i] = supertable[i].replace('-', '_')
+            pass
+    elif type(supertable) == type(typestr):
+        supertable = supertable.replace(' ', '_')
+        return supertable
+        
+def MakeEscapeCharacter(supertable):
+    typelist = [u'a', u'b', u'c']
+    typestr = u'simple'
+    if type(supertable) == type(typelist):
+        for i in range(len(supertable)):
+            #supertable[i] = supertable[i].replace(' ', '_')
+            supertable[i] = supertable[i].replace('\\', '\\\\')
+            supertable[i] = supertable[i].replace('"', '\\"')
+            #supertable[i] = supertable[i].replace('-', '_')
+            pass
     elif type(supertable) == type(typestr):
         supertable = supertable.replace(' ', '_')
         return supertable

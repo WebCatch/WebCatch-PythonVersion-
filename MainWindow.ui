@@ -134,6 +134,9 @@
       <property name="text">
        <string>6191162</string>
       </property>
+      <property name="echoMode">
+       <enum>QLineEdit::Password</enum>
+      </property>
      </widget>
     </item>
    </layout>
@@ -298,23 +301,8 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>-1</number>
    </property>
-   <widget class="QWidget" name="tab">
-    <attribute name="title">
-     <string>table0</string>
-    </attribute>
-    <widget class="QTableWidget" name="tableWidget">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>10</y>
-       <width>751</width>
-       <height>181</height>
-      </rect>
-     </property>
-    </widget>
-   </widget>
   </widget>
   <widget class="QWidget" name="horizontalLayoutWidget_8">
    <property name="geometry">
@@ -419,7 +407,7 @@
      <x>820</x>
      <y>180</y>
      <width>201</width>
-     <height>351</height>
+     <height>141</height>
     </rect>
    </property>
   </widget>
@@ -440,7 +428,7 @@
    <property name="geometry">
     <rect>
      <x>820</x>
-     <y>540</y>
+     <y>320</y>
      <width>201</width>
      <height>21</height>
     </rect>
@@ -459,7 +447,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>20</string>
+    <string>10</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_16">
@@ -506,10 +494,10 @@
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit_3"/>
+     <widget class="QLineEdit" name="leCurTableName"/>
     </item>
     <item>
-     <widget class="QPushButton" name="pushButton_5">
+     <widget class="QPushButton" name="btnChangeTName">
       <property name="text">
        <string>Change</string>
       </property>
@@ -520,7 +508,7 @@
   <widget class="QPushButton" name="btnCloseCurTab">
    <property name="geometry">
     <rect>
-     <x>700</x>
+     <x>710</x>
      <y>320</y>
      <width>75</width>
      <height>23</height>
@@ -530,6 +518,111 @@
     <string>CloseCurTab</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="btnShowTables">
+   <property name="geometry">
+    <rect>
+     <x>830</x>
+     <y>360</y>
+     <width>181</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Show Tables</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="teTables">
+   <property name="geometry">
+    <rect>
+     <x>830</x>
+     <y>410</y>
+     <width>181</width>
+     <height>71</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_18">
+   <property name="geometry">
+    <rect>
+     <x>830</x>
+     <y>390</y>
+     <width>61</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Tables:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="leDTableName">
+   <property name="geometry">
+    <rect>
+     <x>900</x>
+     <y>490</y>
+     <width>101</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_13">
+   <property name="geometry">
+    <rect>
+     <x>830</x>
+     <y>490</y>
+     <width>61</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>TableName:</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnDeleteTable">
+   <property name="geometry">
+    <rect>
+     <x>830</x>
+     <y>520</y>
+     <width>171</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Delete Table</string>
+   </property>
+  </widget>
+  <zorder>horizontalLayoutWidget</zorder>
+  <zorder>teExctData</zorder>
+  <zorder>horizontalLayoutWidget_3</zorder>
+  <zorder>horizontalLayoutWidget_2</zorder>
+  <zorder>horizontalLayoutWidget_4</zorder>
+  <zorder>horizontalLayoutWidget_5</zorder>
+  <zorder>horizontalLayoutWidget_6</zorder>
+  <zorder>btnConnect</zorder>
+  <zorder>btnSave</zorder>
+  <zorder>horizontalLayoutWidget_7</zorder>
+  <zorder>label_10</zorder>
+  <zorder>leTablename</zorder>
+  <zorder>label_11</zorder>
+  <zorder>tabWidget</zorder>
+  <zorder>horizontalLayoutWidget_8</zorder>
+  <zorder>horizontalLayoutWidget_9</zorder>
+  <zorder>pushButton_2</zorder>
+  <zorder>pushButton_3</zorder>
+  <zorder>btnLoad</zorder>
+  <zorder>teHTMLCode</zorder>
+  <zorder>label_15</zorder>
+  <zorder>btnExtfromCode</zorder>
+  <zorder>leThreshold</zorder>
+  <zorder>label_16</zorder>
+  <zorder>btnDisConnect</zorder>
+  <zorder>horizontalLayoutWidget_10</zorder>
+  <zorder>btnShowTables</zorder>
+  <zorder>teTables</zorder>
+  <zorder>label_18</zorder>
+  <zorder>btnCloseCurTab</zorder>
+  <zorder>leDTableName</zorder>
+  <zorder>label_13</zorder>
+  <zorder>btnDeleteTable</zorder>
  </widget>
  <resources/>
  <connections/>
