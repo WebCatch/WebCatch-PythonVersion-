@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'F:\PYWS\WebCatch\WebCatch-PythonVersion-\MainWindow.ui'
 #
-# Created: Wed Nov 12 21:25:15 2014
+# Created: Wed Nov 12 22:15:45 2014
 #      by: PyQt4 UI code generator 4.11.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -25,10 +25,13 @@ except AttributeError:
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
+        sshFile="darkorange.stylesheet"
+        with open(sshFile,"r") as fh:
+            self.setStyleSheet(fh.read())
         Dialog.setObjectName(_fromUtf8("Dialog"))
         Dialog.resize(1000, 571)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(_fromUtf8("_eric4project/ico.jpg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(_fromUtf8("wico.jpg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         Dialog.setWindowIcon(icon)
         self.horizontalLayoutWidget = QtGui.QWidget(Dialog)
         self.horizontalLayoutWidget.setGeometry(QtCore.QRect(20, 20, 531, 25))
@@ -46,7 +49,7 @@ class Ui_Dialog(object):
         self.btnExct.setObjectName(_fromUtf8("btnExct"))
         self.horizontalLayout.addWidget(self.btnExct)
         self.teExctData = QtGui.QTextEdit(Dialog)
-        self.teExctData.setGeometry(QtCore.QRect(800, 410, 171, 141))
+        self.teExctData.setGeometry(QtCore.QRect(800, 420, 181, 131))
         self.teExctData.setObjectName(_fromUtf8("teExctData"))
         self.horizontalLayoutWidget_3 = QtGui.QWidget(Dialog)
         self.horizontalLayoutWidget_3.setGeometry(QtCore.QRect(570, 110, 211, 31))
@@ -132,7 +135,7 @@ class Ui_Dialog(object):
         self.lbState.setObjectName(_fromUtf8("lbState"))
         self.horizontalLayout_7.addWidget(self.lbState)
         self.label_10 = QtGui.QLabel(Dialog)
-        self.label_10.setGeometry(QtCore.QRect(800, 390, 111, 16))
+        self.label_10.setGeometry(QtCore.QRect(800, 400, 111, 16))
         self.label_10.setObjectName(_fromUtf8("label_10"))
         self.leTablename = QtGui.QLineEdit(Dialog)
         self.leTablename.setGeometry(QtCore.QRect(880, 50, 71, 20))
@@ -216,7 +219,7 @@ class Ui_Dialog(object):
         self.btnChangeTName.setObjectName(_fromUtf8("btnChangeTName"))
         self.horizontalLayout_10.addWidget(self.btnChangeTName)
         self.btnCloseCurTab = QtGui.QPushButton(Dialog)
-        self.btnCloseCurTab.setGeometry(QtCore.QRect(20, 290, 75, 31))
+        self.btnCloseCurTab.setGeometry(QtCore.QRect(20, 290, 91, 31))
         self.btnCloseCurTab.setObjectName(_fromUtf8("btnCloseCurTab"))
         self.btnShowTables = QtGui.QPushButton(Dialog)
         self.btnShowTables.setGeometry(QtCore.QRect(800, 110, 181, 23))
@@ -228,13 +231,13 @@ class Ui_Dialog(object):
         self.label_18.setGeometry(QtCore.QRect(800, 140, 61, 16))
         self.label_18.setObjectName(_fromUtf8("label_18"))
         self.leDTableName = QtGui.QLineEdit(Dialog)
-        self.leDTableName.setGeometry(QtCore.QRect(870, 350, 101, 20))
+        self.leDTableName.setGeometry(QtCore.QRect(870, 350, 111, 20))
         self.leDTableName.setObjectName(_fromUtf8("leDTableName"))
         self.label_13 = QtGui.QLabel(Dialog)
         self.label_13.setGeometry(QtCore.QRect(800, 350, 61, 20))
         self.label_13.setObjectName(_fromUtf8("label_13"))
         self.btnDeleteTable = QtGui.QPushButton(Dialog)
-        self.btnDeleteTable.setGeometry(QtCore.QRect(800, 370, 171, 23))
+        self.btnDeleteTable.setGeometry(QtCore.QRect(800, 370, 181, 23))
         self.btnDeleteTable.setObjectName(_fromUtf8("btnDeleteTable"))
 
         self.retranslateUi(Dialog)
