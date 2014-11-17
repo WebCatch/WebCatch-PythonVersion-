@@ -25,9 +25,9 @@ except AttributeError:
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
-        sshFile="darkorange.stylesheet"
-        with open(sshFile,"r") as fh:
-            self.setStyleSheet(fh.read())
+        #sshFile="darkorange.stylesheet"
+        #with open(sshFile,"r") as fh:
+           # self.setStyleSheet(fh.read())
         Dialog.setObjectName(_fromUtf8("Dialog"))
         Dialog.resize(1000, 571)
         icon = QtGui.QIcon()

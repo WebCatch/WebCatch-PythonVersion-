@@ -16,7 +16,7 @@ from PyQt4.QtCore import *
 from PyQt4 import QtCore, QtGui
 import SQLmodel
 import DBmodel
-
+import qdarkstyle
 from Ui_MainWindow import Ui_Dialog
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -33,11 +33,11 @@ except AttributeError:
         return QtGui.QApplication.translate(context, text, disambig)
 def GetSimpleStrFromLabelStr( LabelStr):     
     retStr = ''
-    if re.search(r'\<([A-Za-z0-9]+)[^\>]*>([\s\S]*)\</(\1)\>', LabelStr) == None:
+    if re.search(r'\<([A-Za-z0-9]+)[^\>]*>([\s\S]*?)\</(\1)\>', LabelStr) == None:
         retStr = LabelStr
         return retStr.strip()
     else:
-        SubLabelStrs = re.findall(r'\<([A-Za-z0-9]+)[^\>]*>([\s\S]*)\</(\1)\>', LabelStr)
+        SubLabelStrs = re.findall(r'\<([A-Za-z0-9]+)[^\>]*>([\s\S]*?)\</(\1)\>', LabelStr)
         i = 0
         for ch in LabelStr.strip():
             if ch == '<':
@@ -52,10 +52,10 @@ def GetSimpleStrFromLabelStr( LabelStr):
                 retStr += ' '
             retStr += GetSimpleStrFromLabelStr(SubLabelStrs[i][1].strip())
             print retStr
-        i = len(LabelStr.strip()) - 1
+        i = len(LabelStr) - 1
         while (LabelStr[i] != '>'):
             i -= 1
-        retStr += LabelStr[i + 1: len(LabelStr.strip()) ]
+        retStr += LabelStr[i + 1: len(LabelStr) ]
     return retStr
 class Dialog(QDialog, Ui_Dialog):
     """
@@ -66,12 +66,34 @@ class Dialog(QDialog, Ui_Dialog):
     tabBuf = []
     tableBuf = []
     extracted = 0
+    specialTableHeadsList = [
+                    ["dealtime", "number last-item", "shopname", "amount","trade_status",
+                    "baobei_name", "price", "quantity", "item_operate","trade_operate"
+                      ]      
+                                    ]
+    specialTableNames = [("TaobaoBuyList")]
+    specialList = [r"""<\s*tbody\s+data-isarchive=[^\s]+\s+data-orderid="[^"]*"\s+data-status="[^"]*"\s+class="[^"]*"\s*>([\s\S]*?)</tbody>"""]
+    
+    def initSpecialTables(self):
+        i = 0
+        j = 0
+        for tableItem in self.specialTableHeadsList:
+            for headItem in tableItem:                
+                self.specialTableHeadsList[i][j] = unicode(self.specialTableHeadsList[i][j])
+                j += 1
+            i += 1
+        i = 0
+        for tableItem in self.specialTableNames:
+            self.specialTableNames[i] = unicode (self.specialTableNames[i])
+            i += 1
+    
     def __init__(self, parent = None):
         """
         Constructor
         """
         QDialog.__init__(self, parent)
         self.setupUi(self)
+        self.initSpecialTables()
     def QTout(self, tmp):
         self.teExctData.append(unicode(tmp, 'utf-8', 'ignore'))
         
@@ -358,7 +380,7 @@ class Dialog(QDialog, Ui_Dialog):
         self.updateTabWidgetType2(superTable2, superTable2Name, extTableHeadsLists)
     
     @pyqtSignature("")
-    def on_btnDisConnect_clicked(self):
+    def on_btnDisConnect_clicked(self):    
         """
         Slot documentation goes here.
         """
@@ -373,6 +395,73 @@ class Dialog(QDialog, Ui_Dialog):
         
        # conn = SQLmodel.ConnectMySQL()
     
+    def MatchReItem(self, specialItem, doc):
+        
+        if re.search(specialItem, doc) != None :
+            return 1        
+        else :
+            return 0
+        
+    def addItemfromRePtns(self, tmpHd, tmpRePtns, strItem):
+        for tmpRePtn in tmpRePtns:
+                curReRes = re.findall(tmpRePtn, strItem)
+                if len(curReRes) == 0:
+                    tmpHd.append("")
+                else:
+                    tmpHd.append(GetSimpleStrFromLabelStr((curReRes[0])))
+        
+    def addItemfromHdandSubRePtns(self, curTable, tmpHd, tmpSubItem, tmpSubRePtns):
+        curRow = []
+        for hdItem in tmpHd:
+           curRow.append(hdItem)
+        for tmpSubRePtn in tmpSubRePtns:
+            curReRes = re.findall(tmpSubRePtn, tmpSubItem)
+            if len(curReRes) == 0:
+                curRow.append("")
+            else:
+                curRow.append(GetSimpleStrFromLabelStr((curReRes[0])))
+        curTable.append(curRow)
+        
+    def ExctSpecial(self, idx, doc):
+        doc = unicode(doc, "utf8", "ignore")
+        superTable2 =[]
+        curTable = []
+        superTable2Name = []
+        extTableHeadsLists = []       
+        superTable2Name.append(self.specialTableNames[idx])
+        extTableHeadsLists.append(self.specialTableHeadsList[idx])    
+        reResItems = re.findall(self.specialList[idx], doc) 
+        strItems = []
+        for reResItem in reResItems:
+                strItems.append(reResItem)
+        if idx == 0:         
+            for strItem in strItems:
+                tmpHd = []
+                tmpHdRePtns = [
+                    r"""<span class="dealtime" title="[^"]*">([\s\S]*?)</span>""",
+                    r"""<span class="number last-item"\s*>([\s\S]*?)</span>""",                      
+                    r"""<a target="_blank" class="shopname J_MakePoint" title="([^"]*)" href="[^"]*" data-point-url="[^"]*" data-spm-anchor-id="[^"]*">[\s\S]*?</a>""", 
+                    r"""<td class="amount"[^\>]*>([\s\S]*?)</td>""", 
+                    r"""<td class="trade-status[^"]*"[^\>]*>([\s\S]*?)</td>""", 
+                    
+                        ]
+                self.addItemfromRePtns(tmpHd,tmpHdRePtns, strItem)
+                tmpSubReRes = re.findall(r"""<tr id="[^"]*" class="order-bd[^"]*"\s*>([\s\S]*?)</tr>""", strItem)
+                tmpSubStrItem = []
+                tmpSubRePtns = [
+                    r"""<a\s*target="_blank"\s*href="[^"]*"\s*class="J_MakePoint"\s*data-point-url="[^"]*"\s*data-spm-anchor-id="[^"]*"\s*>([\s\S]*?)</a>""", 
+                    r"""<td class="price" title="[^"]*">([\s\S]*?)</td>""", 
+                    r"""<td class="quantity" title="[^"]*">([\s\S]*?)</td>""", 
+                    r"""<td class="item-operate"[^\>]*>([\s\S]*?)</td>""", 
+                    r"""<td class="trade-operate"[^\>]*>([\s\S]*?)</td>"""
+                        ]
+                for tmpSubReResItem in tmpSubReRes:
+                    tmpSubStrItem.append(tmpSubReResItem)
+                    self.addItemfromHdandSubRePtns(curTable, tmpHd, tmpSubReResItem, tmpSubRePtns)
+            
+        superTable2.append(curTable) 
+        self.updateTabWidgetType2(superTable2, superTable2Name, extTableHeadsLists)
+    
     def DoExct(self, doc):
         soup = bs4.BeautifulSoup(doc)   #get soup from HTML code
         
@@ -381,7 +470,13 @@ class Dialog(QDialog, Ui_Dialog):
         
         #real table
         self.ExctType2(doc, soup)       
+        i = 0
         
+        for specialItem in self.specialList:
+            if self.MatchReItem(specialItem, doc) == 1:
+                self.ExctSpecial(i, doc)
+            i += 1
+            
         file = open('webdata.txt', 'w')
         file = file.write(doc)
     @pyqtSignature("")
@@ -552,9 +647,9 @@ class Dialog(QDialog, Ui_Dialog):
         #raise NotImplementedError
 if __name__ == "__main__":
     app = PyQt4.QtGui.QApplication(sys.argv)
-
+    
     dlg = Dialog()
     
     dlg.show()
-
+    app.setStyleSheet(qdarkstyle.load_stylesheet(pyside=False))
     sys.exit(app.exec_())
