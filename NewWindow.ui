@@ -33,7 +33,7 @@
     <item>
      <widget class="QLabel" name="label">
       <property name="styleSheet">
-       <string notr="true">background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:0.00568182, y2:0, stop:0 rgba(0, 229, 44, 255), stop:1 rgba(255, 255, 255, 255));</string>
+       <string notr="true">background-color: qlineargradient(spread:pad, x1:0.511, y1:1, x2:0.54, y2:0, stop:0 rgba(255, 255, 255, 147), stop:1 rgba(48, 214, 229, 196));</string>
       </property>
       <property name="text">
        <string>URL:</string>
@@ -89,7 +89,7 @@
     <item>
      <widget class="QLabel" name="label_7">
       <property name="styleSheet">
-       <string notr="true">background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:0.00568182, y2:0, stop:0 rgba(0, 229, 44, 255), stop:1 rgba(255, 255, 255, 255));</string>
+       <string notr="true">background-color: qlineargradient(spread:pad, x1:0.511, y1:1, x2:0.54, y2:0, stop:0 rgba(255, 255, 255, 147), stop:1 rgba(48, 214, 229, 196));</string>
       </property>
       <property name="text">
        <string>PORT:</string>
@@ -121,7 +121,7 @@
     <item>
      <widget class="QLabel" name="label_4">
       <property name="styleSheet">
-       <string notr="true">background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:0.00568182, y2:0, stop:0 rgba(0, 229, 44, 255), stop:1 rgba(255, 255, 255, 255));</string>
+       <string notr="true">background-color: qlineargradient(spread:pad, x1:0.511, y1:1, x2:0.54, y2:0, stop:0 rgba(255, 255, 255, 147), stop:1 rgba(48, 214, 229, 196));</string>
       </property>
       <property name="text">
        <string>UserName:</string>
@@ -153,7 +153,7 @@
     <item>
      <widget class="QLabel" name="label_5">
       <property name="styleSheet">
-       <string notr="true">background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:0.00568182, y2:0, stop:0 rgba(0, 229, 44, 255), stop:1 rgba(255, 255, 255, 255));</string>
+       <string notr="true">background-color: qlineargradient(spread:pad, x1:0.511, y1:1, x2:0.54, y2:0, stop:0 rgba(255, 255, 255, 147), stop:1 rgba(48, 214, 229, 196));</string>
       </property>
       <property name="text">
        <string>PassWord:</string>
@@ -185,7 +185,7 @@
     <item>
      <widget class="QLabel" name="label_6">
       <property name="styleSheet">
-       <string notr="true">background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:0.00568182, y2:0, stop:0 rgba(0, 229, 44, 255), stop:1 rgba(255, 255, 255, 255));</string>
+       <string notr="true">background-color: qlineargradient(spread:pad, x1:0.511, y1:1, x2:0.54, y2:0, stop:0 rgba(255, 255, 255, 147), stop:1 rgba(48, 214, 229, 196));</string>
       </property>
       <property name="text">
        <string>DBName:</string>
@@ -217,7 +217,7 @@
     <item>
      <widget class="QLabel" name="label_3">
       <property name="styleSheet">
-       <string notr="true">background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:0.00568182, y2:0, stop:0 rgba(0, 229, 44, 255), stop:1 rgba(255, 255, 255, 255));</string>
+       <string notr="true">background-color: qlineargradient(spread:pad, x1:0.511, y1:1, x2:0.54, y2:0, stop:0 rgba(255, 255, 255, 147), stop:1 rgba(48, 214, 229, 196));</string>
       </property>
       <property name="text">
        <string>Host:</string>
@@ -281,7 +281,7 @@
     <item>
      <widget class="QLabel" name="label_8">
       <property name="styleSheet">
-       <string notr="true">background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:0.00568182, y2:0, stop:0 rgba(0, 229, 44, 255), stop:1 rgba(255, 255, 255, 255));</string>
+       <string notr="true">background-color: qlineargradient(spread:pad, x1:0.511, y1:1, x2:0.54, y2:0, stop:0 rgba(255, 255, 255, 147), stop:1 rgba(48, 214, 229, 196));</string>
       </property>
       <property name="text">
        <string>MYSQL Connection State:</string>
@@ -291,7 +291,7 @@
     <item>
      <widget class="QLabel" name="lbState">
       <property name="styleSheet">
-       <string notr="true">background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:0.00568182, y2:0, stop:0 rgba(0, 229, 44, 255), stop:1 rgba(255, 255, 255, 255));</string>
+       <string notr="true">background-color: qlineargradient(spread:pad, x1:0.511, y1:1, x2:0.54, y2:0, stop:0 rgba(255, 255, 255, 147), stop:1 rgba(48, 214, 229, 196));</string>
       </property>
       <property name="text">
        <string>Unconnected</string>
@@ -310,7 +310,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:0.00568182, y2:0, stop:0 rgba(0, 229, 44, 255), stop:1 rgba(255, 255, 255, 255));</string>
+    <string notr="true">background-color: qlineargradient(spread:pad, x1:0.511, y1:1, x2:0.54, y2:0, stop:0 rgba(255, 255, 255, 147), stop:1 rgba(48, 214, 229, 196));</string>
    </property>
    <property name="text">
     <string>Extracted Data:</string>
@@ -339,7 +339,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:0.00568182, y2:0, stop:0 rgba(0, 229, 44, 255), stop:1 rgba(255, 255, 255, 255));</string>
+    <string notr="true">background-color: qlineargradient(spread:pad, x1:0.511, y1:1, x2:0.54, y2:0, stop:0 rgba(255, 255, 255, 147), stop:1 rgba(48, 214, 229, 196));</string>
    </property>
    <property name="text">
     <string>TableName:</string>
@@ -398,7 +398,7 @@ background-color: rgb(255, 255, 255);</string>
     <item>
      <widget class="QLabel" name="label_9">
       <property name="styleSheet">
-       <string notr="true">background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:0.00568182, y2:0, stop:0 rgba(0, 229, 44, 255), stop:1 rgba(255, 255, 255, 255));</string>
+       <string notr="true">background-color: qlineargradient(spread:pad, x1:0.511, y1:1, x2:0.54, y2:0, stop:0 rgba(255, 255, 255, 147), stop:1 rgba(48, 214, 229, 196));</string>
       </property>
       <property name="text">
        <string>Row Id:</string>
@@ -437,7 +437,7 @@ background-color: rgb(255, 255, 255);</string>
     <item>
      <widget class="QLabel" name="label_12">
       <property name="styleSheet">
-       <string notr="true">background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:0.00568182, y2:0, stop:0 rgba(0, 229, 44, 255), stop:1 rgba(255, 255, 255, 255));</string>
+       <string notr="true">background-color: qlineargradient(spread:pad, x1:0.511, y1:1, x2:0.54, y2:0, stop:0 rgba(255, 255, 255, 147), stop:1 rgba(48, 214, 229, 196));</string>
       </property>
       <property name="text">
        <string>Col Name:</string>
@@ -521,7 +521,7 @@ background-color: rgb(255, 255, 255);</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:0.00568182, y2:0, stop:0 rgba(0, 229, 44, 255), stop:1 rgba(255, 255, 255, 255));</string>
+    <string notr="true">background-color: qlineargradient(spread:pad, x1:0.511, y1:1, x2:0.54, y2:0, stop:0 rgba(255, 255, 255, 147), stop:1 rgba(48, 214, 229, 196));</string>
    </property>
    <property name="text">
     <string>ColNames:</string>
@@ -550,7 +550,7 @@ background-color: rgb(255, 255, 255);</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:0.00568182, y2:0, stop:0 rgba(0, 229, 44, 255), stop:1 rgba(255, 255, 255, 255));</string>
+    <string notr="true">background-color: qlineargradient(spread:pad, x1:0.511, y1:1, x2:0.54, y2:0, stop:0 rgba(255, 255, 255, 147), stop:1 rgba(48, 214, 229, 196));</string>
    </property>
    <property name="text">
     <string>Condition:</string>
@@ -592,7 +592,7 @@ background-color: rgb(255, 255, 255);</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:0.00568182, y2:0, stop:0 rgba(0, 229, 44, 255), stop:1 rgba(255, 255, 255, 255));</string>
+    <string notr="true">background-color: qlineargradient(spread:pad, x1:0.511, y1:1, x2:0.54, y2:0, stop:0 rgba(255, 255, 255, 147), stop:1 rgba(48, 214, 229, 196));</string>
    </property>
    <property name="text">
     <string>HTML Code:</string>
