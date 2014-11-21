@@ -35,13 +35,13 @@ def GetSimpleStrFromLabelStr( LabelStr):
     retStr = ''
     if re.search(r'\<([A-Za-z0-9]+)[^\>]*>([\s\S]*?)\</(\1)\>', LabelStr) == None:
         retStr = LabelStr
-        return retStr.strip()
+        return retStr.strip().replace('&nbsp;', '')
     else:
         SubLabelStrs = re.findall(r'\<([A-Za-z0-9]+)[^\>]*>([\s\S]*?)\</(\1)\>', LabelStr)
         i = 0
         for ch in LabelStr.strip():
             if ch == '<':
-                retStr += LabelStr[0:i]
+                retStr += LabelStr[0:i].replace('&nbsp;', '')
                 break;
             i += 1
         for i in range(len(SubLabelStrs)):
@@ -55,7 +55,7 @@ def GetSimpleStrFromLabelStr( LabelStr):
         i = len(LabelStr) - 1
         while (LabelStr[i] != '>'):
             i -= 1
-        retStr += LabelStr[i + 1: len(LabelStr) ]
+        retStr += LabelStr[i + 1: len(LabelStr) ].replace('&nbsp;', '')
     return retStr
 class Dialog(QDialog, Ui_Dialog):
     """
@@ -104,6 +104,7 @@ class Dialog(QDialog, Ui_Dialog):
         reptns.append(r'([^"]*[Ii][Tt][Ee][Mm][^"]*)')
         reptns.append(r'([^"]*[Pp][Rr][Oo][Dd][^"]*)')
         reptns.append(r'([^"]*[Ll][Ii][Ss][Tt][^"]*)')
+        reptns.append(r'([^"]*[Ss][Hh][Oo][Ww][^"]*)')
         
   
     #get Soups with keywords
