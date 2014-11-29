@@ -16,7 +16,7 @@ from PyQt4.QtCore import *
 from PyQt4 import QtCore, QtGui
 import SQLmodel
 import DBmodel
-import qdarkstyle
+#import qdarkstyle
 from Ui_MainWindow import Ui_Dialog
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -105,6 +105,8 @@ class Dialog(QDialog, Ui_Dialog):
         reptns.append(r'([^"]*[Pp][Rr][Oo][Dd][^"]*)')
         reptns.append(r'([^"]*[Ll][Ii][Ss][Tt][^"]*)')
         reptns.append(r'([^"]*[Ss][Hh][Oo][Ww][^"]*)')
+        reptns.append(r'([^"]*[Ss][Uu][Mm][Mm][Aa][Rr][Yy][^"]*)')
+        reptns.append(r'([^"]*[Vv][Ii][Dd][Ee][Oo][^"]*)')
         
   
     #get Soups with keywords
@@ -134,11 +136,13 @@ class Dialog(QDialog, Ui_Dialog):
         return mfreqcls
     
      #find possible cols    
-    def FindPossibleCols(self, extResList, hashval, resCols, resCols2):
+    def FindPossibleCols(self, extResList, hashval, resCols, resCols2, resCols3):
         for tmpRes in extResList:
             tmpStr = unicode(tmpRes)
             tmpColRePtnResList = re.findall(r'''\s([A-Za-z][^\s]*)=["']([^'"]*)['"]''', tmpStr)
             tmpColRePtnResList2 = re.findall(r'''\<([^\s]*)\s+[^\>]*class=['"]([^\>"']*)['"][^\>]*\>([^\>\<]*?)\</(?:\1)\>|\<([^\s]*)\s+[^\>]*id=['"]([^\>'"]*)['"][^\>]*\>([^\>\<]*?)\</(?:\4)\>''', tmpStr)
+
+            #tmpColRePtnResList3 = re.findall(r'''<a[^\>]*class="([^"]*)"[^\>]*>([\s\S]*?)</a>''', tmpStr)
             #tmpColRePtnResList3 = re.findall(r'''\<a[^\>]*\>([^\<\>]*?)\</a\>''',  tmpStr)
             #find identical cols Type 1
             for tmpColRePtnRes in tmpColRePtnResList:
@@ -146,7 +150,7 @@ class Dialog(QDialog, Ui_Dialog):
                     hashval[tmpColRePtnRes[0]] += 1
                 else:
                     hashval[tmpColRePtnRes[0]] = 1
-                    if tmpColRePtnRes[0] != 'class':
+                    if tmpColRePtnRes[0] != 'class' and tmpColRePtnRes[0]  != 'alt' and tmpColRePtnRes[0]  != 'src' and tmpColRePtnRes[0] != 'target':
                         resCols.append(tmpColRePtnRes[0])
             #find identical cols Type 2            
             for tmpColRePtnRes in tmpColRePtnResList2:
@@ -159,9 +163,16 @@ class Dialog(QDialog, Ui_Dialog):
                             hashval[tmpColRePtnRes[idkey]] = 1      
                             if tmpColRePtnRes[idkey+1].strip() != "":
                                 resCols2.append(tmpColRePtnRes[idkey])
+            """
+            for tmpColRePtnRes in tmpColRePtnResList3:
+                if hashval.has_key(tmpColRePtnRes[0]):
+                    hashval[tmpColRePtnRes[0]] += 1
+                else:
+                    hashval[tmpColRePtnRes[0]] = 1
+                    resCols3.append(tmpColRePtnRes[0]) """
     
     #fill the super table  and return row, col
-    def MakeSuperTab(self, extResList, superTab, resCols, resCols2, hashval):
+    def MakeSuperTab(self, extResList, superTab, resCols, resCols2, resCols3, hashval):
         row = 0
         col = 0
         print len(extResList)
@@ -187,32 +198,65 @@ class Dialog(QDialog, Ui_Dialog):
             for curCol in resCols2:
                 if hashval.has_key(curCol) :
                     if re.search(r'''\<([^\s]*)\s+[^\>]*class=['"]''' + curCol+ r'''['"][^\>]*\>([^\>\<]*?)\</(?:\1)\>''', tmpStr) != None:
-                        superTab[row].append(re.search(r'''\<([^\s]*)\s+[^\>]*class=['"]''' + curCol+ r'''['"][^\>]*\>([^\>\<]*?)\</(?:\1)\>''', tmpStr) .group(2))
+                        #superTab[row].append(re.search(r'''\<([^\s]*)\s+[^\>]*class=['"]''' + curCol+ r'''['"][^\>]*\>([^\>\<]*?)\</(?:\1)\>''', tmpStr) .group(2))
+                        tmpItemStr = ""
+                        tmpReRes = re.findall(r'''\<([^\s]*)\s+[^\>]*class=['"]''' + curCol+ r'''['"][^\>]*\>([^\>\<]*?)\</(?:\1)\>''', tmpStr) 
+                        for curReRes in tmpReRes:
+                            if len(tmpItemStr) > 0 and tmpItemStr[len(tmpItemStr) - 1] != ' ':
+                                tmpItemStr += ' '
+                            tmpItemStr += curReRes[1];
+                        superTab[row].append(tmpItemStr)
                     #else:
                         #print tmpStr
                        # superTab[row].append('')
                         #print curCol+r'="([^"]*)"'
                     elif re.search(r'''\<([^\s]*)\s+[^\>]*id=['"]''' + curCol + r'''['"][^\>]*\>([^\>\<]*?)\</(?:\1)\>''', tmpStr) != None:
-                        superTab[row].append(re.search(r'''\<([^\s]*)\s+[^\>]*id=['"]''' + curCol + r'''['"][^\>]*\>([^\>\<]*?)\</(?:\1)\>''', tmpStr) .group(2))
+                        #superTab[row].append(re.search(r'''\<([^\s]*)\s+[^\>]*id=['"]''' + curCol + r'''['"][^\>]*\>([^\>\<]*?)\</(?:\1)\>''', tmpStr) .group(2))
+                        tmpItemStr = ""
+                        tmpReRes = re.findall(r'''\<([^\s]*)\s+[^\>]*id=['"]''' + curCol + r'''['"][^\>]*\>([^\>\<]*?)\</(?:\1)\>''', tmpStr) 
+                        for curReRes in tmpReRes:
+                            if len(tmpItemStr) > 0 and tmpItemStr[len(tmpItemStr) - 1] != ' ':
+                                tmpItemStr += ' '
+                            tmpItemStr += curReRes[1];
+                        superTab[row].append(tmpItemStr)
                     else:
                         #print tmpStr
                         superTab[row].append('')
                         print curCol+r'="([^"]*)"'
                     col += 1
+            """
+            for curCol in resCols3:
+                if hashval.has_key(curCol) :
+                    if re.search(r'''<a[^\>]*class="([^"]*)"[^\>]*>([\s\S]*?)</a>''', tmpStr) != None:
+                        tmpItemStr = ""
+                        tmpReRes = re.findall(r'''<a[^\>]*class="([^"]*)"[^\>]*>([\s\S]*?)</a>''', tmpStr) 
+                        for curReRes in tmpReRes:
+                            if len(tmpItemStr) > 0 and tmpItemStr[len(tmpItemStr) - 1] != ' ':
+                                tmpItemStr += ' '
+                            tmpItemStr += curReRes[1];
+                        superTab[row].append(tmpItemStr)
+                        #superTab[row].append(re.search(r'''<a[^\>]*class="([^"]*)"[^\>]*>([\s\S]*?)</a>''', tmpStr) .group(2))
+                    else:
+                        #print tmpStr
+                        superTab[row].append('')
+                        print curCol+r'="([^"]*)"'
+                    col += 1
+            """
+
             row += 1
         if row != 0:
             col /= row
         return row, col
         
-    def UpdateTableWidget(self, resCols, resCols2, superTab):
-        if len(resCols + resCols2) == 0 :
+    def UpdateTableWidget(self, resCols, resCols2, resCols3, superTab):
+        if len(resCols + resCols2 + resCols3) == 0 :
             return
         
         #updateTabWidgetType2(self, superTable2, superTable2Name, extTableHeadsLists):
         superTable2 = []
         superTable2Name = []
         extTableHeadsLists = []
-        extTableHeadsLists.append(resCols + resCols2)
+        extTableHeadsLists.append(resCols + resCols2 + resCols3)
         superTable2Name.append('table0')
         superTable2.append(superTab)
         self.updateTabWidgetType2( superTable2, superTable2Name, extTableHeadsLists)
@@ -258,16 +302,17 @@ class Dialog(QDialog, Ui_Dialog):
             extResList = []
         
         resCols = []
-        resCols2 = []           
+        resCols2 = []    
+        resCols3 = []       
         hashval = {}
         #DBmodel.ReplaceSpace(resCols)
         #DBmodel.ReplaceSpace(resCols2)
-        self.FindPossibleCols(extResList, hashval, resCols, resCols2)    
+        self.FindPossibleCols(extResList, hashval, resCols, resCols2, resCols3)    
         #assign the suiperTab[0...row-1][0...col-1]
         superTab = []
-        row, col = self.MakeSuperTab(extResList, superTab, resCols, resCols2, hashval)              
+        row, col = self.MakeSuperTab(extResList, superTab, resCols, resCols2, resCols3, hashval)              
         
-        self.UpdateTableWidget( resCols, resCols2, superTab)
+        self.UpdateTableWidget( resCols, resCols2, resCols3, superTab)
         
         
     
@@ -441,7 +486,7 @@ class Dialog(QDialog, Ui_Dialog):
                 tmpHdRePtns = [
                     r"""<span class="dealtime" title="[^"]*">([\s\S]*?)</span>""",
                     r"""<span class="number last-item"\s*>([\s\S]*?)</span>""",                      
-                    r"""<a target="_blank" class="shopname J_MakePoint" title="([^"]*)" href="[^"]*" data-point-url="[^"]*" data-spm-anchor-id="[^"]*">[\s\S]*?</a>""", 
+                    r"""<a target="_blank" class="shopname[^"]*" title="([^"]*)" href="[^"]*" data-point-url="[^"]*" data-spm-anchor-id="[^"]*">[\s\S]*?</a>""", 
                     r"""<td class="amount"[^\>]*>([\s\S]*?)</td>""", 
                     r"""<td class="trade-status[^"]*"[^\>]*>([\s\S]*?)</td>""", 
                     
@@ -652,5 +697,5 @@ if __name__ == "__main__":
     dlg = Dialog()
     
     dlg.show()
-    app.setStyleSheet(qdarkstyle.load_stylesheet(pyside=False))
+    #app.setStyleSheet(qdarkstyle.load_stylesheet(pyside=False))
     sys.exit(app.exec_())
