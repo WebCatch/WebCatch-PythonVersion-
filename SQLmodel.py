@@ -24,6 +24,32 @@ def ShowTablesfromMySQL(conn):
     cur.close()
     return res
     
+def UpdateTableinMySQL(tablename, tableheads, tabledata, conn):
+    DBmodel.ReplaceSpace(tableheads)
+    for fuc in tabledata:
+        DBmodel.MakeEscapeCharacter(fuc)
+    existtableheads = []
+    cur = conn.cursor()
+    cur.execute('show columns from ' + tablename + ';')
+    res = cur.fetchall()
+    fst = 1
+    for r in res:
+        if fst == 1:
+            fst = 0
+            continue
+        existtableheads.append(r[0])
+    if existtableheads != tableheads:
+        raise
+    for curcol in tabledata:
+        tmpStr = 'insert into '+tablename + ' values(0'
+        for item in curcol:
+            tmpStr += ', "' + item +'"'
+        tmpStr += ');'
+        cur.execute(tmpStr)
+    conn.commit()
+    cur.close()
+        
+    
 def LoadTablefromMySQL(tablename, conn):
     tableheads = []
     tabledata = []
@@ -54,7 +80,7 @@ def LoadTablefromMySQL(tablename, conn):
     return (tableheads, tabledata)
 def CreateTableinMySQL(tablename, tableheads, tabledata, conn):
     cur = conn.cursor()
-    tablename = DBmodel.ReplaceSpace(tablename)
+    DBmodel.ReplaceSpace(tablename)
     DBmodel.ReplaceSpace(tableheads)
     for fuc in tabledata:
         DBmodel.MakeEscapeCharacter(fuc)
@@ -80,6 +106,7 @@ def DisconnectMySQL(cur, conn):
 if __name__ == "__main__":
     conn = ConnectMySQL('localhost', 'root', '6191162', 3306, 'test')
     CreateTableinMySQL('hehe', ['a', 'b', 'c'], [['a', 'aa', 'aaa'], ['b', 'bb', 'bbb'], ['c', 'cc', 'ccc']], conn)
+    UpdateTableinMySQL('hehe', ['a', 'b', 'c'], [['a', 'aa', 'aaa'], ['b', 'bb', 'bbb'], ['c', 'cc', 'ccc'], ['d', 'dd', 'ddd']], conn)
     LoadTablefromMySQL('hehe', conn)
     conn.close()
     

@@ -326,7 +326,7 @@ class Dialog(QDialog, Ui_Dialog):
             self.curTab.setObjectName(_fromUtf8(superTable2Name[i]))
             self.curTableWidget = QtGui.QTableWidget(self.curTab)
             self.tableBuf.append(self.curTableWidget)
-            self.curTableWidget.setGeometry(QtCore.QRect(10, 10, 751, 181))
+            self.curTableWidget.setGeometry(QtCore.QRect(10, 10, 751, 300))
             self.curTableWidget.setObjectName(_fromUtf8("tableWidget"+superTable2Name[i]))
             self.curTableWidget.setColumnCount(len(superTable2[i][0]))
             self.curTableWidget.setRowCount(len(superTable2[i])+1)
@@ -594,6 +594,40 @@ class Dialog(QDialog, Ui_Dialog):
             self.lbState.setText(unicode('Unconnected'))
         
        # conn = SQLmodel.ConnectMySQL()
+    
+    
+    @pyqtSignature("")
+    def on_btnAppend_clicked(self):
+        try:
+            if unicode(self.lbState.text() ) == unicode('Unconnected'):
+                r = QtGui.QMessageBox.warning( self, "WebExt", "Please connect first. :)", QtGui.QMessageBox.Ok )
+                return
+            curid = self.tabWidget.currentIndex() 
+            if curid == -1:
+                QtGui.QMessageBox.warning( self, "WebExt", "Please extract first. :)", QtGui.QMessageBox.Ok )
+                return
+            dba = self.tabWidget.currentIndex()
+            print self.tabBuf
+            dbb = self.tabBuf[self.tabWidget.currentIndex()]
+            dbc = self.tabWidget.indexOf(self.tabBuf[self.tabWidget.currentIndex()])
+            dbd = self.tabWidget.tabText(self.tabWidget.indexOf(self.tabBuf[self.tabWidget.currentIndex()]))
+            tablename = unicode(self.tabWidget.tabText(self.tabWidget.indexOf(self.tabBuf[self.tabWidget.currentIndex()])))
+            tableheads = []
+            tabledata = []
+            tmpQTableObj = self.tableBuf[self.tabWidget.currentIndex()]
+            for i in range(tmpQTableObj.rowCount()):
+                if i !=0:
+                    tabledata.append([])
+                for j in range(tmpQTableObj.columnCount()):
+                    if i == 0:
+                        tableheads.append(unicode(tmpQTableObj.item(i, j).text()))
+                    else:
+                        tabledata[i - 1].append(unicode(tmpQTableObj.item(i, j).text()))
+            
+            SQLmodel.UpdateTableinMySQL(tablename, tableheads, tabledata, self.conn)
+        except:
+            QtGui.QMessageBox.warning( self, "WebExt", "Failed. :(", QtGui.QMessageBox.Ok )
+    
     
     @pyqtSignature("")
     def on_btnSave_clicked(self):
