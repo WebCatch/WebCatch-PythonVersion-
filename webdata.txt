@@ -29,17 +29,17 @@
     var moblieTestFlag='';
     var isMoblieFlag='';
 </script><!--[if IE 6]>
-  <script type="text/javascript" src="http://image.converse.com.cn/scripts/DD_belatedPNG_0.0.8a-min.js?201412151828" ></script>
-  <script type="text/javascript" src="http://image.converse.com.cn/scripts/fixpng.js?201412151828" ></script>
+  <script type="text/javascript" src="http://image.converse.com.cn/scripts/DD_belatedPNG_0.0.8a-min.js?201412161446" ></script>
+  <script type="text/javascript" src="http://image.converse.com.cn/scripts/fixpng.js?201412161446" ></script>
 <![endif]-->
 <link rel="shortcut icon" href="http://image.converse.com.cn/favicon.ico" type="image/x-icon" />
-<link type="text/css" rel="stylesheet" href="http://image.converse.com.cn/??css/new_main.css,css/checkout.css,css/new_page.css,css/detail.css,css/myaccount.css?201412151828"/><script type="text/javascript" src="http://image.converse.com.cn/??scripts/jquery-1.7.2.min.js,scripts/iscroll.js,scripts/jquery.tools.min.js,scripts/jquery.autocomplete.js,scripts/jquery.loxia.js,scripts/imgReady.js,scripts/createJquery.js,scripts/Converse_s_code.v03.js,scripts/main.js,scripts/site.dialog2.js,scripts/header.js,scripts/ConverseChina.OmnitureCustomLinkFunctions.js,scripts/horizontal.js,scripts/jquery.ui.core.js,scripts/jquery.ui.datepicker.js,scripts/registerDialog.js,scripts/resize.js?201412151828"></script><script type="text/javascript">
+<link type="text/css" rel="stylesheet" href="http://image.converse.com.cn/??css/new_main.css,css/checkout.css,css/new_page.css,css/detail.css,css/myaccount.css?201412161446"/><script type="text/javascript" src="http://image.converse.com.cn/??scripts/jquery-1.7.2.min.js,scripts/iscroll.js,scripts/jquery.tools.min.js,scripts/jquery.autocomplete.js,scripts/jquery.loxia.js,scripts/imgReady.js,scripts/createJquery.js,scripts/Converse_s_code.v03.js,scripts/main.js,scripts/site.dialog2.js,scripts/header.js,scripts/ConverseChina.OmnitureCustomLinkFunctions.js,scripts/horizontal.js,scripts/jquery.ui.core.js,scripts/jquery.ui.datepicker.js,scripts/registerDialog.js,scripts/resize.js?201412161446"></script><script type="text/javascript">
 	//伸缩效果
 	//if(/detail.htm/.test(location.href)){
 		$j('head').append('<meta name="viewport" content="width=device-width, initial-scale=1" />');	
 	//}	
 </script>
-<link rel="stylesheet" type="text/css" href="http://image.converse.com.cn/css/jquery.ui.all.css?201412151828" media="screen" />
+<link rel="stylesheet" type="text/css" href="http://image.converse.com.cn/css/jquery.ui.all.css?201412161446" media="screen" />
 <script type="text/javascript" id="bdshare_js" data="type=slide&mini=1" ></script> 
 <script type="text/javascript" id="bdshell_js"></script>
 
@@ -55,9 +55,9 @@
 
 
 	
-		<script type="text/javascript" src="http://image.converse.com.cn/scripts/product/shop_cart.js?201412151828"></script>
-		<script type="text/javascript" src="http://image.converse.com.cn/scripts/dialog.js?201412151828"></script>
-		<script type="text/javascript" src="http://image.converse.com.cn/scripts/fai_scroll.js?201412151828"></script>
+		<script type="text/javascript" src="http://image.converse.com.cn/scripts/product/shop_cart.js?201412161446"></script>
+		<script type="text/javascript" src="http://image.converse.com.cn/scripts/dialog.js?201412161446"></script>
+		<script type="text/javascript" src="http://image.converse.com.cn/scripts/fai_scroll.js?201412161446"></script>
 	
 	
 
@@ -1077,10 +1077,10 @@
 
 
 	
-		<script type="text/javascript" src="http://image.converse.com.cn/scripts/category.js?201412151828"></script>
-		<script type="text/javascript" src="http://image.converse.com.cn/scripts/ui.Xslider.js?201412151828"></script>
-		<script type="text/javascript" src="http://image.converse.com.cn/scripts/category/auto_load_sku.js?201412151828"></script>
-		<script type="text/javascript" src="http://image.converse.com.cn/scripts/product/favorite.js?201412151828"></script>
+		<script type="text/javascript" src="http://image.converse.com.cn/scripts/category.js?201412161446"></script>
+		<script type="text/javascript" src="http://image.converse.com.cn/scripts/ui.Xslider.js?201412161446"></script>
+		<script type="text/javascript" src="http://image.converse.com.cn/scripts/category/auto_load_sku.js?201412161446"></script>
+		<script type="text/javascript" src="http://image.converse.com.cn/scripts/product/favorite.js?201412161446"></script>
 	
 	
 
@@ -1268,8 +1268,8 @@ $j(function(){
 
 
 
-<script type="text/javascript" src="http://image.converse.com.cn/scripts/srcoll.js?201412151828"></script>
-<link type="text/css" rel="stylesheet" href="http://image.converse.com.cn/css/layout.css?201412151828" />
+<script type="text/javascript" src="http://image.converse.com.cn/scripts/srcoll.js?201412161446"></script>
+<link type="text/css" rel="stylesheet" href="http://image.converse.com.cn/css/layout.css?201412161446" />
 <input type="hidden" id="op" value="" a="men" c2=""/>
 <script type="text/javascript">
 var c1="men";
@@ -1878,7 +1878,7 @@ var favoriteCallback = function(){
 <style>
 .skulist .skul_spic{height: 190px;}
 </style>
-<script type="text/javascript" src="http://image.converse.com.cn/scripts/lazy_load.js?201412151828"></script>
+<script type="text/javascript" src="http://image.converse.com.cn/scripts/lazy_load.js?201412161446"></script>
 <script type="text/javascript">
 	$j(function(){
 		if($j.browser.msie&&($j.browser.version == "6.0")&&!$j.support.style){
@@ -5240,7 +5240,7 @@ var favoriteCallback = function(){
 
 
 
-<script type="text/javascript" src="http://image.converse.com.cn/scripts/blog.js?201412151828"></script>
+<script type="text/javascript" src="http://image.converse.com.cn/scripts/blog.js?201412161446"></script>
 <!-- 跟踪 -->
 
 

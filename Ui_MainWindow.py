@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'F:\PYWS\WebCatch\WebCatch-PythonVersion-\MainWindow.ui'
 #
-# Created: Thu Dec 11 23:07:51 2014
+# Created: Tue Dec 16 15:18:11 2014
 #      by: PyQt4 UI code generator 4.11.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -93,9 +93,6 @@ class Ui_Dialog(object):
         self.btnShowTables = QtGui.QPushButton(Dialog)
         self.btnShowTables.setGeometry(QtCore.QRect(1020, 270, 171, 23))
         self.btnShowTables.setObjectName(_fromUtf8("btnShowTables"))
-        self.teTables = QtGui.QTextEdit(Dialog)
-        self.teTables.setGeometry(QtCore.QRect(1020, 170, 171, 91))
-        self.teTables.setObjectName(_fromUtf8("teTables"))
         self.label_18 = QtGui.QLabel(Dialog)
         self.label_18.setGeometry(QtCore.QRect(1020, 150, 61, 16))
         self.label_18.setObjectName(_fromUtf8("label_18"))
@@ -181,6 +178,9 @@ class Ui_Dialog(object):
         self.btnChangeTName = QtGui.QPushButton(Dialog)
         self.btnChangeTName.setGeometry(QtCore.QRect(700, 60, 71, 21))
         self.btnChangeTName.setObjectName(_fromUtf8("btnChangeTName"))
+        self.listTables = QtGui.QListWidget(Dialog)
+        self.listTables.setGeometry(QtCore.QRect(1020, 170, 171, 91))
+        self.listTables.setObjectName(_fromUtf8("listTables"))
 
         self.retranslateUi(Dialog)
         self.tabWidget.setCurrentIndex(-1)
@@ -228,12 +228,7 @@ class Ui_Dialog(object):
         self.btnAddCol.setText(_translate("Dialog", "AddCol", None))
         self.label_17.setText(_translate("Dialog", "CurTableName:", None))
         self.btnChangeTName.setText(_translate("Dialog", "Change", None))
-        try:
-            sshFile="css.qss"
-            with open(sshFile,"r") as fh:
-                self.setStyleSheet(fh.read())
-        except:
-            pass
+
 
 if __name__ == "__main__":
     import sys

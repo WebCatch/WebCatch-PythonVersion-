@@ -252,16 +252,6 @@
     <string>Show Tables</string>
    </property>
   </widget>
-  <widget class="QTextEdit" name="teTables">
-   <property name="geometry">
-    <rect>
-     <x>1020</x>
-     <y>170</y>
-     <width>171</width>
-     <height>91</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QLabel" name="label_18">
    <property name="geometry">
     <rect>
@@ -617,6 +607,16 @@
     <string>Change</string>
    </property>
   </widget>
+  <widget class="QListWidget" name="listTables">
+   <property name="geometry">
+    <rect>
+     <x>1020</x>
+     <y>170</y>
+     <width>171</width>
+     <height>91</height>
+    </rect>
+   </property>
+  </widget>
   <zorder>horizontalLayoutWidget</zorder>
   <zorder>btnConnect</zorder>
   <zorder>btnSave</zorder>
@@ -632,7 +632,6 @@
   <zorder>label_16</zorder>
   <zorder>btnDisConnect</zorder>
   <zorder>btnShowTables</zorder>
-  <zorder>teTables</zorder>
   <zorder>label_18</zorder>
   <zorder>btnCloseCurTab</zorder>
   <zorder>leDTableName</zorder>
@@ -663,6 +662,7 @@
   <zorder>label_17</zorder>
   <zorder>leCurTableName</zorder>
   <zorder>btnChangeTName</zorder>
+  <zorder>listTables</zorder>
  </widget>
  <resources/>
  <connections/>

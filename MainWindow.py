@@ -563,7 +563,7 @@ class Dialog(QDialog, Ui_Dialog):
         """
         self.teExctData.setText("")
         qsurl = self.leURL.text()
-        url = unicode (qsurl) 
+        url = unicode (qsurl)
         if re.match(r'http://[^\s]*', url) == None:
             url = r'http://' + url
         try:
@@ -576,7 +576,7 @@ class Dialog(QDialog, Ui_Dialog):
             self.extracted = 1
         except:
             QtGui.QMessageBox.warning( self, "WebExt", "Page not found! o.O", QtGui.QMessageBox.Ok )
-       
+
     @pyqtSignature("")
     def on_btnDeleteTable_clicked(self):
         tablename = unicode(self.leDTableName.text())
@@ -791,14 +791,22 @@ class Dialog(QDialog, Ui_Dialog):
             self.tabWidget.setTabText(self.tabWidget.currentIndex() , _translate("Dialog", tmpstr, None))
         else:
             QtGui.QMessageBox.warning( self, "WebExt", "No any tab yet. :(", QtGui.QMessageBox.Ok )
+
+    def fuc(self):
+        curitem = self.listTables.currentItem()
+        self.leTablename.setText(curitem.text())
+
     @pyqtSignature("")
     def on_btnShowTables_clicked(self):
         #howTablesfromMySQL(conn):
         try:
-            self.teTables.setText(u'')
+            self.listTables.clear()
+            #self.teTables.setText(u'')
             restables = SQLmodel.ShowTablesfromMySQL(self.conn)
             for tmpcur in restables:
-                self.teTables.append(tmpcur)
+                #self.teTables.append(tmpcur)
+                self.listTables.addItem(tmpcur)
+            self.listTables.itemClicked.connect(self.fuc)
         except:
             QtGui.QMessageBox.warning( self, "WebExt", "Failed. :(", QtGui.QMessageBox.Ok )
     #btnChangeTName
