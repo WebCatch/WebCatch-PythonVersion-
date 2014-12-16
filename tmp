@@ -1,0 +1,26 @@
+self.curTab = PyQt4.QtGui.QWidget()
+            self.tabBuf.append(self.curTab)
+            self.curTab.setObjectName(_fromUtf8(superTable2Name[i]))
+            self.curTableWidget = QtGui.QTableWidget(self.curTab)
+            self.tableBuf.append(self.curTableWidget)
+            self.curTableWidget.setGeometry(QtCore.QRect(10, 10, 751, 300))
+            self.curTableWidget.setObjectName(_fromUtf8("tableWidget"+superTable2Name[i]))
+            self.curTableWidget.setColumnCount(len(superTable2[i][0]))
+            self.curTableWidget.setRowCount(len(superTable2[i])+1)
+            #DBmodel.RemoveSpace(extTableHeadsLists)
+            #self.curTableWidget.setHorizontalHeaderLabels(extTableHeadsLists[i])
+            self.curTableWidget.setHorizontalHeaderLabels([unicode(str(j + 1)) for j in range(len(extTableHeadsLists[i])) ])
+            #update Tabel Widget
+            for j in range(len(superTable2[i][0])):
+                self.newItem = QTableWidgetItem(unicode(extTableHeadsLists[i][j].strip().encode('utf-8'), 'utf-8', 'ignore'))
+                self.curTableWidget.setItem(0, j, self.newItem)
+                self.QTout(extTableHeadsLists[i][j].encode('utf-8') )
+            for k in range(len(superTable2[i])):
+                for j in range(len(superTable2[i][0])):
+                    self.newItem = QTableWidgetItem(unicode(superTable2[i][k][j].strip().encode('utf-8'), 'utf-8', 'ignore'))
+                    self.curTableWidget.setItem(k + 1, j, self.newItem)
+                    self.QTout(superTable2[i][k][j].encode('utf-8') )
+
+
+            self.tabWidget.addTab(self.curTab, _fromUtf8(""))
+            self.tabWidget.setTabText(self.tabWidget.indexOf(self.curTab), _translate("Dialog", superTable2Name[i], None))

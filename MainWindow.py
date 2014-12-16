@@ -330,7 +330,6 @@ class Dialog(QDialog, Ui_Dialog):
             self.curTableWidget.setObjectName(_fromUtf8("tableWidget"+superTable2Name[i]))
             self.curTableWidget.setColumnCount(len(superTable2[i][0]))
             self.curTableWidget.setRowCount(len(superTable2[i])+1)
-            
             #DBmodel.RemoveSpace(extTableHeadsLists)
             #self.curTableWidget.setHorizontalHeaderLabels(extTableHeadsLists[i])
             self.curTableWidget.setHorizontalHeaderLabels([unicode(str(j + 1)) for j in range(len(extTableHeadsLists[i])) ])
@@ -525,6 +524,38 @@ class Dialog(QDialog, Ui_Dialog):
             
         file = open('webdata.txt', 'w')
         file = file.write(doc)
+
+
+    def GetCurTable(self):
+        tablename = unicode(self.tabWidget.tabText(self.tabWidget.indexOf(self.tabBuf[self.tabWidget.currentIndex()])))
+        tableheads = []
+        tabledata = []
+        tmpQTableObj = self.tableBuf[self.tabWidget.currentIndex()]
+        for i in range(tmpQTableObj.rowCount()):
+            if i !=0:
+                tabledata.append([])
+            for j in range(tmpQTableObj.columnCount()):
+                if i == 0:
+                    tableheads.append(unicode(tmpQTableObj.item(i, j).text()))
+                else:
+                    tabledata[i - 1].append(unicode(tmpQTableObj.item(i, j).text()))
+        return tablename,tableheads,tabledata
+
+    def ReplaceCurTableWidget(self,tablename,tableheads,tabledata):
+        curTableWidget = self.tableBuf[self.tabWidget.currentIndex()]
+        curTableWidget.clear()
+        curTableWidget.setColumnCount(len(tableheads))
+        curTableWidget.setRowCount(len(tabledata) +1)
+        curTableWidget.setHorizontalHeaderLabels([unicode(str(j + 1)) for j in range(len(tableheads)) ])
+        for j in range(len(tableheads)):
+            self.newItem = QTableWidgetItem(unicode(tableheads[j].strip().encode('utf-8'), 'utf-8','ignore' ) )
+            curTableWidget.setItem(0, j, self.newItem)
+        for k in range(len(tabledata) ):
+            for j in range(len(tableheads) ):
+                self.newItem = QTableWidgetItem(unicode(tabledata[k][j].strip().encode('utf-8'), 'utf-8', 'ignore'))
+                curTableWidget.setItem(k + 1, j, self.newItem)
+
+
     @pyqtSignature("")
     def on_btnExct_clicked(self):
         """
@@ -594,7 +625,90 @@ class Dialog(QDialog, Ui_Dialog):
             self.lbState.setText(unicode('Unconnected'))
         
        # conn = SQLmodel.ConnectMySQL()
+
+    def GetDelorAddListandOthers(self,fg):
+        ids = {}
+        if fg == 0:
+            rawunistr = unicode(self.leRowId.text())
+        else:
+            rawunistr = unicode(self.leColId.text())
+        sections = rawunistr.split(',')
+        for section in sections:
+            oneortwo = section.split('-')
+            if len(oneortwo) == 1:
+                ids[(int(oneortwo[0]) )] = 1
+            elif len(oneortwo) == 2 :
+                for i in range(int(oneortwo[0]),int(oneortwo[1])+1):
+                    ids[i] = 1
+            else:
+                raise
+
+        id_list = []
+        for id in ids:
+            id_list.append(id)
+        id_list.sort()
+        tablename,tableheads,tabledata = self.GetCurTable()
+        return id_list,tablename,tableheads,tabledata
+
+    def AddRoworCol(self,fg):
+        add_id_list,tablename,tableheads,tabledata = self.GetDelorAddListandOthers(fg)
+        for i in range(len(add_id_list) - 1, -1 , -1 ):
+            if fg == 0:
+                tabledata.insert( add_id_list[i] - 2,[])
+                for j in range(len(tableheads)):
+                    tabledata[add_id_list[i] - 2].append('')
+            elif fg == 1:
+                tableheads.insert(add_id_list[i]-1,'')
+                for item in tabledata:
+                    item.insert(add_id_list[i] - 1,'')
+            else:
+                raise
+        self.ReplaceCurTableWidget( tablename,tableheads,tabledata)
+
+    def DelRoworCol(self,fg):
+
+        del_id_list,tablename,tableheads,tabledata = self.GetDelorAddListandOthers(fg)
+        for i in range(len(del_id_list) - 1, -1 , -1 ):
+            if fg == 0:
+                del tabledata[del_id_list[i]-2]
+            elif fg == 1:
+                del tableheads[del_id_list[i] - 1]
+                for item in tabledata:
+                    del item[del_id_list[i] - 1]
+            else:
+                raise
+
+        self.ReplaceCurTableWidget( tablename,tableheads,tabledata)
+
+    @pyqtSignature("")
+    #leRowId
+    def on_btnDelRow_clicked(self):
+        try:
+            self.DelRoworCol(0)
+        except:
+            QtGui.QMessageBox.warning( self, "WebExt", "Failed. :(", QtGui.QMessageBox.Ok )
+        
+    @pyqtSignature("")
+    def on_btnAddRow_clicked(self):
+        try:
+            self.AddRoworCol(0)
+        except:
+            QtGui.QMessageBox.warning( self, "WebExt", "Failed. :(", QtGui.QMessageBox.Ok )
     
+    #leColId
+    @pyqtSignature("")
+    def on_btnDelCol_clicked(self):
+        try:
+            self.DelRoworCol(1)
+        except:
+            QtGui.QMessageBox.warning( self, "WebExt", "Failed. :(", QtGui.QMessageBox.Ok )
+        
+    @pyqtSignature("")
+    def on_btnAddCol_clicked(self):
+        try:
+            self.AddRoworCol(1)
+        except:
+            QtGui.QMessageBox.warning( self, "WebExt", "Failed. :(", QtGui.QMessageBox.Ok )
     
     @pyqtSignature("")
     def on_btnAppend_clicked(self):
@@ -623,7 +737,7 @@ class Dialog(QDialog, Ui_Dialog):
                         tableheads.append(unicode(tmpQTableObj.item(i, j).text()))
                     else:
                         tabledata[i - 1].append(unicode(tmpQTableObj.item(i, j).text()))
-            
+
             SQLmodel.UpdateTableinMySQL(tablename, tableheads, tabledata, self.conn)
         except:
             QtGui.QMessageBox.warning( self, "WebExt", "Failed. :(", QtGui.QMessageBox.Ok )
@@ -730,6 +844,6 @@ if __name__ == "__main__":
     
     dlg = Dialog()
     
-    dlg.show()
+    dlg.show()    
     #app.setStyleSheet(qdarkstyle.load_stylesheet(pyside=False))
     sys.exit(app.exec_())

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1196</width>
-    <height>446</height>
+    <width>1205</width>
+    <height>443</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -54,151 +54,11 @@
    <property name="geometry">
     <rect>
      <x>800</x>
-     <y>300</y>
-     <width>181</width>
-     <height>31</height>
+     <y>310</y>
+     <width>201</width>
+     <height>41</height>
     </rect>
    </property>
-  </widget>
-  <widget class="QWidget" name="horizontalLayoutWidget_3">
-   <property name="geometry">
-    <rect>
-     <x>800</x>
-     <y>110</y>
-     <width>211</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <layout class="QHBoxLayout" name="horizontalLayout_3">
-    <item>
-     <widget class="QLabel" name="label_7">
-      <property name="text">
-       <string>PORT:</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="lePort">
-      <property name="text">
-       <string>3306</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QWidget" name="horizontalLayoutWidget_2">
-   <property name="geometry">
-    <rect>
-     <x>800</x>
-     <y>50</y>
-     <width>211</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <layout class="QHBoxLayout" name="horizontalLayout_2">
-    <item>
-     <widget class="QLabel" name="label_4">
-      <property name="text">
-       <string>UserName:</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="leUsername">
-      <property name="text">
-       <string>root</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QWidget" name="horizontalLayoutWidget_4">
-   <property name="geometry">
-    <rect>
-     <x>800</x>
-     <y>80</y>
-     <width>211</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <layout class="QHBoxLayout" name="horizontalLayout_4">
-    <item>
-     <widget class="QLabel" name="label_5">
-      <property name="text">
-       <string>PassWord:</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="lePassword">
-      <property name="text">
-       <string>6191162</string>
-      </property>
-      <property name="echoMode">
-       <enum>QLineEdit::Password</enum>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QWidget" name="horizontalLayoutWidget_5">
-   <property name="geometry">
-    <rect>
-     <x>800</x>
-     <y>140</y>
-     <width>211</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <layout class="QHBoxLayout" name="horizontalLayout_5">
-    <item>
-     <widget class="QLabel" name="label_6">
-      <property name="text">
-       <string>DBName:</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="leDBName">
-      <property name="text">
-       <string>test</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QWidget" name="horizontalLayoutWidget_6">
-   <property name="geometry">
-    <rect>
-     <x>800</x>
-     <y>20</y>
-     <width>211</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <layout class="QHBoxLayout" name="horizontalLayout_6">
-    <item>
-     <widget class="QLabel" name="label_3">
-      <property name="text">
-       <string>Host:</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="label_2">
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="leHost">
-      <property name="text">
-       <string>localhost</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
   </widget>
   <widget class="QPushButton" name="btnConnect">
    <property name="geometry">
@@ -218,7 +78,7 @@
     <rect>
      <x>1020</x>
      <y>20</y>
-     <width>161</width>
+     <width>171</width>
      <height>21</height>
     </rect>
    </property>
@@ -226,37 +86,11 @@
     <string>Save the Data into Mysql</string>
    </property>
   </widget>
-  <widget class="QWidget" name="horizontalLayoutWidget_7">
-   <property name="geometry">
-    <rect>
-     <x>800</x>
-     <y>170</y>
-     <width>212</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <layout class="QHBoxLayout" name="horizontalLayout_7">
-    <item>
-     <widget class="QLabel" name="label_8">
-      <property name="text">
-       <string>MYSQL Connection State:</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="lbState">
-      <property name="text">
-       <string>Unconnected</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
   <widget class="QLabel" name="label_10">
    <property name="geometry">
     <rect>
      <x>800</x>
-     <y>280</y>
+     <y>290</y>
      <width>111</width>
      <height>16</height>
     </rect>
@@ -270,7 +104,7 @@
     <rect>
      <x>1100</x>
      <y>50</y>
-     <width>71</width>
+     <width>91</width>
      <height>20</height>
     </rect>
    </property>
@@ -304,84 +138,12 @@
     <number>-1</number>
    </property>
   </widget>
-  <widget class="QWidget" name="horizontalLayoutWidget_8">
-   <property name="geometry">
-    <rect>
-     <x>790</x>
-     <y>350</y>
-     <width>245</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <layout class="QHBoxLayout" name="horizontalLayout_8">
-    <item>
-     <widget class="QLabel" name="label_9">
-      <property name="text">
-       <string>RowId:</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="leRowId"/>
-    </item>
-    <item>
-     <widget class="QPushButton" name="btnDelRow">
-      <property name="text">
-       <string>Delete</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="btnAddRow">
-      <property name="text">
-       <string>AddRow</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QWidget" name="horizontalLayoutWidget_9">
-   <property name="geometry">
-    <rect>
-     <x>790</x>
-     <y>390</y>
-     <width>245</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <layout class="QHBoxLayout" name="horizontalLayout_9">
-    <item>
-     <widget class="QLabel" name="label_12">
-      <property name="text">
-       <string>ColId:</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="leColId"/>
-    </item>
-    <item>
-     <widget class="QPushButton" name="btnDelCol">
-      <property name="text">
-       <string>Delete</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="btnAddCol">
-      <property name="text">
-       <string>AddCol</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
   <widget class="QPushButton" name="btnLoad">
    <property name="geometry">
     <rect>
      <x>1020</x>
      <y>80</y>
-     <width>161</width>
+     <width>171</width>
      <height>21</height>
     </rect>
    </property>
@@ -392,9 +154,9 @@
   <widget class="QTextEdit" name="teHTMLCode">
    <property name="geometry">
     <rect>
-     <x>1050</x>
+     <x>1020</x>
      <y>330</y>
-     <width>131</width>
+     <width>171</width>
      <height>61</height>
     </rect>
    </property>
@@ -402,7 +164,7 @@
   <widget class="QLabel" name="label_15">
    <property name="geometry">
     <rect>
-     <x>1050</x>
+     <x>1020</x>
      <y>300</y>
      <width>61</width>
      <height>16</height>
@@ -415,9 +177,9 @@
   <widget class="QPushButton" name="btnExtfromCode">
    <property name="geometry">
     <rect>
-     <x>1050</x>
+     <x>1020</x>
      <y>400</y>
-     <width>131</width>
+     <width>171</width>
      <height>21</height>
     </rect>
    </property>
@@ -456,7 +218,7 @@
     <rect>
      <x>910</x>
      <y>200</y>
-     <width>101</width>
+     <width>91</width>
      <height>23</height>
     </rect>
    </property>
@@ -464,42 +226,13 @@
     <string>DisConnect</string>
    </property>
   </widget>
-  <widget class="QWidget" name="horizontalLayoutWidget_10">
-   <property name="geometry">
-    <rect>
-     <x>430</x>
-     <y>50</y>
-     <width>337</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <layout class="QHBoxLayout" name="horizontalLayout_10">
-    <item>
-     <widget class="QLabel" name="label_17">
-      <property name="text">
-       <string>CurTableName:</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="leCurTableName"/>
-    </item>
-    <item>
-     <widget class="QPushButton" name="btnChangeTName">
-      <property name="text">
-       <string>Change</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
   <widget class="QPushButton" name="btnCloseCurTab">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>50</y>
+     <y>61</y>
      <width>91</width>
-     <height>31</height>
+     <height>20</height>
     </rect>
    </property>
    <property name="text">
@@ -511,7 +244,7 @@
     <rect>
      <x>1020</x>
      <y>270</y>
-     <width>161</width>
+     <width>171</width>
      <height>23</height>
     </rect>
    </property>
@@ -524,7 +257,7 @@
     <rect>
      <x>1020</x>
      <y>170</y>
-     <width>161</width>
+     <width>171</width>
      <height>91</height>
     </rect>
    </property>
@@ -547,7 +280,7 @@
     <rect>
      <x>870</x>
      <y>230</y>
-     <width>111</width>
+     <width>131</width>
      <height>20</height>
     </rect>
    </property>
@@ -569,8 +302,8 @@
    <property name="geometry">
     <rect>
      <x>800</x>
-     <y>250</y>
-     <width>181</width>
+     <y>260</y>
+     <width>201</width>
      <height>23</height>
     </rect>
    </property>
@@ -591,21 +324,306 @@
     <string>Append the Data into Mysql</string>
    </property>
   </widget>
+  <widget class="QLabel" name="label_7">
+   <property name="geometry">
+    <rect>
+     <x>800</x>
+     <y>110</y>
+     <width>41</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>PORT:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lePort">
+   <property name="geometry">
+    <rect>
+     <x>860</x>
+     <y>110</y>
+     <width>141</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>3306</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_6">
+   <property name="geometry">
+    <rect>
+     <x>800</x>
+     <y>140</y>
+     <width>41</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>DBName:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="leDBName">
+   <property name="geometry">
+    <rect>
+     <x>860</x>
+     <y>140</y>
+     <width>141</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>test</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lePassword">
+   <property name="geometry">
+    <rect>
+     <x>860</x>
+     <y>80</y>
+     <width>141</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>6191162</string>
+   </property>
+   <property name="echoMode">
+    <enum>QLineEdit::Password</enum>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>800</x>
+     <y>80</y>
+     <width>61</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>PassWord:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>800</x>
+     <y>50</y>
+     <width>61</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>UserName:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="leUsername">
+   <property name="geometry">
+    <rect>
+     <x>860</x>
+     <y>50</y>
+     <width>141</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>root</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>800</x>
+     <y>20</y>
+     <width>41</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Host:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="leHost">
+   <property name="geometry">
+    <rect>
+     <x>860</x>
+     <y>20</y>
+     <width>141</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>localhost</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_8">
+   <property name="geometry">
+    <rect>
+     <x>800</x>
+     <y>170</y>
+     <width>138</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>MYSQL Connection State:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbState">
+   <property name="geometry">
+    <rect>
+     <x>940</x>
+     <y>170</y>
+     <width>71</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Unconnected</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_9">
+   <property name="geometry">
+    <rect>
+     <x>800</x>
+     <y>369</y>
+     <width>36</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>RowId:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="leRowId">
+   <property name="geometry">
+    <rect>
+     <x>840</x>
+     <y>370</y>
+     <width>51</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnDelRow">
+   <property name="geometry">
+    <rect>
+     <x>900</x>
+     <y>370</y>
+     <width>51</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Delete</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnAddRow">
+   <property name="geometry">
+    <rect>
+     <x>950</x>
+     <y>370</y>
+     <width>51</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>AddRow</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_12">
+   <property name="geometry">
+    <rect>
+     <x>800</x>
+     <y>400</y>
+     <width>36</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>ColId:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="leColId">
+   <property name="geometry">
+    <rect>
+     <x>840</x>
+     <y>400</y>
+     <width>51</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnDelCol">
+   <property name="geometry">
+    <rect>
+     <x>900</x>
+     <y>400</y>
+     <width>51</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Delete</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnAddCol">
+   <property name="geometry">
+    <rect>
+     <x>950</x>
+     <y>400</y>
+     <width>51</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>AddCol</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_17">
+   <property name="geometry">
+    <rect>
+     <x>470</x>
+     <y>60</y>
+     <width>78</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>CurTableName:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="leCurTableName">
+   <property name="geometry">
+    <rect>
+     <x>560</x>
+     <y>60</y>
+     <width>131</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnChangeTName">
+   <property name="geometry">
+    <rect>
+     <x>700</x>
+     <y>60</y>
+     <width>71</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Change</string>
+   </property>
+  </widget>
   <zorder>horizontalLayoutWidget</zorder>
-  <zorder>horizontalLayoutWidget_3</zorder>
-  <zorder>horizontalLayoutWidget_2</zorder>
-  <zorder>horizontalLayoutWidget_4</zorder>
-  <zorder>horizontalLayoutWidget_5</zorder>
-  <zorder>horizontalLayoutWidget_6</zorder>
   <zorder>btnConnect</zorder>
   <zorder>btnSave</zorder>
-  <zorder>horizontalLayoutWidget_7</zorder>
   <zorder>label_10</zorder>
   <zorder>leTablename</zorder>
   <zorder>label_11</zorder>
   <zorder>tabWidget</zorder>
-  <zorder>horizontalLayoutWidget_8</zorder>
-  <zorder>horizontalLayoutWidget_9</zorder>
   <zorder>btnLoad</zorder>
   <zorder>teHTMLCode</zorder>
   <zorder>label_15</zorder>
@@ -613,7 +631,6 @@
   <zorder>leThreshold</zorder>
   <zorder>label_16</zorder>
   <zorder>btnDisConnect</zorder>
-  <zorder>horizontalLayoutWidget_10</zorder>
   <zorder>btnShowTables</zorder>
   <zorder>teTables</zorder>
   <zorder>label_18</zorder>
@@ -623,6 +640,29 @@
   <zorder>btnDeleteTable</zorder>
   <zorder>teExctData</zorder>
   <zorder>btnAppend</zorder>
+  <zorder>label_7</zorder>
+  <zorder>lePort</zorder>
+  <zorder>label_6</zorder>
+  <zorder>leDBName</zorder>
+  <zorder>lePassword</zorder>
+  <zorder>label_5</zorder>
+  <zorder>label_4</zorder>
+  <zorder>leUsername</zorder>
+  <zorder>label_3</zorder>
+  <zorder>leHost</zorder>
+  <zorder>label_8</zorder>
+  <zorder>lbState</zorder>
+  <zorder>label_9</zorder>
+  <zorder>leRowId</zorder>
+  <zorder>btnDelRow</zorder>
+  <zorder>btnAddRow</zorder>
+  <zorder>label_12</zorder>
+  <zorder>leColId</zorder>
+  <zorder>btnDelCol</zorder>
+  <zorder>btnAddCol</zorder>
+  <zorder>label_17</zorder>
+  <zorder>leCurTableName</zorder>
+  <zorder>btnChangeTName</zorder>
  </widget>
  <resources/>
  <connections/>
